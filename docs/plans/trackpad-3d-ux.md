@@ -8,9 +8,11 @@ Date: 20 October 2026.
 
 - Usable across desktop and laptop computers, with trackpads and keyboard/mouse.
 - Start in top-down view, with explicit Orbit and Pan tools.
-- Fix wire editing in BOTH physical 2D and 3D as the first priority.
+- Fix wire editing in BOTH physical 2D and 3D as the first priority. All five actions are first-release requirements: connect pins, reconnect an existing end, move bends/segments, delete wires, and change color/label.
+- Wiring uses click source, click optional bends, click destination; Escape cancels without committing.
+- Electrical editing in all three views is required in the first release; ambiguous physical placement requires review.
 - Add an LTspice-style schematic using the requested IEEE symbol conventions, synchronized with the physical views.
-- Export the schematic to PDF.
+- Export the schematic to PDF. User confirmed American-style symbols (including zigzag resistors), node dots, net labels and orthogonal wires. PDF page size/orientation and optional contents were not individually specified by the blanket yes; propose configurable A4/Letter, portrait/landscape, title block, values and parts list. Proposed default: A4 landscape with values and title block, optional parts list. These defaults remain provisional.
 - First complete task: build and simulate an Uno + button + LED circuit.
 - A database for users' files/projects is later work; do not add authentication, cloud storage or a database now.
 
@@ -70,7 +72,7 @@ Agent A deliverables: updated renderer APIs, interaction prototype, geometry/pic
 P0 — make daily editing usable:
 - Circuit / Code / Split layouts, resizable/collapsible panes, remembered sizes, uncluttered toolbars. Never unmount simulation subscriptions merely to change layouts.
 - Clear active mode, device-specific help, accessible zoom/fit/pan/orbit buttons, shortcut reference.
-- Common wire inspector in physical 2D and 3D: endpoints, reconnect, bend operations, delete, label/color and net highlight in the order chosen by the user.
+- Common wire inspector in physical 2D and 3D: endpoints, reconnect, bend/segment operations, delete and label/color as required first-release actions. Net highlighting and auto-routing follow these priorities. Label text must distinguish decorative wire labels from connectivity-affecting net names.
 - Keyboard-accessible part/pin picker and source/destination connection workflow; primary actions must not require hover precision or dragging.
 - Contextual selected-entity inspector instead of permanent introductory copy; errors remain readable and actionable.
 - Show named Undo/Redo actions; preserve Monaco text history. Camera/view/preferences do not dirty the circuit.
@@ -81,7 +83,7 @@ P1 — schematic and PDF, after net-model gate:
 - SVG-based symbol/route presentation recommended for editable crisp text and vector export. Start with Uno as a labeled functional block plus LED, resistor, pushbutton, power/ground and net labels.
 - Orthogonal wires, explicit junction dots, unconnected crossings, stable reference designators and values. Do not infer a connection merely because drawn lines cross.
 - Generate readable layout, permit manual symbol placement/route edits, preserve manual changes on regeneration where possible, and preview disruptive regeneration.
-- Bidirectional electrical editing is a separate gate: apply shared validated commands and resolve physical-realization ambiguities before commit. User is choosing whether it ships immediately or after layout-only schematic export.
+- Bidirectional electrical editing is a separate gate: apply shared validated commands and resolve physical-realization ambiguities before commit. The user requires this in the first release: layout-only schematic export is an intermediate milestone, not a completed deliverable.
 - PDF export from a frozen project revision using vector primitives/text, page size/orientation, margins, title block and optional parts list. Include revision and warnings for unresolved content. Select a maintained export dependency only after compatibility/license checks; browser print is a fallback, not proof of a working dedicated export.
 - Test multipage clipping, line weight, font embedding, symbols, selectable text and PDF opening. PDF is a static export, not a synchronized editable file.
 
@@ -110,7 +112,7 @@ Ambiguity examples:
 M0: finish interview, freeze contracts and support matrix; establish baseline tasks.
 M1: top-down navigation prototype + responsive shell; validate on an actual trackpad and mouse before rendering polish.
 M2: shared wire creation/reconnection/bend/delete workflow across 2D/3D, with command history and cancellation.
-M3: resolved electrical graph + qualified Uno starter symbols + schematic projection and PDF. Decide electrical-editing scope from interview; do not skip graph equivalence checks to meet a UI deadline.
+M3: resolved electrical graph + qualified Uno starter symbols + schematic projection and PDF. This is an internal milestone only; first release also requires M4 electrical editing. Do not skip graph equivalence checks to meet a UI deadline.
 M4: integrate supported electrical edits between all three views, explicit ambiguity choices, save/reopen migrations and regression tests.
 M5: graphics polish, performance/accessibility pass and full starter-circuit qualification.
 Later: users/projects database, authentication/sync policy and storage migrations. Revisit offline behavior before choosing a database.
@@ -129,6 +131,6 @@ Compared but excluded: ui-ux-pro-max has a Python-driven generator setup not nee
 
 ## Primary references and convention decisions
 
-Analog Devices describes LTspice schematic capture and wiring: https://www.analog.com/en/resources/media-center/videos/6368296317112.html . Its official schematic reference documents named nodes and orthogonal routing: https://github.com/analogdevicesinc/ltspice-reference/blob/main/ai_ref/SCHEMATIC-REFERENCE.md . IEEE identifies IEEE/ANSI315-1975 as Graphic Symbols for Electrical and Electronics Diagrams: https://standards.ieee.org/ieee/315/515/ . These are references, not a claim that LTspice appearance establishes IEEE compliance. Exact requested symbol family/edition and asset rights need confirmation. Draw or use appropriately licensed symbols; do not bundle proprietary LTspice assets or standards PDFs.
+Analog Devices describes LTspice schematic capture and wiring: https://www.analog.com/en/resources/media-center/videos/6368296317112.html . Its official schematic reference documents named nodes and orthogonal routing: https://github.com/analogdevicesinc/ltspice-reference/blob/main/ai_ref/SCHEMATIC-REFERENCE.md . IEEE identifies IEEE/ANSI315-1975 as Graphic Symbols for Electrical and Electronics Diagrams: https://standards.ieee.org/ieee/315/515/ . These are references, not a claim that LTspice appearance establishes IEEE compliance. The familiar American-style appearance is confirmed; precise standards conformance and asset rights still require verification. Draw or use appropriately licensed symbols; do not bundle proprietary LTspice assets or standards PDFs.
 
 See usability-interview.md for decisions and remaining questions. Preferences below are deliberately provisional until answered.
