@@ -42,3 +42,5 @@ Recovery uses one local draft. Opening another project requires discarding unsav
 6. Add schematic projection and equivalence tests. Qualify breadboard geometry and complete the 3D pin mapping catalog.
 
 No installer, firmware compilation success, simulated test success, AI repair or general electrical accuracy is claimed by the current scaffold.
+
+Combined renderer/workbench integration: see [Agent A/B integration](agent-a-b-integration.md).

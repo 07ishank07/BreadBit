@@ -1,8 +1,9 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useSimulatorStore } from '@velxio/store/useSimulatorStore';
-import { readPinInfo } from '@velxio/utils/readPinInfo';
-import { CircuitViewport, adaptVelxioScene, type CircuitViewportHandle, type InteractionMode, type Selection, type SimulationSnapshot, type PinRef } from '../../../../packages/circuit-renderer/src';
-import { layoutScale, moveInLayout, wireExists } from '../integrations/scene';
+import { rendererCommands } from '../integrations/rendererCommands';
+import type { Selected } from '../integrations/editing';
+import { CircuitViewport, adaptVelxioScene, type CircuitViewportHandle, type InteractionMode, type Selection, type SimulationSnapshot, type CameraState } from '../../../../packages/circuit-renderer/src';
+import { layoutScale } from '../integrations/scene';
 import type { ProjectController } from '../integrations/project';
 type LiveElement = HTMLElement & {
     brightness?: number;
@@ -10,14 +11,28 @@ type LiveElement = HTMLElement & {
     value?: number;
     angle?: number;
 };
-export default function Circuit3D({ controller, notify, selection, setSelection }: {
+export default function Circuit3D({ controller, notify, selection, setSelection, largerTargets = false, reducedMotion = false }: {
     controller: ProjectController;
     notify: (message: string) => void;
-    selection: Selection;
-    setSelection: (s: Selection) => void;
+    selection: Selected;
+    setSelection: (s: Selected) => void;
+    largerTargets?: boolean;
+    reducedMotion?: boolean;
 }) {
     const boards = useSimulatorStore(s => s.boards), components = useSimulatorStore(s => s.components), wires = useSimulatorStore(s => s.wires);
     const scene = useMemo(() => adaptVelxioScene({ boards, components: components.map(c => ({ ...c, rotation: Number(c.properties?.rotation) || 0 })), wires }, { mmPerPixel: layoutScale }), [boards, components, wires]);
+    const project = controller.project;
+    const circuit = { ...scene.circuit, wires: scene.circuit.wires.map(w => {
+        const saved = project.document.wires.find(item => item.id === w.id);
+        const route = saved?.route3d;
+        return { ...w, ...(Array.isArray(route) && route.every(p => Array.isArray(p) && p.length === 3 && p.every(Number.isFinite)) ? { waypoints: route as [number, number, number][] } : {}), label: typeof saved?.label === 'string' ? saved.label : undefined };
+    }) };
+    const sceneRef = useRef(circuit); sceneRef.current = circuit;
+    const dispatch = useMemo(() => rendererCommands(controller, () => sceneRef.current), [controller, project.id]);
+    const cameraKey = 'breadbit.camera.' + project.id;
+    const initialCamera = useMemo(() => { try { const c = JSON.parse(localStorage.getItem(cameraKey) ?? 'null'); return c && [c.target, c.position, c.up].every(v => Array.isArray(v) && v.length === 3 && v.every(Number.isFinite)) && Number.isFinite(c.zoom) && c.zoom > 0 ? c as CameraState : undefined; } catch { return undefined; } }, [cameraKey]);
+    const [scrollAction, setScrollAction] = useState<'pan' | 'zoom'>(() => localStorage.getItem('breadbit.3d.scroll') === 'zoom' ? 'zoom' : 'pan');
+    const select = (value: Selection) => setSelection(value && value.type !== 'net' ? { type: value.type, id: value.id } : null);
     const viewport = useRef<CircuitViewportHandle>(null);
     const [mode, setMode] = useState<InteractionMode>('inspect');
     const [quality, setQuality] = useState<'draft' | 'balanced' | 'high'>('balanced');
@@ -76,38 +91,14 @@ export default function Circuit3D({ controller, notify, selection, setSelection 
         });
         setSelection(null);
     }
-    function wire(from: PinRef, to: PinRef) {
-        // Only exact IDs reported by the mounted host part are accepted. Never infer
-        // electrical connectivity from a visual pin or approximate breadboard mesh.
-        const endpoint = (pin: PinRef) => {
-            if (!readPinInfo(document.getElementById(pin.partId))?.some(p => p.name === pin.pinId))
-                throw new Error('This 3D pin has no verified host mapping. Connect it in 2D.');
-            const part = boards.find(b => b.id === pin.partId) ?? components.find(c => c.id === pin.partId);
-            if (!part)
-                throw new Error('Component no longer exists');
-            return { componentId: pin.partId, pinName: pin.pinId, x: part.x, y: part.y };
-        };
-        try {
-            const start = endpoint(from), end = endpoint(to);
-            if (wireExists(useSimulatorStore.getState().wires, start, end))
-                throw new Error('That connection already exists or joins a pin to itself.');
-            edit('Connected pins', () => useSimulatorStore.getState().addWire({ id: crypto.randomUUID(), start, end, color: '#48bb78', waypoints: [] }));
-        }
-        catch (error) {
-            notify(String(error));
-        }
-    }
     return <div className="bb-3d" onKeyDown={event => {
             // Prevent the hidden upstream canvas from acting on 3D selection keystrokes.
             event.stopPropagation();
-            if ((event.key === 'Delete' || event.key === 'Backspace') && !(event.target instanceof HTMLInputElement) && !(event.target instanceof HTMLSelectElement)) {
-                event.preventDefault();
-                remove();
-            }
+
         }}>
     <div className="bb-3d-tools" aria-label="3D tools">
       {(['inspect', 'move', 'wire', 'interact'] as const).map(value => <button key={value} aria-pressed={mode === value} onClick={() => setMode(value)}>{value[0].toUpperCase() + value.slice(1)}</button>)}
-      <button onClick={() => viewport.current?.fit()}>Fit</button>
+      <label>Two-finger scroll<select value={scrollAction} onChange={e => { const value = e.target.value as 'pan' | 'zoom'; setScrollAction(value); try { localStorage.setItem('breadbit.3d.scroll', value); } catch {} }}><option value="pan">Pan</option><option value="zoom">Zoom</option></select></label><button onClick={() => viewport.current?.fit()}>Fit</button>
       <select aria-label="3D camera" defaultValue="top" onChange={e => viewport.current?.setView(e.target.value as 'top' | 'front' | 'isometric')}><option value="isometric">Isometric</option><option value="top">Top</option><option value="front">Front</option></select>
       <select aria-label="3D quality" value={quality} onChange={e => setQuality(e.target.value as typeof quality)}><option value="draft">Draft quality</option><option value="balanced">Balanced quality</option><option value="high">High quality</option></select><label><input type="checkbox" checked={grid} onChange={e => setGrid(e.target.checked)}/>Grid</label>
       <label><input type="checkbox" checked={labels} onChange={e => setLabels(e.target.checked)}/>Labels</label>
@@ -120,24 +111,7 @@ export default function Circuit3D({ controller, notify, selection, setSelection 
         a.click();
     } }}>Export PNG</button>
     </div>
-    <div className="bb-3d-viewport"><CircuitViewport ref={viewport} onReady={() => viewport.current?.setView('top')} quality={quality} circuit={scene.circuit} snapshot={snapshot} mode={mode} selection={selection} onSelect={setSelection} showGrid={grid} showLabels={labels} onPartMove={(id, next) => {
-            const part = scene.circuit.parts.find(p => p.id === id), host = boards.find(b => b.id === id) ?? components.find(c => c.id === id);
-            if (!part || !host)
-                return;
-            const position = moveInLayout(part, next, host);
-            edit('Moved component', () => { const s = useSimulatorStore.getState(); if (boards.some(b => b.id === id))
-                s.setBoardPosition(position, id);
-            else {
-                s.updateComponent(id, position);
-                s.reseatComponentOnBreadboard(id);
-            } });
-        }} onPartRotate={(id, radians) => edit('Rotated component', () => { const s = useSimulatorStore.getState(); const board = s.boards.find(b => b.id === id); if (board) {
-        const desired = ((-radians * 180 / Math.PI) % 360 + 360) % 360;
-        const steps = Math.round(((desired - (board.rotation ?? 0) + 360) % 360) / 90);
-        for (let i = 0; i < steps; i++)
-            s.rotateBoard(id);
-        return;
-    } s.updateComponent(id, { properties: { ...s.components.find(c => c.id === id)?.properties, rotation: ((-radians * 180 / Math.PI) % 360 + 360) % 360 } }); s.reseatComponentOnBreadboard(id); })} onWireCreate={wire} onInputChange={({ partId, property, value }) => {
+    <div className="bb-3d-viewport"><CircuitViewport ref={viewport} quality={quality} circuit={circuit} snapshot={snapshot} mode={mode} selection={selection} onSelect={select} showGrid={grid} showLabels={labels} projectRevision={project.revision} onCommand={dispatch} onFeedback={f => notify(f.message + ' ' + f.recovery)} largerTargets={largerTargets} reducedMotion={reducedMotion} navigation={{ twoFingerAction: scrollAction, initialView: 'top' }} initialCameraState={initialCamera} onCameraChange={state => { try { localStorage.setItem(cameraKey, JSON.stringify(state)); } catch {} }} onInputChange={({ partId, property, value }) => {
             const el = document.getElementById(partId) as LiveElement | null;
             if (!el)
                 return;
@@ -150,7 +124,7 @@ export default function Circuit3D({ controller, notify, selection, setSelection 
                 el.dispatchEvent(new Event('input'));
             }
         }} onError={error => notify('3D: ' + error.message + ' You can return to 2D.')}/></div>
-    <div className="bb-3d-help">{mode === 'move' ? 'Drag to move · R rotates · arrows nudge · Shift = larger steps' : mode === 'interact' ? 'Hold buttons; click a potentiometer to step its input.' : mode === 'wire' ? 'Choose two pins. Unmapped pins are rejected.' : 'Drag to orbit · scroll to zoom · right-drag to pan'} · F fits · 1/2/3 camera</div>
+    <div className="bb-3d-help">{mode === 'move' ? 'Drag to move · R rotates · arrows nudge · Shift = larger steps' : mode === 'interact' ? 'Hold buttons; click a potentiometer to step its input.' : mode === 'wire' ? 'Click a source pin, optional bends, then destination. Escape cancels.' : 'Use Pan or Orbit tools · two-finger scroll pans by default · Ctrl/⌘ + scroll zooms'} · F fits · 1/2/3 camera</div>
     <details className="bb-3d-help"><summary>Model limits{scene.warnings.length ? ' · ' + scene.warnings.length + ' warnings' : ''}</summary>Approximate visual scale. Add components in 2D. Unknown models use placeholders; unmapped wires are omitted visually but preserved in the project. OLED pixels and voltage measurements are not mirrored.{scene.warnings.map((w, i) => <div key={i}>{w}</div>)}</details>
   </div>;
 }
