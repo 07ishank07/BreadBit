@@ -1,0 +1,131 @@
+vendor/velxio/frontend/src/components/DynamicComponent.tsx(660,13): error TS2322: Type 'Component[]' is not assignable to type 'import("vendor/velxio/frontend/src/types/components").Component[]'.
+  Property 'type' is missing in type 'Component' but required in type 'import("vendor/velxio/frontend/src/types/components").Component'.
+vendor/velxio/frontend/src/components/editor/EditorToolbar.tsx(127,7): error TS2740: Type '{ 'arduino-uno': string; 'arduino-nano': string; 'arduino-mega': string; 'raspberry-pi-pico': string; 'raspberry-pi-3': string; 'raspberry-pi-4': string; 'raspberry-pi-5': string; esp32: string; 'esp32-s3': string; ... 8 more ...; 'stm32-netduino2': string; }' is missing the following properties from type 'Record<BoardKind, string>': "pi-pico-w", "raspberry-pi-zero", "raspberry-pi-1", "raspberry-pi-2", and 8 more.
+vendor/velxio/frontend/src/components/editor/EditorToolbar.tsx(148,7): error TS2740: Type '{ 'arduino-uno': string; 'arduino-nano': string; 'arduino-mega': string; 'raspberry-pi-pico': string; 'raspberry-pi-3': string; 'raspberry-pi-4': string; 'raspberry-pi-5': string; esp32: string; 'esp32-s3': string; ... 8 more ...; 'stm32-netduino2': string; }' is missing the following properties from type 'Record<BoardKind, string>': "pi-pico-w", "raspberry-pi-zero", "raspberry-pi-1", "raspberry-pi-2", and 8 more.
+vendor/velxio/frontend/src/components/editor/EditorToolbar.tsx(1424,18): error TS2322: Type '"info"' is not assignable to type '"error" | "success"'.
+vendor/velxio/frontend/src/components/editor/FileExplorer.tsx(302,7): error TS2740: Type '{ 'arduino-uno': string; 'arduino-nano': string; 'arduino-mega': string; 'raspberry-pi-pico': string; 'raspberry-pi-3': string; esp32: string; 'esp32-s3': string; 'esp32-c3': string; 'stm32-bluepill': string; ... 6 more ...; 'stm32-netduino2': string; }' is missing the following properties from type 'Record<BoardKind, string>': "pi-pico-w", "raspberry-pi-zero", "raspberry-pi-1", "raspberry-pi-2", and 10 more.
+vendor/velxio/frontend/src/components/editor/FileExplorer.tsx(322,7): error TS2740: Type '{ 'arduino-uno': string; 'arduino-nano': string; 'arduino-mega': string; 'raspberry-pi-pico': string; 'raspberry-pi-3': string; esp32: string; 'esp32-s3': string; 'esp32-c3': string; 'stm32-bluepill': string; ... 6 more ...; 'stm32-netduino2': string; }' is missing the following properties from type 'Record<BoardKind, string>': "pi-pico-w", "raspberry-pi-zero", "raspberry-pi-1", "raspberry-pi-2", and 10 more.
+vendor/velxio/frontend/src/components/simulator/FlashModal.tsx(38,15): error TS2459: Module '"../../store/useSimulatorStore"' declares 'BoardInstance' locally, but it is not exported.
+vendor/velxio/frontend/src/components/simulator/Oscilloscope.tsx(708,13): error TS2322: Type 'RefObject<HTMLDivElement | null>' is not assignable to type 'RefObject<HTMLDivElement>'.
+  Type 'HTMLDivElement | null' is not assignable to type 'HTMLDivElement'.
+    Type 'null' is not assignable to type 'HTMLDivElement'.
+vendor/velxio/frontend/src/components/simulator/SimulatorCanvas.tsx(2709,17): error TS2322: Type 'boolean | WireInProgress' is not assignable to type 'boolean'.
+  Type 'WireInProgress' is not assignable to type 'boolean'.
+vendor/velxio/frontend/src/components/simulator/SimulatorCanvas.tsx(2713,17): error TS2322: Type 'WireInProgress | null' is not assignable to type 'boolean | undefined'.
+  Type 'null' is not assignable to type 'boolean | undefined'.
+vendor/velxio/frontend/src/components/simulator/SimulatorCanvas.tsx(2855,17): error TS2322: Type 'boolean | WireInProgress' is not assignable to type 'boolean'.
+  Type 'WireInProgress' is not assignable to type 'boolean'.
+vendor/velxio/frontend/src/components/simulator/SimulatorCanvas.tsx(2858,17): error TS2322: Type 'WireInProgress | null' is not assignable to type 'boolean | undefined'.
+  Type 'null' is not assignable to type 'boolean | undefined'.
+vendor/velxio/frontend/src/components/simulator/SimulatorCanvas.tsx(3432,19): error TS2322: Type 'boolean | WireInProgress' is not assignable to type 'boolean | undefined'.
+  Type 'WireInProgress' is not assignable to type 'boolean | undefined'.
+vendor/velxio/frontend/src/components/simulator/SimulatorCanvas.tsx(3433,19): error TS2322: Type 'WireInProgress | null' is not assignable to type 'boolean | undefined'.
+  Type 'null' is not assignable to type 'boolean | undefined'.
+vendor/velxio/frontend/src/components/velxio-components/ArduinoMega.tsx(26,5): error TS2339: Property 'wokwi-arduino-mega' does not exist on type 'JSX.IntrinsicElements'.
+vendor/velxio/frontend/src/components/velxio-components/ArduinoNano.tsx(26,5): error TS2339: Property 'wokwi-arduino-nano' does not exist on type 'JSX.IntrinsicElements'.
+vendor/velxio/frontend/src/components/velxio-components/ArduinoUno.tsx(27,5): error TS2339: Property 'wokwi-arduino-uno' does not exist on type 'JSX.IntrinsicElements'.
+vendor/velxio/frontend/src/components/velxio-components/Attiny85.tsx(36,5): error TS2339: Property 'velxio-attiny85' does not exist on type 'JSX.IntrinsicElements'.
+vendor/velxio/frontend/src/components/velxio-components/Esp32.tsx(41,5): error TS2339: Property 'velxio-esp32' does not exist on type 'JSX.IntrinsicElements'.
+vendor/velxio/frontend/src/components/velxio-components/PiPicoW.tsx(18,3): error TS2339: Property 'velxio-pi-pico-w' does not exist on type 'JSX.IntrinsicElements'.
+vendor/velxio/frontend/src/components/velxio-components/RaspberryPi4.tsx(25,3): error TS2339: Property 'velxio-raspberry-pi-4' does not exist on type 'JSX.IntrinsicElements'.
+vendor/velxio/frontend/src/components/velxio-components/RaspberryPi5.tsx(23,3): error TS2339: Property 'velxio-raspberry-pi-5' does not exist on type 'JSX.IntrinsicElements'.
+vendor/velxio/frontend/src/components/velxio-components/Stm32BluePill.tsx(29,3): error TS2339: Property 'velxio-stm32-bluepill' does not exist on type 'JSX.IntrinsicElements'.
+vendor/velxio/frontend/src/components/velxio-components/Stm32BluePill.tsx(33,3): error TS2339: Property 'velxio-stm32-blackpill' does not exist on type 'JSX.IntrinsicElements'.
+vendor/velxio/frontend/src/components/velxio-components/Stm32BluePill.tsx(37,3): error TS2339: Property 'velxio-stm32-bluepill-f103cb' does not exist on type 'JSX.IntrinsicElements'.
+vendor/velxio/frontend/src/components/velxio-components/Stm32BluePill.tsx(41,3): error TS2339: Property 'velxio-stm32-blackpill-f401' does not exist on type 'JSX.IntrinsicElements'.
+vendor/velxio/frontend/src/components/velxio-components/Stm32BluePill.tsx(45,3): error TS2339: Property 'velxio-stm32-f4-discovery' does not exist on type 'JSX.IntrinsicElements'.
+vendor/velxio/frontend/src/components/velxio-components/Stm32BluePill.tsx(49,3): error TS2339: Property 'velxio-stm32-olimex-h405' does not exist on type 'JSX.IntrinsicElements'.
+vendor/velxio/frontend/src/components/velxio-components/Stm32BluePill.tsx(53,3): error TS2339: Property 'velxio-stm32-netduino-plus2' does not exist on type 'JSX.IntrinsicElements'.
+vendor/velxio/frontend/src/components/velxio-components/Stm32BluePill.tsx(57,3): error TS2339: Property 'velxio-stm32-netduino2' does not exist on type 'JSX.IntrinsicElements'.
+vendor/velxio/frontend/src/data/examples-retro-intel.ts(838,3): error TS2741: Property 'code' is missing in type '{ id: string; title: string; description: string; category: "circuits"; difficulty: "advanced"; boardFilter: string; tags: string[]; components: { type: string; id: string; x: number; y: number; properties: { ...; }; }[]; wires: { ...; }[]; }' but required in type 'ExampleProject'.
+vendor/velxio/frontend/src/data/examples.ts(2327,5): error TS2322: Type '"motors"' is not assignable to type '"circuits" | "basics" | "sensors" | "displays" | "communication" | "games" | "robotics"'.
+vendor/velxio/frontend/src/data/examples.ts(2399,5): error TS2322: Type '"motors"' is not assignable to type '"circuits" | "basics" | "sensors" | "displays" | "communication" | "games" | "robotics"'.
+vendor/velxio/frontend/src/data/examples.ts(2477,5): error TS2322: Type '"motors"' is not assignable to type '"circuits" | "basics" | "sensors" | "displays" | "communication" | "games" | "robotics"'.
+vendor/velxio/frontend/src/data/examples.ts(2555,5): error TS2322: Type '"motors"' is not assignable to type '"circuits" | "basics" | "sensors" | "displays" | "communication" | "games" | "robotics"'.
+vendor/velxio/frontend/src/services/flashService.ts(82,15): error TS2322: Type 'Uint8Array<ArrayBufferLike>' is not assignable to type 'BlobPart'.
+  Type 'Uint8Array<ArrayBufferLike>' is not assignable to type 'ArrayBufferView<ArrayBuffer>'.
+    Types of property 'buffer' are incompatible.
+      Type 'ArrayBufferLike' is not assignable to type 'ArrayBuffer'.
+        Type 'SharedArrayBuffer' is not assignable to type 'ArrayBuffer'.
+          Types of property '[Symbol.toStringTag]' are incompatible.
+            Type '"SharedArrayBuffer"' is not assignable to type '"ArrayBuffer"'.
+vendor/velxio/frontend/src/simulation/digital/digitalGateEngine.ts(158,34): error TS2345: Argument of type 'string | undefined' is not assignable to parameter of type 'string'.
+  Type 'undefined' is not assignable to type 'string'.
+vendor/velxio/frontend/src/simulation/digital/digitalGateEngine.ts(159,13): error TS7022: 'gp' implicitly has type 'any' because it does not have a type annotation and is referenced directly or indirectly in its own initializer.
+vendor/velxio/frontend/src/simulation/digital/digitalGateEngine.ts(159,34): error TS2345: Argument of type 'string | undefined' is not assignable to parameter of type 'string'.
+  Type 'undefined' is not assignable to type 'string'.
+vendor/velxio/frontend/src/simulation/digital/digitalGateEngine.ts(160,23): error TS2345: Argument of type 'string | undefined' is not assignable to parameter of type 'string'.
+  Type 'undefined' is not assignable to type 'string'.
+vendor/velxio/frontend/src/simulation/digital/digitalGateEngine.ts(163,5): error TS2322: Type 'string | undefined' is not assignable to type 'string'.
+  Type 'undefined' is not assignable to type 'string'.
+vendor/velxio/frontend/src/simulation/Esp32Bridge.ts(376,12): error TS2678: Type '"esp32-c6"' is not comparable to type 'BoardKind'.
+vendor/velxio/frontend/src/simulation/Esp32C3Simulator.ts(391,3): error TS2578: Unused '@ts-expect-error' directive.
+vendor/velxio/frontend/src/simulation/I2CBusManager.ts(160,10): error TS2352: Conversion of type 'I2CMaster' to type '{ eventHandler: TWIEventHandler; }' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
+  Property 'eventHandler' is missing in type 'I2CMaster' but required in type '{ eventHandler: TWIEventHandler; }'.
+vendor/velxio/frontend/src/simulation/RP2040Simulator.ts(1354,27): error TS2339: Property 'bitsPerChar' does not exist on type 'RPUART'.
+vendor/velxio/frontend/src/simulation/RP2040Simulator.ts(1503,20): error TS2345: Argument of type 'RPI2C' is not assignable to parameter of type 'I2CMaster & { onStart?: (() => void) | undefined; onConnect?: ((address: number, mode?: number | undefined) => void) | undefined; onWriteByte?: ((value: number) => void) | undefined; onReadByte?: ((ack?: boolean | undefined) => void) | undefined; onStop?: (() => void) | undefined; }'.
+  Type 'RPI2C' is not assignable to type '{ onStart?: (() => void) | undefined; onConnect?: ((address: number, mode?: number | undefined) => void) | undefined; onWriteByte?: ((value: number) => void) | undefined; onReadByte?: ((ack?: boolean | undefined) => void) | undefined; onStop?: (() => void) | undefined; }'.
+    Types of property 'onStart' are incompatible.
+      Type '(repeatedStart: boolean) => void' is not assignable to type '() => void'.
+        Target signature provides too few arguments. Expected 1 or more, but got 0.
+vendor/velxio/frontend/src/simulation/RP2040Simulator.ts(2012,27): error TS2339: Property 'nanosToNextAlarm' does not exist on type 'IClock'.
+vendor/velxio/frontend/src/simulation/RP2040Simulator.ts(2013,36): error TS2339: Property 'tick' does not exist on type 'IClock'.
+vendor/velxio/frontend/src/simulation/RP2040Simulator.ts(2018,22): error TS2339: Property 'tick' does not exist on type 'IClock'.
+vendor/velxio/frontend/src/simulation/spice/boardPinGroups.ts(50,14): error TS2739: Type '{ default: { vcc: number; gnd: string[]; vcc_pins: string[]; }; 'arduino-uno': { vcc: number; gnd: string[]; vcc_pins: string[]; aux: { volts: number; pins: string[]; }; }; 'arduino-nano': { vcc: number; gnd: string[]; vcc_pins: string[]; aux: { ...; }; }; ... 24 more ...; 'aitewinrobot-esp32c3-supermini': { ...; }; }' is missing the following properties from type 'Record<AllBoardKinds, BoardPinGroup>': "raspberry-pi-zero", "raspberry-pi-1", "raspberry-pi-2"
+vendor/velxio/frontend/src/simulation/spice/CircuitSimulationService.ts(661,39): error TS2352: Conversion of type '{ components: { id: string; metadataId: string; properties: Record<string, unknown>; }[]; wires: { id: string; start: { componentId: string; pinName: string; }; end: { componentId: string; pinName: string; }; }[]; boards: { ...; }[]; }' to type 'StoreSnapshot' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
+  Types of property 'wires' are incompatible.
+    Type '{ id: string; start: { componentId: string; pinName: string; }; end: { componentId: string; pinName: string; }; }[]' is not comparable to type 'Wire[]'.
+      Type '{ id: string; start: { componentId: string; pinName: string; }; end: { componentId: string; pinName: string; }; }' is missing the following properties from type 'Wire': waypoints, color
+vendor/velxio/frontend/src/simulation/spice/runNetlist.ts(49,3): error TS2322: Type 'SolverPort | null' is not assignable to type 'SolverPort'.
+  Type 'null' is not assignable to type 'SolverPort'.
+vendor/velxio/frontend/src/simulation/verify/verifyFromStore.ts(14,15): error TS2459: Module '"../../store/useSimulatorStore"' declares 'BoardKind' locally, but it is not exported.
+vendor/velxio/frontend/src/simulation/verify/verifyFromStore.ts(64,9): error TS2322: Type '{ id: string; start: { componentId: string; pinName: string; }; end: { componentId: string; pinName: string; }; color: string; waypoints: { x: number; y: number; }[]; }[]' is not assignable to type 'Wire[]'.
+  Type '{ id: string; start: { componentId: string; pinName: string; }; end: { componentId: string; pinName: string; }; color: string; waypoints: { x: number; y: number; }[]; }' is not assignable to type 'Wire'.
+    Types of property 'start' are incompatible.
+      Type '{ componentId: string; pinName: string; }' is missing the following properties from type 'WireEndpoint': x, y
+vendor/velxio/frontend/src/store/useSimulatorStore.ts(1971,57): error TS2345: Argument of type '(set: { (partial: SimulatorState | Partial<SimulatorState> | ((state: SimulatorState) => SimulatorState | Partial<...>), replace?: false | undefined): void; (state: SimulatorState | ((state: SimulatorState) => SimulatorState), replace: true): void; }, get: () => SimulatorState) => { ...; }' is not assignable to parameter of type 'StateCreator<SimulatorState, [], []>'.
+  Type '(set: { (partial: SimulatorState | Partial<SimulatorState> | ((state: SimulatorState) => SimulatorState | Partial<...>), replace?: false | undefined): void; (state: SimulatorState | ((state: SimulatorState) => SimulatorState), replace: true): void; }, get: () => SimulatorState) => { ...; }' is not assignable to type '(setState: { (partial: SimulatorState | Partial<SimulatorState> | ((state: SimulatorState) => SimulatorState | Partial<...>), replace?: false | undefined): void; (state: SimulatorState | ((state: SimulatorState) => SimulatorState), replace: true): void; }, getState: () => SimulatorState, store: StoreApi<...>) => Sim...'.
+    Call signature return types '{ boards: BoardInstance[]; activeBoardId: string; rebuildEsp32Bridge: (boardId: string) => boolean; addBoard: (boardKind: BoardKind, x: number, y: number, explicitId?: string | undefined) => string; ... 100 more ...; clearBoardSerialOutput: (boardId: string) => void; }' and 'SimulatorState' are incompatible.
+      The types of 'simulator' are incompatible between these types.
+        Type 'ProBoardSimulator | AVRSimulator | RP2040Simulator | RiscVSimulator | Esp32C3Simulator' is not assignable to type 'AVRSimulator | RP2040Simulator | RiscVSimulator | Esp32C3Simulator | PiBridgeShim | Esp32BridgeShim | Stm32BridgeShim | null'.
+          Type 'ProBoardSimulator' is not assignable to type 'AVRSimulator | RP2040Simulator | RiscVSimulator | Esp32C3Simulator | PiBridgeShim | Esp32BridgeShim | Stm32BridgeShim | null'.
+            Type 'ProBoardSimulator' is missing the following properties from type 'RP2040Simulator': spiceDrivenInputs, rp2040, running, animationFrame, and 98 more.
+vendor/velxio/frontend/src/store/useSimulatorStore.ts(2178,38): error TS2345: Argument of type 'ProBoardSimulator | AVRSimulator | RP2040Simulator | RiscVSimulator | Esp32C3Simulator' is not assignable to parameter of type 'AVRSimulator | RP2040Simulator | RiscVSimulator | Esp32C3Simulator | PiBridgeShim | Esp32BridgeShim | Stm32BridgeShim'.
+  Type 'ProBoardSimulator' is not assignable to type 'AVRSimulator | RP2040Simulator | RiscVSimulator | Esp32C3Simulator | PiBridgeShim | Esp32BridgeShim | Stm32BridgeShim'.
+    Type 'ProBoardSimulator' is missing the following properties from type 'RP2040Simulator': spiceDrivenInputs, rp2040, running, animationFrame, and 98 more.
+vendor/velxio/frontend/src/store/useSimulatorStore.ts(2412,30): error TS2345: Argument of type 'ProBoardSimulator | AVRSimulator | RP2040Simulator | RiscVSimulator | Esp32C3Simulator' is not assignable to parameter of type 'AVRSimulator | RP2040Simulator | RiscVSimulator | Esp32C3Simulator | PiBridgeShim | Esp32BridgeShim | Stm32BridgeShim'.
+  Type 'ProBoardSimulator' is not assignable to type 'AVRSimulator | RP2040Simulator | RiscVSimulator | Esp32C3Simulator | PiBridgeShim | Esp32BridgeShim | Stm32BridgeShim'.
+    Type 'ProBoardSimulator' is missing the following properties from type 'RP2040Simulator': spiceDrivenInputs, rp2040, running, animationFrame, and 98 more.
+vendor/velxio/frontend/src/store/useSimulatorStore.ts(2482,39): error TS2345: Argument of type 'string | null' is not assignable to parameter of type 'string'.
+  Type 'null' is not assignable to type 'string'.
+vendor/velxio/frontend/src/store/useSimulatorStore.ts(3829,35): error TS2345: Argument of type 'ProBoardSimulator | AVRSimulator | RP2040Simulator | RiscVSimulator | Esp32C3Simulator' is not assignable to parameter of type 'AVRSimulator | RP2040Simulator | RiscVSimulator | Esp32C3Simulator | PiBridgeShim | Esp32BridgeShim | Stm32BridgeShim'.
+  Type 'ProBoardSimulator' is not assignable to type 'AVRSimulator | RP2040Simulator | RiscVSimulator | Esp32C3Simulator | PiBridgeShim | Esp32BridgeShim | Stm32BridgeShim'.
+    Type 'ProBoardSimulator' is missing the following properties from type 'RP2040Simulator': spiceDrivenInputs, rp2040, running, animationFrame, and 98 more.
+vendor/velxio/frontend/src/store/useSimulatorStore.ts(3836,13): error TS2345: Argument of type '(s: SimulatorState) => { boardType: BoardKind; simulator: ProBoardSimulator | AVRSimulator | RP2040Simulator | RiscVSimulator | Esp32C3Simulator; ... 4 more ...; boards: BoardInstance[]; }' is not assignable to parameter of type 'SimulatorState | Partial<SimulatorState> | ((state: SimulatorState) => SimulatorState | Partial<SimulatorState>)'.
+  Type '(s: SimulatorState) => { boardType: BoardKind; simulator: ProBoardSimulator | AVRSimulator | RP2040Simulator | RiscVSimulator | Esp32C3Simulator; ... 4 more ...; boards: BoardInstance[]; }' is not assignable to type '(state: SimulatorState) => SimulatorState | Partial<SimulatorState>'.
+    Type '{ boardType: BoardKind; simulator: ProBoardSimulator | AVRSimulator | RP2040Simulator | RiscVSimulator | Esp32C3Simulator; ... 4 more ...; boards: BoardInstance[]; }' is not assignable to type 'SimulatorState | Partial<SimulatorState>'.
+      Type '{ boardType: BoardKind; simulator: ProBoardSimulator | AVRSimulator | RP2040Simulator | RiscVSimulator | Esp32C3Simulator; ... 4 more ...; boards: BoardInstance[]; }' is not assignable to type 'Partial<SimulatorState>'.
+        Types of property 'simulator' are incompatible.
+          Type 'ProBoardSimulator | AVRSimulator | RP2040Simulator | RiscVSimulator | Esp32C3Simulator' is not assignable to type 'AVRSimulator | RP2040Simulator | RiscVSimulator | Esp32C3Simulator | PiBridgeShim | Esp32BridgeShim | Stm32BridgeShim | null | undefined'.
+            Type 'ProBoardSimulator' is not assignable to type 'AVRSimulator | RP2040Simulator | RiscVSimulator | Esp32C3Simulator | PiBridgeShim | Esp32BridgeShim | Stm32BridgeShim | null | undefined'.
+              Type 'ProBoardSimulator' is missing the following properties from type 'RP2040Simulator': spiceDrivenInputs, rp2040, running, animationFrame, and 98 more.
+vendor/velxio/frontend/src/store/useSimulatorStore.ts(3951,35): error TS2345: Argument of type 'ProBoardSimulator | AVRSimulator | RP2040Simulator | RiscVSimulator | Esp32C3Simulator' is not assignable to parameter of type 'AVRSimulator | RP2040Simulator | RiscVSimulator | Esp32C3Simulator | PiBridgeShim | Esp32BridgeShim | Stm32BridgeShim'.
+  Type 'ProBoardSimulator' is not assignable to type 'AVRSimulator | RP2040Simulator | RiscVSimulator | Esp32C3Simulator | PiBridgeShim | Esp32BridgeShim | Stm32BridgeShim'.
+    Type 'ProBoardSimulator' is missing the following properties from type 'RP2040Simulator': spiceDrivenInputs, rp2040, running, animationFrame, and 98 more.
+vendor/velxio/frontend/src/store/useSimulatorStore.ts(3957,15): error TS2322: Type 'ProBoardSimulator | AVRSimulator | RP2040Simulator | RiscVSimulator | Esp32C3Simulator' is not assignable to type 'AVRSimulator | RP2040Simulator | RiscVSimulator | Esp32C3Simulator | PiBridgeShim | Esp32BridgeShim | Stm32BridgeShim | null | undefined'.
+  Type 'ProBoardSimulator' is not assignable to type 'AVRSimulator | RP2040Simulator | RiscVSimulator | Esp32C3Simulator | PiBridgeShim | Esp32BridgeShim | Stm32BridgeShim | null | undefined'.
+    Type 'ProBoardSimulator' is missing the following properties from type 'RP2040Simulator': spiceDrivenInputs, rp2040, running, animationFrame, and 98 more.
+vendor/velxio/frontend/src/store/useSimulatorStore.ts(4380,36): error TS2783: 'waypoints' is specified more than once, so this usage will be overwritten.
+vendor/velxio/frontend/src/store/useSimulatorStore.ts(4956,37): error TS2339: Property 'serialWrite' does not exist on type 'AVRSimulator | RP2040Simulator | RiscVSimulator | Esp32C3Simulator | PiBridgeShim | Esp32BridgeShim | Stm32BridgeShim'.
+  Property 'serialWrite' does not exist on type 'PiBridgeShim'.
+vendor/velxio/frontend/src/store/useSimulatorStore.ts(5018,37): error TS2339: Property 'serialWrite' does not exist on type 'AVRSimulator | RP2040Simulator | RiscVSimulator | Esp32C3Simulator | PiBridgeShim | Esp32BridgeShim | Stm32BridgeShim'.
+  Property 'serialWrite' does not exist on type 'PiBridgeShim'.
+vendor/velxio/frontend/src/utils/exampleToBuildNetlistInput.ts(95,5): error TS2322: Type '{ id: string; start: { componentId: string; pinName: string; }; end: { componentId: string; pinName: string; }; color: string; waypoints: never[]; }[]' is not assignable to type 'Wire[]'.
+  Type '{ id: string; start: { componentId: string; pinName: string; }; end: { componentId: string; pinName: string; }; color: string; waypoints: never[]; }' is not assignable to type 'Wire'.
+    Types of property 'start' are incompatible.
+      Type '{ componentId: string; pinName: string; }' is missing the following properties from type 'WireEndpoint': x, y
+vendor/velxio/frontend/src/utils/firmwareLoader.ts(299,39): error TS2345: Argument of type 'ArrayBufferLike' is not assignable to parameter of type 'ArrayBuffer'.
+  Type 'SharedArrayBuffer' is not assignable to type 'ArrayBuffer'.
+    Types of property '[Symbol.toStringTag]' are incompatible.
+      Type '"SharedArrayBuffer"' is not assignable to type '"ArrayBuffer"'.
+vendor/velxio/frontend/src/utils/vlxFile.ts(33,32): error TS2307: Cannot find module '../types/component' or its corresponding type declarations.

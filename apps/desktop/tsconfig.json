@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "target": "ES2022", "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "module": "ESNext", "moduleResolution": "Bundler", "jsx": "react-jsx",
+    "strict": true, "skipLibCheck": true, "noEmit": true,
+    "allowImportingTsExtensions": true, "resolveJsonModule": true,
+    "types": ["vite/client"],
+    "baseUrl": "../..",
+    "paths": { "@velxio/*": ["vendor/velxio/frontend/src/*"], "@pro/*": ["vendor/velxio/frontend/src/__pro_stub__/*"] }
+  },
+  "include": ["src", "../../vendor/velxio/frontend/src/vite-env.d.ts"]
+}

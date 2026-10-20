@@ -1,0 +1,7 @@
+{
+  "repository": "https://github.com/davidmonterocrespo24/velxio.git",
+  "commit": "795a4fa3c1063e97cb301e82e9749b2bca54acd9",
+  "path": "vendor/velxio",
+  "strategy": "git-submodule",
+  "privateOverlay": false
+}

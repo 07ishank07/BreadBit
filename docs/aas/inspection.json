@@ -1,0 +1,90 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "status": "valid",
+  "protocolVersion": "2025-06-18",
+  "coreVersion": "2.0.0",
+  "catalogSchemaVersion": "2.0.0",
+  "reasonCodes": [],
+  "unknown": [],
+  "details": {},
+  "manifest": {
+    "schemaVersion": 2,
+    "name": "breadbit-foundation",
+    "catalog": {
+      "package": "agentic-awesome-skills",
+      "version": "19.11.0",
+      "integrity": "sha256-1f225febafbc8cb43666ed20ce23768b4576cf8bb7c545992e09945e69e67382"
+    },
+    "targets": [
+      {
+        "host": "codex",
+        "scope": "project"
+      }
+    ],
+    "profile": {
+      "goals": [
+        "Build a local desktop electronics development foundation on public Velxio",
+        "Preserve validated project edits and simulation evidence"
+      ],
+      "projectType": "desktop electronics workspace",
+      "languages": [
+        "typescript",
+        "python",
+        "rust"
+      ],
+      "frameworks": [
+        "react",
+        "tauri",
+        "fastapi"
+      ],
+      "constraints": [
+        "No 3D implementation",
+        "Reuse public Velxio behind adapters",
+        "Local project persistence",
+        "Do not install or apply skills"
+      ]
+    },
+    "skills": [
+      {
+        "id": "architecture"
+      },
+      {
+        "id": "react-state-management"
+      },
+      {
+        "id": "agent-tool-builder"
+      },
+      {
+        "id": "javascript-testing-patterns"
+      },
+      {
+        "id": "security-auditor"
+      },
+      {
+        "id": "accessibility-compliance-accessibility-audit"
+      },
+      {
+        "id": "git-workflow"
+      }
+    ]
+  },
+  "canonicalJson": "{\"catalog\":{\"integrity\":\"sha256-1f225febafbc8cb43666ed20ce23768b4576cf8bb7c545992e09945e69e67382\",\"package\":\"agentic-awesome-skills\",\"version\":\"19.11.0\"},\"name\":\"breadbit-foundation\",\"profile\":{\"constraints\":[\"No 3D implementation\",\"Reuse public Velxio behind adapters\",\"Local project persistence\",\"Do not install or apply skills\"],\"frameworks\":[\"react\",\"tauri\",\"fastapi\"],\"goals\":[\"Build a local desktop electronics development foundation on public Velxio\",\"Preserve validated project edits and simulation evidence\"],\"languages\":[\"typescript\",\"python\",\"rust\"],\"projectType\":\"desktop electronics workspace\"},\"schemaVersion\":2,\"skills\":[{\"id\":\"architecture\"},{\"id\":\"react-state-management\"},{\"id\":\"agent-tool-builder\"},{\"id\":\"javascript-testing-patterns\"},{\"id\":\"security-auditor\"},{\"id\":\"accessibility-compliance-accessibility-audit\"},{\"id\":\"git-workflow\"}],\"targets\":[{\"host\":\"codex\",\"scope\":\"project\"}]}",
+  "manifestDigest": "sha256-4434decd679458979be7efa986472943eb552efab3faa64316e716056f034bd7",
+  "selectionSource": "agent",
+  "selectedSkillIds": [
+    "architecture",
+    "react-state-management",
+    "agent-tool-builder",
+    "javascript-testing-patterns",
+    "security-auditor",
+    "accessibility-compliance-accessibility-audit",
+    "git-workflow"
+  ],
+  "catalog": {
+    "package": "agentic-awesome-skills",
+    "version": "19.11.0",
+    "digest": "sha256-1f225febafbc8cb43666ed20ce23768b4576cf8bb7c545992e09945e69e67382"
+  },
+  "catalogDigest": "sha256-1f225febafbc8cb43666ed20ce23768b4576cf8bb7c545992e09945e69e67382"
+}

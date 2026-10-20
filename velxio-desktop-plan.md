@@ -1,5 +1,7 @@
 **Velxio-based desktop electronics workspace — revised product and implementation plan**
 
+**Implementation scope amendment:** BreadBit now has a desktop development foundation in this repository. All 3D work is deferred by the latest user instruction. See [implementation status](docs/implementation-status.md) for completed modules, validation and remaining gates. The original 3D milestones below are future roadmap items, not the current build scope.
+
 Revision: 20 October 2026. This replaces the original greenfield browser-platform implementation plan. The original competitor research remains useful background.
 
 **Product decision:** Adapt the public Velxio codebase into an installable desktop electronics development app. Reuse its editor, compilation integrations, supported emulators, component behavior and circuit infrastructure. Add synchronized 2D/3D construction, readable editable schematics, dependable local project storage, and an AI assistant that diagnoses problems using actual project and simulation evidence.
