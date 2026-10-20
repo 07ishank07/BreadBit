@@ -82,4 +82,39 @@ describe('Velxio project adapter', () => {
     controller.undo();expect(mock.getState()).toBe(live);expect(controller.project.document.schematic).toBeUndefined();
     controller.redo();expect(mock.getState()).toBe(live);expect(controller.project.document.schematic).toBeDefined();
   });
+
+  it('keeps cloud renaming compatible with named workbench history and imported fields', () => {
+    const controller = new ProjectController();
+    const project = controller.project;
+    project.document.extension = { retained: true };
+    controller.load(JSON.stringify(project)); vi.advanceTimersByTime(20);
+    controller.presentation('Move schematic symbol', doc => { doc.schematic = { positions: { led: { x: 10, y: 20 } } }; });
+    controller.rename('  Cloud project  ');
+    expect(controller.history.undoLabel).toBe('Rename project');
+    expect(controller.project.document.name).toBe('Cloud project');
+    expect(controller.project.document.extension).toEqual({ retained: true });
+    controller.undo(); vi.advanceTimersByTime(20);
+    expect(controller.project.document.name).toBe(project.document.name);
+    expect(controller.project.document.schematic).toBeDefined();
+    expect(controller.history.undoLabel).toBe('Move schematic symbol');
+    controller.redo(); vi.advanceTimersByTime(20);
+    expect(controller.project.document.name).toBe('Cloud project');
+    const revision = controller.project.revision;
+    expect(() => controller.rename(' ')).toThrow('project name');
+    expect(controller.project.revision).toBe(revision);
+  });
+
+  it('does not write shared recovery drafts when account scoped persistence owns saving', () => {
+    const controller = new ProjectController();
+    controller.setRecoveryEnabled(false);
+    controller.rename('Private project');
+    controller.presentation('Move schematic symbol', doc => { doc.schematic = { positions: {} }; });
+    mock.setState({ components: [{ ...mock.getState().components[0], x: 90 }] });
+    controller.flush('Move component');
+    controller.undo(); vi.advanceTimersByTime(20);
+    expect(localStorage.setItem).not.toHaveBeenCalled();
+    controller.setRecoveryEnabled(true);
+    controller.rename('Local project');
+    expect(localStorage.setItem).toHaveBeenCalled();
+  });
 });

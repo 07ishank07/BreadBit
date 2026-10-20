@@ -32,6 +32,8 @@ export class ProjectController {
     private restoreGeneration = 0;
     private timer: ReturnType<typeof setTimeout> | undefined;
     recoveryError: string | null = null;
+    private recoveryEnabled = true;
+    setRecoveryEnabled(enabled: boolean) { this.recoveryEnabled = enabled; }
     subscribe = (listener: () => void) => { this.listeners.add(listener); return () => { this.listeners.delete(listener); }; };
     notify = () => { for (const listener of this.listeners)
         listener(); };
@@ -84,6 +86,7 @@ export class ProjectController {
         this.notify();
     }
     private backup() {
+        if (!this.recoveryEnabled) return;
         try {
             localStorage.setItem(recoveryKey, serializeProject(this.project));
             this.recoveryError = null;
@@ -181,6 +184,11 @@ export class ProjectController {
         if(electrical(previous)===electrical(next.document)){this.signature=signature(capture(next.document));this.backup();this.notify();}else this.restore(next);
     }
     undo(){this.applyHistory('undo');}
+    rename(name: string) {
+        if (!name.trim() || name.length > 200)
+            throw new Error('Use a project name between 1 and 200 characters.');
+        this.presentation('Rename project', document => { document.name = name.trim(); });
+    }
     redo(){this.applyHistory('redo');}
     serialize() { this.flush(); return serializeProject(this.project); }
 }

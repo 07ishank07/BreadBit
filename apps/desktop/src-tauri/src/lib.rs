@@ -1,4 +1,5 @@
 mod storage;
+mod cloud;
 use serde::Serialize;
 use std::{collections::HashMap, path::PathBuf, sync::Mutex};
 use tauri::State;
@@ -65,8 +66,10 @@ fn runtime_status() -> serde_json::Value {
 pub fn run() {
     tauri::Builder::default()
         .plugin(tauri_plugin_dialog::init())
+        .plugin(tauri_plugin_opener::init())
+        .manage(cloud::CloudSession::default())
         .manage(ProjectHandles::default())
-        .invoke_handler(tauri::generate_handler![open_project, save_project, save_project_as, close_project, runtime_status])
+        .invoke_handler(tauri::generate_handler![open_project, save_project, save_project_as, close_project, runtime_status, cloud::cloud_begin_login, cloud::cloud_request, cloud::cloud_forget_session, cloud::cloud_open_browser])
         .run(tauri::generate_context!())
         .expect("BreadBit could not start");
 }
