@@ -1,6 +1,6 @@
 # BreadBit usability, graphics and schematic plan
 
-Status: DRAFT — user interview in progress; no implementation started for this plan.
+Status: Interview complete — implementation plan finalized. The improvements in this plan have not been implemented.
 Branch: codex/trackpad-3d-ux. Created from the merged foundation, carrying the existing integration changes.
 Date: 20 October 2026.
 
@@ -16,8 +16,11 @@ Date: 20 October 2026.
 - Wiring uses click source, click optional bends, click destination; Escape cancels without committing.
 - Electrical editing in all three views is required in the first release; ambiguous physical placement requires review.
 - Add an LTspice-style schematic using the requested IEEE symbol conventions, synchronized with the physical views.
-- Export the schematic to PDF. User confirmed American-style symbols (including zigzag resistors), node dots, net labels and orthogonal wires. PDF page size/orientation and optional contents were not individually specified by the blanket yes; propose configurable A4/Letter, portrait/landscape, title block, values and parts list. Proposed default: A4 landscape with values and title block, optional parts list. These defaults remain provisional.
+- Export the schematic to PDF. User confirmed American-style symbols (including zigzag resistors), node dots, net labels and orthogonal wires. Confirmed PDF defaults: A4 landscape with title block and component values included; parts list optional. Also offer Letter and portrait in export settings.
 - First complete task: build and simulate an Uno + button + LED circuit.
+- Focus on smaller circuits. Working engineering assumption: one board and about 10–30 parts for the main usability/performance fixture; the user did not specify an exact cap or additional board families.
+- Inspector prioritizes pins/connections and explanations, with properties alongside them.
+- Include all requested accessibility options: larger text/click targets, reduced motion, wire labels/patterns beyond color, keyboard-only controls, and click-to-place alternatives to holding a drag.
 - Trackpad two-finger scrolling is configurable and defaults to pan. Visible Pan/Orbit/zoom controls remain available.
 - Build must be explicitly completed before Run; Run must never auto-compile.
 - Automatically save local projects, with explicit export to files.
@@ -40,7 +43,7 @@ Recommended support policy: target Windows, macOS and Linux desktop/laptop brows
 | Agent B: UI/UX and schematic presentation | apps/desktop/src/App.tsx, styles, features/Circuit3D.tsx, new workspace/components/schematic UI, shortcuts/preferences, PDF layout integration | No renderer internals; no duplicated electrical model |
 | Parent/integrator | project-core, project.ts, scene mapping, net resolver, common command contract, persistence migrations, package/dependency changes and end-to-end checks | Coordinates shared changes; does not silently let both agents edit the same file |
 
-Use these two agents for implementation after interview decisions are incorporated. Their current read-only audits are complete. The parent owns the extra electrical-model work because schematic editing is a substantial feature, not only UI styling.
+The interview decisions are incorporated. Use the separate agent briefs in agent-a-graphics.md and agent-b-ui-ux.md to implement this plan in dependency order. Their current read-only audits are complete. The parent owns the extra electrical-model work because schematic editing is a substantial feature, not only UI styling.
 
 ## Phase 0: freeze shared contracts
 
@@ -66,7 +69,7 @@ P0 — navigation and wiring reliability:
 P1 — visual clarity and rendering:
 - Selection outlines, endpoint highlights, readable pin labels and useful wire isolation. Do not rely on color alone.
 - Expose draft/balanced/high quality and reduced motion through host settings.
-- Benchmark 20/100/300-part scenes on representative integrated/discrete GPU machines; record frame time, input latency, draw calls, memory and idle rendering. Provisional goal: smooth interaction near 60 FPS on the agreed typical fixture, with a usable lower-quality mode; no universal performance claim.
+- Benchmark the one-board 10–30-part working fixture on representative integrated/discrete GPU machines; use 100/300-part fixtures as non-blocking scalability diagnostics, not the first-release scope; record frame time, input latency, draw calls, memory and idle rendering. Provisional goal: smooth interaction near 60 FPS on the agreed typical fixture, with a usable lower-quality mode; no universal performance claim.
 - Context-loss recovery keeps the current project and camera intact.
 
 P2 — model polish:
@@ -82,7 +85,7 @@ P0 — make daily editing usable:
 - Clear active mode, device-specific help, accessible zoom/fit/pan/orbit buttons, shortcut reference.
 - Common wire inspector in physical 2D and 3D: endpoints, reconnect, bend/segment operations, delete and label/color as required first-release actions. Net highlighting and auto-routing follow these priorities. Label text must distinguish decorative wire labels from connectivity-affecting net names.
 - Keyboard-accessible part/pin picker and source/destination connection workflow; primary actions must not require hover precision or dragging.
-- Contextual selected-entity inspector instead of permanent introductory copy; errors remain readable and actionable.
+- Contextual selected-entity inspector instead of permanent introductory copy: pins/connections and explanations first, with properties alongside them. Clearly separate catalog explanations from measured runtime signals; errors remain readable and actionable.
 - Show named Undo/Redo actions; preserve Monaco text history. Camera/view/preferences do not dirty the circuit.
 - Automatic local project persistence with a project list, stable IDs, last-saved status, reopen/rename and explicit file export. Keep recovery snapshots separate from the normal project collection; a single recovery draft is not autosave for multiple projects.
 - Desktop storage recommendation: application-managed project files and a small local index, with atomic replacement and recovery. Browser preview needs a separate durable storage adapter (evaluate IndexedDB or OPFS); explain quota/eviction limits, catch failures, and offer export. This browser storage implementation is distinct from the deferred multi-user/backend database; do not add a server database or authentication now.
@@ -100,7 +103,7 @@ P1 — schematic and PDF, after net-model gate:
 
 P2 — efficiency and polish:
 - Search/add components from either physical view, duplicate/multi-select and alignment after transaction semantics are stable.
-- Consistent light/dark themes across shell, schematic and 3D; readable typography, comfortable targets, visible focus, keyboard tab patterns and optional onboarding. Test wire, selection and pin contrast in both themes.
+- Consistent light/dark themes across shell, schematic and 3D. Provide larger-text/target settings, reduced motion, non-color wire labels/patterns, keyboard-only controls and click-to-place alternatives for operations that otherwise require dragging. Include visible focus, correct tab patterns and optional onboarding. Test wire, selection and pin contrast in both themes.
 - Future database boundary: keep stable project/asset IDs and schema versions; later add a repository/storage interface. No cloud-only identity requirement for local projects.
 
 Agent B deliverables: task layouts, wire editor UI, accessibility and keyboard tests, schematic presentation/export module, user-facing shortcut guide and before/after workflow evidence.
@@ -120,7 +123,7 @@ Ambiguity examples:
 
 ## Milestones and release checks
 
-M0: finish interview, freeze contracts and support matrix; establish baseline tasks.
+M0: interview complete. Freeze contracts and support matrix; establish baseline tasks against the confirmed requirements.
 M1: top-down navigation prototype + responsive shell; validate on an actual trackpad and mouse before rendering polish.
 M2: shared wire creation/reconnection/bend/delete workflow across 2D/3D, with command history and cancellation.
 M3: resolved electrical graph + qualified Uno starter symbols + schematic projection and PDF. This is an internal milestone only; first release also requires M4 electrical editing. Do not skip graph equivalence checks to meet a UI deadline.
@@ -144,4 +147,13 @@ Compared but excluded: ui-ux-pro-max has a Python-driven generator setup not nee
 
 Analog Devices describes LTspice schematic capture and wiring: https://www.analog.com/en/resources/media-center/videos/6368296317112.html . Its official schematic reference documents named nodes and orthogonal routing: https://github.com/analogdevicesinc/ltspice-reference/blob/main/ai_ref/SCHEMATIC-REFERENCE.md . IEEE identifies IEEE/ANSI315-1975 as Graphic Symbols for Electrical and Electronics Diagrams: https://standards.ieee.org/ieee/315/515/ . These are references, not a claim that LTspice appearance establishes IEEE compliance. The familiar American-style appearance is confirmed; precise standards conformance and asset rights still require verification. Draw or use appropriately licensed symbols; do not bundle proprietary LTspice assets or standards PDFs.
 
-See usability-interview.md for decisions and remaining questions. Only explicitly unanswered preferences remain provisional; confirmed user choices above are requirements.
+See usability-interview.md for the completed decision record. No further preference round is required to begin implementation. Exact extra board families, standards conformance, storage/export dependencies and platform qualification are engineering follow-ups; do not invent user requirements or claim untested support.
+
+## Final acceptance additions
+
+- With mouse disconnected, complete the small starter task using trackpad and keyboard, including reconnecting a wire, bending a segment and changing its label/color. Repeat with mouse and keyboard.
+- Complete core editing through visible controls and keyboard/pin lists without holding a drag; resize panes through a keyboard-accessible alternative.
+- At larger text/target settings and in both themes, labels and primary actions remain visible; selected pins and wires remain distinguishable without color alone. Reduced motion disables nonessential camera transitions.
+- Inspector pin explanations and properties refer to the same stable component in every view. An unsupported pin mapping is clearly flagged.
+- Default PDF is A4 landscape with title block and component values; optional parts list can be enabled. Check Letter/portrait export too.
+- Performance reports prioritize the agreed small-circuit fixture; larger stress results are informative and must not displace core usability work.

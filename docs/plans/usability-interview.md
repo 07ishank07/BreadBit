@@ -10,7 +10,7 @@ Confirmed answers, round 2:
 5. All five are important: connect pins; reconnect existing wire end; move bends/segments; delete wires; change color/label. No specific failure reproduction supplied yet; do not require one to improve these known workflows.
 6. Click source, click optional bends, click destination; Escape cancels.
 7. First version must support electrical editing in all three views, with review when physical placement is ambiguous. Layout-only schematic is an intermediate milestone, not a scope reduction.
-8. Yes to the described American-style symbols, junction dots, net labels and orthogonal wires. The compound yes does not select A4 vs Letter or portrait vs landscape. Offer both; proposed default A4 landscape, values/title block on and parts list optional, pending preference.
+8. Yes to the described American-style symbols, junction dots, net labels and orthogonal wires. The compound yes does not select A4 vs Letter or portrait vs landscape. This was resolved in answer20: A4 landscape, title block and values included, optional parts list.
 
 Confirmed answers, round 3:
 9. Circuit-focused default; Code and inspector available when needed. Panes still resizable/collapsible.
@@ -24,10 +24,10 @@ Confirmed answers, round 4:
 15. Automatically save local projects, with export to files. Requires a real multi-project local persistence flow, not only the current recovery draft. Backend user/project database remains later work.
 16. Preview suggested physical placements and choose one before applying an ambiguous schematic edit. No partial electrical commit while the choice is pending; cancel leaves the committed project unchanged.
 
-Final round — currently asked:
-17. Inspector priority: properties/values, pins/connections, or observed signals? Which simulation feedback is most useful: circuit highlights, serial, logic traces, or guided explanations?
-18. Accessibility preferences: larger text/targets, reduced motion, non-color wire cues, keyboard-only operation, click-to-place alternatives to dragging. Treat baseline focus/contrast/cancellation as engineering requirements regardless of optional preferences.
-19. Typical project size and priority boards/parts after Uno starter? This defines performance fixtures and symbol scope.
-20. PDF defaults: confirm or override proposed A4 landscape, title block and component values, optional parts list. Offer A4/Letter and both orientations regardless of default.
+Confirmed answers, final round:
+17. Inspector shows pins/connections and explanations first, with properties alongside them. No separate preference for a simulation instrument was specified.
+18. All listed usability options: larger text/click targets, reduced motion, wire labels/patterns beyond color, keyboard-only controls, click-to-place instead of holding a drag.
+19. Smaller projects. Engineering working fixture: one board and about10–30 parts; this number is a proposal, not an explicit user requirement. No additional board family specified.
+20. Confirmed A4 landscape, title block and component values included, parts list optional. Also offer Letter and portrait settings.
 
-Keep interviews in short rounds; do not interpret unanswered questions as approval. Existing confirmed requirements do not need reconfirmation. Settings/defaults remain proposals until selected. Physical-device testing remains required even with a cross-platform product target.
+Interview complete. Confirmed decisions are requirements in trackpad-3d-ux.md; remaining engineering assumptions are labeled. No further preference round is required. Physical-device testing remains necessary even with a cross-platform target. The interview completion finalizes planning; it does not claim the planned features are already implemented.
