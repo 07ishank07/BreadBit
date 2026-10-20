@@ -1,5 +1,18 @@
 import type { CircuitDocument, SimulationSnapshot } from './types';
 
+/** One board plus N parts. A rendering benchmark, never an electrical reference. */
+export function benchmarkFixture(partCount = 20): CircuitDocument {
+  const count = Math.max(1, Math.min(300, Math.floor(partCount)));
+  const parts: CircuitDocument['parts'][number][] = [{ id: 'uno', kind: 'arduino-uno', position: [-70, 0, 0], label: 'Arduino Uno' }];
+  const wires: CircuitDocument['wires'][number][] = [];
+  for (let i = 0; i < count; i++) {
+    const id = `part-${i}`, kind = i % 3 === 0 ? 'pushbutton' : i % 3 === 1 ? 'led' : 'resistor';
+    parts.push({ id, kind, position: [(i % 10) * 18, 0, Math.floor(i / 10) * 22 - 10], label: `${kind} ${i + 1}` });
+    wires.push({ id: `cable-${i}`, from: { partId: 'uno', pinId: String(i % 14) }, to: { partId: id, pinId: kind === 'led' ? 'A' : kind === 'resistor' ? '1' : '1.l' }, color: ['#eebc68', '#83bddd', '#91cbaa'][i % 3] });
+  }
+  return { parts, wires };
+}
+
 /** Presentation fixture only. No electrical simulation or correctness is implied. */
 export const workbenchFixture: CircuitDocument = {
   parts:[

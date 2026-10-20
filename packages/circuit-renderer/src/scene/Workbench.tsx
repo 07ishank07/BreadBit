@@ -5,7 +5,7 @@ import type { Quality, ViewportTheme } from '../types';
 import { qualityProfiles } from '../theme';
 
 export function Workbench({ theme, grid, quality, onPointerMove }: {
-  theme: ViewportTheme; grid: boolean; quality: Quality; onPointerMove: (e: ThreeEvent<PointerEvent>) => void;
+  theme: ViewportTheme; grid: boolean; quality: Quality; onPointerMove?: (e: ThreeEvent<PointerEvent>) => void;
 }) {
   const uniforms = useMemo(() => ({
     surface: { value: new Color(theme.surface) }, gridColor: { value: new Color(theme.grid) },
@@ -14,7 +14,7 @@ export function Workbench({ theme, grid, quality, onPointerMove }: {
   return <>
     <color attach="background" args={[theme.background]}/>
     <ambientLight intensity={0.55}/>
-    <directionalLight position={[-80,160,70]} intensity={3.1} color="#fff7e8" castShadow
+    <directionalLight position={[-80,160,70]} intensity={3.1} color="#fff7e8" castShadow={quality !== 'draft'}
       shadow-mapSize={[qualityProfiles[quality].shadowSize, qualityProfiles[quality].shadowSize]}
       shadow-camera-left={-200} shadow-camera-right={200} shadow-camera-top={180} shadow-camera-bottom={-180}
       shadow-camera-near={1} shadow-camera-far={650} shadow-bias={-0.00015} shadow-normalBias={0.4}/>

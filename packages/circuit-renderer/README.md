@@ -2,6 +2,8 @@
 
 A standalone, controlled React 19 viewport for a desktop electronics workspace. This package supplies the 3D rendering layer. The host supplies application navigation, projects, persistence, undo, simulation and AI.
 
+Agent A's navigation and wire-editing implementation is now available. Read the [API migration and host handoff](docs/AGENT_A_HANDOFF.md) and [verification record](docs/AGENT_A_VERIFICATION.md). Advanced edits require the host command/revision adapter; the full BreadBit acceptance task remains unqualified.
+
 ![Component laboratory preview](./docs/workbench.png)
 
 ## Start the component laboratory
@@ -63,12 +65,13 @@ All model geometry, labels and environment lighting are generated locally. The v
 
 | Tool | Pointer | Keyboard while viewport is focused |
 | --- | --- | --- |
-| Orbit | Left drag to orbit, right drag to pan, wheel to zoom | F frames; 1/2/3 choose isometric/top/front |
-| Move | Left drag a component; emits one commit on release | Arrow keys move; Shift multiplies the step by ten; R rotates 90 degrees |
-| Wire | Click a source pin, then a destination | Escape cancels |
-| Interact | Hold a button; click a potentiometer to advance by 0.1 | Host should expose equivalent accessible input controls |
+| Select | Select a part or cable; choose among overlapping targets | F fits; 1/2/3 choose isometric/top/front; plus/minus zoom |
+| Pan / Orbit | Explicit primary-button camera tools; wheel pans by default; Ctrl/Meta wheel zooms | Arrows pan or orbit; visible zoom/fit controls |
+| Move | Drag to preview, release to commit; or click a part and click its destination | Arrows move; Shift multiplies by ten; R rotates; Enter commits placement |
+| Wire | Source, optional bends, destination; selected wires expose reconnect/route controls with host command support | Escape cancels; keyboard pin picker can call the same handle methods |
+| Interact | Hold a button; click a potentiometer to advance by 0.1 | Space holds the selected button; arrows adjust a selected potentiometer |
 
-Escape cancels movement or wiring and clears selection. Window blur and pointer release clear a momentary button. A component with `locked: true` can still be inspected or wired but cannot be moved or rotated.
+Escape cancels previews and retains selection. Window blur, cancellation and pointer release clear held input. Shortcuts respect modifiers and text/control focus. A component with `locked: true` can still be inspected or wired but cannot be moved or rotated.
 
 ## Design
 
@@ -80,7 +83,7 @@ The catalogue models approximate familiar form factors. They are not manufacturi
 
 `npm run check` runs type checking, topology/geometry and adapter tests, the library build and the preview build. `node tests/browser.mjs` runs the integration browser suite against a running preview and writes screenshots and a JSON report to `verification/`. Set `CHROME_PATH` to use another Chromium executable.
 
-The browser suite checks real WebGL rendering, pin raycasts, drag commits, snap/elevation, cancellation, keyboard movement, rotation, momentary input, themes, mobile overflow, PNG export and absence of external asset requests. It does not claim an electrical simulation test or a Tauri packaging test.
+The browser suite checks WebGL rendering, screen-space candidate picking, atomic wire/route callbacks, cancellation, keyboard movement, camera persistence, input release, context restoration, scene PNG capture, quality profiles and idle rendering. Set `PREVIEW_URL` for a custom preview address, `PLAYWRIGHT_MODULE` for an existing Playwright module, or `SOFTWARE_RENDERING=1` for an explicitly labelled SwiftShader run. Results cover this component preview, not physical-trackpad usability, the integrated BreadBit workflow, or firmware simulation.
 
 ## Deliberate boundaries
 

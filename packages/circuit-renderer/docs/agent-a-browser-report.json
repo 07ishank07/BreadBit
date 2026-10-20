@@ -1,0 +1,128 @@
+{
+  "scope": "Renderer component preview; not the integrated BreadBit task or a physical trackpad test",
+  "environment": {
+    "platform": "win32",
+    "release": "10.0.26200",
+    "cpu": "12th Gen Intel(R) Core(TM) i5-1235U",
+    "browser": "155.0.8059.85",
+    "softwareRendering": true,
+    "viewport": "1440x900",
+    "deviceScaleFactor": 1
+  },
+  "checks": [
+    "Top view is the initial camera",
+    "Resize and host-restored remount preserve camera without commands",
+    "Viewport wheel pans, modified wheel zooms, sidebar wheel is isolated",
+    "Source, bend and destination click flow commits exactly once",
+    "Reconnect retains old wire until commit and Escape is a no-op",
+    "Bend and segment preview commits once and one undo restores the route",
+    "No-op routes, stale drafts and rejected commands leave topology unchanged",
+    "Part drag previews and commits once; Escape cancels without a command",
+    "Click-to-place does not require holding a drag",
+    "Pointer cancellation and lost capture discard previews",
+    "Window blur cancels placement; keyboard movement works; typing does not trigger viewport shortcuts",
+    "Keyboard momentary input is released on blur",
+    "WebGL context restoration retains project and camera",
+    "Light theme, larger targets and PNG export render",
+    "Small-fixture performance samples and idle rendering recorded for all quality modes"
+  ],
+  "errors": [],
+  "contextAvailable": true,
+  "exportMethod": "capture API; OS download unqualified",
+  "exportPixels": [
+    2232,
+    1342
+  ],
+  "benchmarks": [
+    {
+      "quality": "draft",
+      "parts": 21,
+      "wires": 20,
+      "frames": 45,
+      "renderCpuMedianMs": 4.199999988079071,
+      "renderCpuP95Ms": 8.800000011920929,
+      "orbitFrameIntervalP95Ms": 153.10000002384186,
+      "syntheticWheelToRenderP95Ms": 149.69999998807907,
+      "idleFramesIn500ms": 0,
+      "lastFrame": {
+        "drawCalls": 196,
+        "triangles": 46276,
+        "pixelRatio": 1,
+        "renderMs": 3.199999988079071,
+        "geometries": 209,
+        "textures": 33,
+        "renderedFrames": 101
+      }
+    },
+    {
+      "quality": "balanced",
+      "parts": 21,
+      "wires": 20,
+      "frames": 46,
+      "renderCpuMedianMs": 6.400000035762787,
+      "renderCpuP95Ms": 8.300000011920929,
+      "orbitFrameIntervalP95Ms": 200.5,
+      "syntheticWheelToRenderP95Ms": 176.60000002384186,
+      "idleFramesIn500ms": 0,
+      "lastFrame": {
+        "drawCalls": 359,
+        "triangles": 111656,
+        "pixelRatio": 1,
+        "renderMs": 7.199999988079071,
+        "geometries": 209,
+        "textures": 33,
+        "renderedFrames": 159
+      }
+    },
+    {
+      "quality": "high",
+      "parts": 21,
+      "wires": 20,
+      "frames": 45,
+      "renderCpuMedianMs": 7.899999976158142,
+      "renderCpuP95Ms": 13,
+      "orbitFrameIntervalP95Ms": 216.20000004768372,
+      "syntheticWheelToRenderP95Ms": 208,
+      "idleFramesIn500ms": 0,
+      "lastFrame": {
+        "drawCalls": 359,
+        "triangles": 130856,
+        "pixelRatio": 1,
+        "renderMs": 12.699999988079071,
+        "geometries": 209,
+        "textures": 33,
+        "renderedFrames": 217
+      }
+    }
+  ],
+  "diagnostics": [
+    {
+      "parts": 101,
+      "wires": 100,
+      "quality": "draft",
+      "frame": {
+        "drawCalls": 864,
+        "triangles": 209620,
+        "pixelRatio": 1,
+        "renderMs": 11.399999976158142,
+        "geometries": 877,
+        "textures": 113,
+        "renderedFrames": 231
+      }
+    },
+    {
+      "parts": 301,
+      "wires": 300,
+      "quality": "draft",
+      "frame": {
+        "drawCalls": 2533,
+        "triangles": 620520,
+        "pixelRatio": 1,
+        "renderMs": 39.30000001192093,
+        "geometries": 2546,
+        "textures": 313,
+        "renderedFrames": 234
+      }
+    }
+  ]
+}

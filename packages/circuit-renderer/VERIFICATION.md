@@ -1,5 +1,7 @@
 # Verification record
 
+This is the original renderer baseline. For the current Agent A implementation, executed checks, software-rendering measurements and blocked host gates, see [AGENT_A_VERIFICATION.md](docs/AGENT_A_VERIFICATION.md).
+
 Verified on 20 October 2026 in Windows with Node.js, Chromium and the dependency versions recorded in `package-lock.json`.
 
 ## Build and data tests
