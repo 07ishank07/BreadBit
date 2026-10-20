@@ -7,6 +7,8 @@ export function Led({ part, state }: ComponentModelProps) {
   return <group>
     <Instances positions={[[-1.27,2,0],[1.27,2,0]]} size={[0.5,4,0.5]} color="#b5bfc2" metal={0.8}/>
     <Cylinder at={[0,4.3,0]} radius={2.9} height={0.8} color={color}/>
+    {/* A flat cathode marker is a visual polarity cue; pin IDs remain in the catalog. */}
+    <Solid size={[0.22,0.35,2.2]} at={[2.78,4.72,0]} color="#623c37" radius={0.05}/>
     <mesh position={[0,6.25,0]} castShadow><cylinderGeometry args={[2.5,2.5,3.2,40]}/><meshPhysicalMaterial color={state.fault ? '#483c38' : color} roughness={0.17} clearcoat={1} emissive={color} emissiveIntensity={brightness*2.3}/></mesh>
     <mesh position={[0,7.85,0]} castShadow><sphereGeometry args={[2.5,40,20,0,Math.PI*2,0,Math.PI/2]}/><meshPhysicalMaterial color={state.fault ? '#483c38' : color} roughness={0.17} clearcoat={1} emissive={color} emissiveIntensity={brightness*2.3}/></mesh>
     {brightness>0.1 && <pointLight position={[0,8,0]} color={color} intensity={brightness*28} distance={18} decay={2}/>}
@@ -16,6 +18,7 @@ export function Resistor({ part }: ComponentModelProps) {
   const bands = Array.isArray(part.properties?.bands) ? part.properties.bands as string[] : ['#bb4144','#bb4144','#6b3930','#bba359'];
   return <group>
     <Cylinder at={[0,3,0]} radius={1.25} height={6.5} color="#d8c5a1" rotation={[0,0,Math.PI/2]}/>
+    {[-3.1,3.1].map(x=><Cylinder key={`cap-${x}`} at={[x,3,0]} radius={1.12} height={0.5} color="#bba67f" rotation={[0,0,Math.PI/2]}/>)}
     {bands.slice(0,5).map((c,i)=><Cylinder key={i} at={[-2.2+i*1.45,3,0]} radius={1.28} height={0.55} color={c} rotation={[0,0,Math.PI/2]}/>)}
     <Cylinder at={[0,3,0]} radius={0.25} height={14} color="#c1c9cc" metal={0.9} rotation={[0,0,Math.PI/2]}/>
     {[-7,7].map(x=><Cylinder key={x} at={[x,1.5,0]} radius={0.25} height={3} color="#c1c9cc" metal={0.9}/>)}

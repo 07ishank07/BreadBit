@@ -8,5 +8,5 @@ export const porcelainTheme: ViewportTheme = {
 export const qualityProfiles: Record<Quality, { dpr: [number, number]; shadowSize: number; segments: number }> = {
   draft: { dpr: [1, 1], shadowSize: 1024, segments: 32 },
   balanced: { dpr: [1, 2], shadowSize: 2048, segments: 56 },
-  high: { dpr: [2, 3], shadowSize: 4096, segments: 80 },
+  high: { dpr: [1, 3], shadowSize: 4096, segments: 80 },
 };

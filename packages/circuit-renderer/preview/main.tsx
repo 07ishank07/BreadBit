@@ -1,74 +1,98 @@
 import { useEffect, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
-import { CircuitViewport, builtinComponents, fixtureSnapshot, workbenchFixture, graphiteTheme, porcelainTheme } from '../src';
-import type { CircuitDocument, CircuitViewportHandle, InteractionMode, Quality, Selection, SimulationSnapshot } from '../src';
+import { CircuitViewport, builtinComponents, fixtureSnapshot, workbenchFixture, graphiteTheme, porcelainTheme, validateRendererEdit, benchmarkFixture } from '../src';
+import type { CameraState, CircuitDocument, CircuitViewportHandle, InteractionMode, Quality, RendererCommand, Selection, SimulationSnapshot, ViewportStats } from '../src';
 import './preview.css';
 
-const modes: {id:InteractionMode;label:string;icon:string}[]=[{id:'inspect',label:'Orbit',icon:'◉'},{id:'move',label:'Move',icon:'✥'},{id:'wire',label:'Wire',icon:'⌁'},{id:'interact',label:'Interact',icon:'↗'}];
 function Preview() {
-  const [circuit,setCircuit]=useState<CircuitDocument>(workbenchFixture);
-  const [snapshot,setSnapshot]=useState<SimulationSnapshot>(fixtureSnapshot);
-  const [selection,setSelection]=useState<Selection>({type:'part',id:'uno'});
-  const [mode,setMode]=useState<InteractionMode>('inspect');
-  const [quality,setQuality]=useState<Quality>('high');
-  const [light,setLight]=useState(false),[labels,setLabels]=useState(false),[grid,setGrid]=useState(true),[playing,setPlaying]=useState(false);
-  const [ready,setReady]=useState(false),[error,setError]=useState(''),[event,setEvent]=useState('Viewport ready for integration');
-  const viewport=useRef<CircuitViewportHandle>(null);
-  const stats=useRef({drawCalls:0,triangles:0,pixelRatio:0});
-  const part=selection?.type==='part'?circuit.parts.find(p=>p.id===selection.id):undefined;
-  const definition=part?builtinComponents[part.kind]:undefined;
-  const visuals=part?snapshot.parts?.[part.id]:undefined;
-  useEffect(()=>{
-    if(!playing)return;
-    const start=performance.now();
-    const timer=setInterval(()=>{const t=(performance.now()-start)/1000;
-      setSnapshot(s=>({...s,parts:{...s.parts,led:{brightness:(Math.sin(t*3)+1)/2},servo:{angle:90+Math.sin(t)*65},screen:{displayLines:['SIGNAL PREVIEW',`${t.toFixed(1)} seconds`]}}}));
-    },70);
-    return()=>clearInterval(timer);
-  },[playing]);
-  useEffect(()=>{
-    // The test harness is scoped to this preview, never shipped in the library.
-    Object.assign(window,{rendererPreview:{projectPin:(pin:{partId:string;pinId:string})=>viewport.current?.projectPin(pin),getCircuit:()=>circuit,getSnapshot:()=>snapshot,getStats:()=>stats.current,getSelection:()=>selection}});
-  },[circuit,snapshot,selection]);
-  const capture=()=>{const data=viewport.current?.capture(2);if(data){const a=document.createElement('a');a.href=data;a.download='circuit-workspace.png';a.click();setEvent('Scene exported at 2× resolution');}};
-  return <main className={light?'laboratory light':'laboratory'}>
-    <header className="masthead"><div className="identity"><div className="logo">C<span>◦</span></div><div><h1>Component laboratory</h1><p>3D RENDERING FRAMEWORK <span>/</span> 0.1</p></div></div>
-      <div className="header-right"><span className="status"><i/> {ready?'Renderer online':'Initialising'}</span><button onClick={capture} className="export">↗ <span>Export view</span></button></div>
-    </header>
-    <section className="workspace">
+  const [circuit, setCircuit] = useState<CircuitDocument>(workbenchFixture);
+  const [snapshot, setSnapshot] = useState<SimulationSnapshot>(fixtureSnapshot);
+  const [selection, setSelection] = useState<Selection>({ type: 'part', id: 'uno' });
+  const [mode, setMode] = useState<InteractionMode>('inspect');
+  const [quality, setQuality] = useState<Quality>('balanced');
+  const [revision, setRevision] = useState(0), [mounted, setMounted] = useState(true);
+  const [scroll, setScroll] = useState<'pan' | 'zoom'>('pan');
+  const [larger, setLarger] = useState(false), [reduced, setReduced] = useState(false), [light, setLight] = useState(false);
+  const [labels, setLabels] = useState(true), [grid, setGrid] = useState(true);
+  const [pinPart, setPinPart] = useState('uno'), [pinId, setPinId] = useState('12');
+  const [ready, setReady] = useState(false), [error, setError] = useState(''), [event, setEvent] = useState('Visual fixture. Electrical behaviour is not simulated.');
+  const viewport = useRef<CircuitViewportHandle>(null), savedCamera = useRef<CameraState | undefined>(undefined);
+  const commits = useRef<RendererCommand[]>([]), history = useRef<CircuitDocument[]>([]);
+  const stats = useRef<ViewportStats>({ drawCalls: 0, triangles: 0, pixelRatio: 0 }), samples = useRef<ViewportStats[]>([]);
+  const [rejectNext, setRejectNext] = useState(false);
+  function command(command: RendererCommand) {
+    if (command.expectedRevision !== revision || rejectNext) {
+      setRejectNext(false);
+      return { accepted: false as const, feedback: { code: 'rejected' as const, message: 'Preview host rejected the command.', entityIds: [], recovery: 'Review the candidate and retry.' } };
+    }
+    const invalid = validateRendererEdit(command.edit, circuit, builtinComponents);
+    if (invalid) return { accepted: false as const, feedback: invalid };
+    const edit = command.edit;
+    history.current.push(circuit); commits.current.push(command);
+    setCircuit(c => {
+      if (edit.type === 'part.move') return { ...c, parts: c.parts.map(p => p.id === edit.id ? { ...p, position: edit.position } : p) };
+      if (edit.type === 'part.rotate') return { ...c, parts: c.parts.map(p => p.id === edit.id ? { ...p, rotation: edit.radians } : p) };
+      if (edit.type === 'wire.create') return { ...c, wires: [...c.wires, { id: command.actionId, from: edit.from, to: edit.to, waypoints: edit.waypoints, color: '#78c5a3' }] };
+      if (edit.type === 'wire.delete') return { ...c, wires: c.wires.filter(w => w.id !== edit.id) };
+      if (edit.type === 'wire.reconnect') return { ...c, wires: c.wires.map(w => w.id === edit.id ? { ...w, [edit.end]: edit.pin } : w) };
+      return { ...c, wires: c.wires.map(w => w.id === edit.id ? { ...w, waypoints: edit.waypoints } : w) };
+    });
+    setRevision(n => n + 1); setEvent(command.label); return { accepted: true as const };
+  }
+  const undo = () => { const previous = history.current.pop(); if (previous) { setCircuit(previous); setRevision(n => n + 1); setEvent('Undid one renderer command'); } };
+  useEffect(() => {
+    // Preview-only API. It is not included in the library or BreadBit host.
+    Object.assign(window, { rendererPreview: {
+      projectPin: (pin: { partId: string; pinId: string }) => viewport.current?.projectPin(pin),
+      getCircuit: () => circuit, getSnapshot: () => snapshot, getStats: () => stats.current, getSelection: () => selection,
+      getHandle: () => viewport.current, getRevision: () => revision, getCommits: () => commits.current, getSamples: () => samples.current,
+      clearSamples: () => { samples.current = []; }, setSelection, setMode, setMounted, setRejectNext, undo,
+      replaceCircuit: (next: CircuitDocument) => { setCircuit(next); setRevision(n => n + 1); },
+    } });
+  }, [circuit, snapshot, selection, revision]);
+  const capture = () => {
+    const data = viewport.current?.capture(2);
+    if (data) { const a = document.createElement('a'); a.href = data; a.download = 'circuit-workspace.png'; a.click(); setEvent('Exported PNG at 2x resolution'); }
+  };
+  const selectedWire = selection?.type === 'wire' ? circuit.wires.find(w => w.id === selection.id) : undefined;
+  return <main className={`lab${light ? ' light' : ''}${larger ? ' larger' : ''}`}>
+    <header><div><strong>BreadBit</strong><span>Spatial interaction laboratory</span></div><span role="status">{ready ? 'Renderer online' : 'Initialising'}</span><button onClick={capture}>Export view</button></header>
+    <section className="layout">
       <div className="stage">
-        <div className="stage-caption"><span>WORKBENCH 01</span><h2>Made to connect.</h2><p>Procedural components. One shared circuit.</p></div>
-        <div className="viewport-wrap"><CircuitViewport ref={viewport} circuit={circuit} snapshot={snapshot} selection={selection} mode={mode} quality={quality}
-          theme={light?porcelainTheme:graphiteTheme} showLabels={labels} showGrid={grid}
-          onReady={()=>setReady(true)} onError={e=>setError(e.message)} onStats={s=>{stats.current=s;}}
-          onSelect={setSelection}
-          onPartMove={(id,position)=>{setCircuit(c=>({...c,parts:c.parts.map(p=>p.id===id?{...p,position}:p)}));setEvent(`Moved ${id}`);}}
-          onPartRotate={(id,rotation)=>{setCircuit(c=>({...c,parts:c.parts.map(p=>p.id===id?{...p,rotation}:p)}));setEvent(`Rotated ${id}`);}}
-          onWireCreate={(from,to)=>{setCircuit(c=>({...c,wires:[...c.wires,{id:`wire-${Date.now()}`,from,to,color:'#94e9c2'}]}));setEvent(`Connected ${from.partId}:${from.pinId} to ${to.partId}:${to.pinId}`);}}
-          onInputChange={change=>{setSnapshot(s=>({...s,parts:{...s.parts,[change.partId]:{...s.parts?.[change.partId],[change.property]:change.value}}}));setEvent(`${change.partId}: ${change.property} = ${change.value}`);}}/>
-        </div>
-        <div className="view-controls" role="group" aria-label="Camera views"><button aria-label="Isometric view" onClick={()=>viewport.current?.setView('isometric')}>Iso</button><button aria-label="Top view" onClick={()=>viewport.current?.setView('top')}>Top</button><button aria-label="Front view" onClick={()=>viewport.current?.setView('front')}>Front</button><span/><button aria-label="Fit circuit" onClick={()=>viewport.current?.fit()}>⌖ Fit</button></div>
-        <div className="tool-dock" role="toolbar" aria-label="Viewport tools">{modes.map(m=><button key={m.id} aria-label={m.label} aria-pressed={mode===m.id} className={mode===m.id?'active':''} onClick={()=>setMode(m.id)}><b>{m.icon}</b><span>{m.label}</span></button>)}</div>
-        <div className="stage-footer"><span>{circuit.parts.length} components <i/> {circuit.wires.length} connections</span><span>MM <i/> Y UP</span></div>
-        {error&&<div className="error" role="alert">{error}</div>}
+        <nav aria-label="Editing tools">{(['inspect', 'move', 'wire', 'interact'] as const).map(tool => <button key={tool} aria-pressed={mode === tool} onClick={() => setMode(tool)}>{tool === 'inspect' ? 'Select' : tool[0].toUpperCase() + tool.slice(1)}</button>)}<span/>
+          <button onClick={undo}>Undo last edit</button><button aria-label="Isometric view" onClick={() => viewport.current?.setView('isometric')}>Isometric</button><button aria-label="Top view" onClick={() => viewport.current?.setView('top')}>Top</button><button aria-label="Front view" onClick={() => viewport.current?.setView('front')}>Front</button>
+        </nav>
+        <div className="viewport-wrap">{mounted && <CircuitViewport ref={viewport} circuit={circuit} snapshot={snapshot} selection={selection} mode={mode} quality={quality}
+          theme={light ? porcelainTheme : graphiteTheme} showLabels={labels} showGrid={grid}
+          navigation={{ twoFingerAction: scroll }} initialCameraState={savedCamera.current} onCameraChange={s => { savedCamera.current = s; }}
+          largerTargets={larger} reducedMotion={reduced} labelScale={larger ? 1.25 : 1} projectRevision={revision} onCommand={command}
+          onReady={() => setReady(true)} onError={e => setError(e.message)} onStats={s => { stats.current = s; if (samples.current.length < 2000) samples.current.push(s); }}
+          onSelect={setSelection} onInputChange={change => { setSnapshot(s => ({ ...s, parts: { ...s.parts, [change.partId]: { ...s.parts?.[change.partId], [change.property]: change.value } } })); setEvent(`${change.partId}: ${change.property} = ${change.value}`); }}/>}</div>
+        {error && <div role="alert">{error}</div>}
+        <footer>{circuit.parts.length} components · {circuit.wires.length} cables · revision {revision}<span>Wheel pans · pinch zooms · F fits · Escape cancels</span></footer>
       </div>
-      <aside className="inspector">
-        <div className="panel-title"><span>SCENE EXPLORER</span><span>08</span></div>
-        <div className="part-list">{circuit.parts.map((p,i)=><button key={p.id} onClick={()=>setSelection({type:'part',id:p.id})} className={selection?.type==='part'&&selection.id===p.id?'selected':''} aria-pressed={selection?.type==='part'&&selection.id===p.id}><span className={`part-dot dot-${p.kind}`}/><span>{p.label??p.kind}</span><small>{String(i+1).padStart(2,'0')}</small></button>)}</div>
-        <section className="detail"><span className="eyebrow">SELECTED COMPONENT</span><h3>{part?.label??(selection?.type==='wire'?'Jumper wire':'Nothing selected')}</h3><p>{definition?.label??'Select a component in the workspace.'}</p>
-          {part&&<><dl><div><dt>Identifier</dt><dd>{part.id}</dd></div><div><dt>Connections</dt><dd>{circuit.wires.filter(w=>w.from.partId===part.id||w.to.partId===part.id).length}</dd></div><div><dt>Position · mm</dt><dd>{part.position.map(n=>n.toFixed(1)).join(' / ')}</dd></div></dl>
-            {part.kind==='led'&&<label className="range">Brightness <input aria-label="LED brightness" type="range" min="0" max="1" step="0.01" value={visuals?.brightness??0} onChange={e=>setSnapshot(s=>({...s,parts:{...s.parts,[part.id]:{brightness:Number(e.target.value)}}}))}/></label>}
-            {part.kind==='servo'&&<label className="range">Horn angle <input aria-label="Servo angle" type="range" min="0" max="180" value={visuals?.angle??90} onChange={e=>setSnapshot(s=>({...s,parts:{...s.parts,[part.id]:{angle:Number(e.target.value)}}}))}/></label>}
-          </>}
-        </section>
-        <section className="settings"><span className="eyebrow">RENDER SETTINGS</span><label>Quality<select aria-label="Rendering quality" value={quality} onChange={e=>setQuality(e.target.value as Quality)}><option value="draft">Draft · 1×</option><option value="balanced">Balanced · 2×</option><option value="high">High · 3×</option></select></label>
-          <label>Surface grid<input type="checkbox" checked={grid} onChange={e=>setGrid(e.target.checked)}/></label><label>Component labels<input type="checkbox" checked={labels} onChange={e=>setLabels(e.target.checked)}/></label><label>Porcelain theme<input type="checkbox" checked={light} onChange={e=>setLight(e.target.checked)}/></label>
-          <button className="signal-preview" aria-pressed={playing} onClick={()=>setPlaying(v=>!v)}>{playing?'Ⅱ Pause':'▷ Preview'} signals</button>
-          <p className="disclaimer">Visual fixture only. Signal values are supplied by this preview, not an electrical simulator.</p>
-        </section>
+      <aside aria-label="Renderer integration controls">
+        <h2>Scene</h2>
+        <label>Selection<select aria-label="Scene selection" value={selection ? `${selection.type}:${selection.id}` : ''} onChange={e => { const [type, ...id] = e.target.value.split(':'); setSelection(type ? { type: type as 'part' | 'wire', id: id.join(':') } : null); }}><option value="">Nothing selected</option>{circuit.parts.map(p => <option key={p.id} value={`part:${p.id}`}>{p.label ?? p.id}</option>)}{circuit.wires.map(w => <option key={w.id} value={`wire:${w.id}`}>Wire {w.id}</option>)}</select></label>
+        {selectedWire && <><label>Wire label<input aria-label="Wire label" value={selectedWire.label ?? ''} onChange={e => { const label = e.target.value; setCircuit(c => ({ ...c, wires: c.wires.map(w => w.id === selectedWire.id ? { ...w, label } : w) })); setRevision(n => n + 1); }}/></label><label>Wire pattern<select aria-label="Wire pattern" value={selectedWire.pattern ?? 'solid'} onChange={e => { const pattern = e.target.value as 'solid' | 'dashed' | 'dotted'; setCircuit(c => ({ ...c, wires: c.wires.map(w => w.id === selectedWire.id ? { ...w, pattern } : w) })); setRevision(n => n + 1); }}><option>solid</option><option>dashed</option><option>dotted</option></select></label></>}
+        <h2>Keyboard pin picker</h2>
+        <label>Component<select aria-label="Pin component" value={pinPart} onChange={e => { setPinPart(e.target.value); setPinId(''); }}>{circuit.parts.map(p => <option key={p.id} value={p.id}>{p.id}</option>)}</select></label>
+        <label>Pin<select aria-label="Pin target" value={pinId} onChange={e => setPinId(e.target.value)}><option value="">Choose a pin</option>{(builtinComponents[circuit.parts.find(p => p.id === pinPart)?.kind ?? '']?.pins ?? []).map(p => <option key={p.id} value={p.id}>{p.label ?? p.id}</option>)}</select></label>
+        <button disabled={!pinId} onClick={() => viewport.current?.choosePin({ partId: pinPart, pinId })}>Use selected pin</button>
+        <p>The host validates each command. Pin geometry alone does not establish electrical support.</p>
+        <h2>Graphics and navigation</h2>
+        <label>Quality<select aria-label="Rendering quality" value={quality} onChange={e => setQuality(e.target.value as Quality)}><option value="draft">Draft</option><option value="balanced">Balanced</option><option value="high">High</option></select></label>
+        <label>Two finger scroll<select aria-label="Two finger scroll" value={scroll} onChange={e => setScroll(e.target.value as 'pan' | 'zoom')}><option value="pan">Pan</option><option value="zoom">Zoom</option></select></label>
+        <label>Surface grid<input type="checkbox" checked={grid} onChange={e => setGrid(e.target.checked)}/></label>
+        <label>Component labels<input type="checkbox" checked={labels} onChange={e => setLabels(e.target.checked)}/></label>
+        <label>Porcelain theme<input type="checkbox" checked={light} onChange={e => setLight(e.target.checked)}/></label>
+        <label>Larger targets<input type="checkbox" checked={larger} onChange={e => setLarger(e.target.checked)}/></label>
+        <label>Reduced motion<input type="checkbox" checked={reduced} onChange={e => setReduced(e.target.checked)}/></label>
+        <label>Benchmark fixture<select aria-label="Benchmark fixture" defaultValue="showcase" onChange={e => { setCircuit(e.target.value === 'showcase' ? workbenchFixture : benchmarkFixture(Number(e.target.value))); setSelection(null); setRevision(n => n + 1); }}><option value="showcase">Showcase</option><option value="20">One board + 20 parts</option><option value="100">100 parts (diagnostic)</option><option value="300">300 parts (diagnostic)</option></select></label>
+        <p>Presentation and interaction fixture only. No electrical simulation is performed here.</p>
       </aside>
     </section>
-    <footer className="statusbar"><span aria-live="polite">{event}</span><span>Drag to orbit <i/> Scroll to zoom <i/> F to frame</span></footer>
+    <div className="statusbar" aria-live="polite">{event}</div>
   </main>;
 }
 createRoot(document.getElementById('root')!).render(<Preview/>);

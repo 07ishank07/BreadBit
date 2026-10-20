@@ -13,6 +13,7 @@ export function ArduinoUno({ state }: ComponentModelProps) {
     <Instances positions={Array.from({ length: 14 }, (_, i) => [[-0.7 + i * 1.78, 3, -2.9], [-0.7 + i * 1.78, 3, 6.9]] as Vec3[]).flat()} size={[0.6, 1.8, 1.4]} color="#b3bec3" metal={0.85}/>
     <SurfaceText text="ATMEGA328P" at={[11, 5.75, 2]} width={19} height={2} color="#bbc5ca"/>
     <Solid size={[15, 11, 12]} at={[-29, 7.5, -12]} color="#b9c4c8" metal={0.85} rough={0.24}/>
+    <Solid size={[10, 0.08, 7]} at={[-29, 13.04, -12]} color="#8b9da6" metal={0.65} rough={0.3} radius={0.1}/>
     <Solid size={[0.2, 7.8, 8.8]} at={[-36.6, 7.5, -12]} color="#303b41" radius={0.1}/>
     <Solid size={[13, 10, 9]} at={[-28, 7, 15]} color="#1c2327" radius={0.7}/>
     <Cylinder at={[-35, 7, 15]} radius={3.5} height={0.4} color="#94a3a8" metal={0.8} rotation={[0, 0, Math.PI / 2]}/>
@@ -21,6 +22,7 @@ export function ArduinoUno({ state }: ComponentModelProps) {
     <Solid size={[19, 6.4, 3.8]} at={[-11.5, 5.4, 22]} color="#202a2b"/>
     <Solid size={[16, 6.4, 3.8]} at={[14.4, 5.4, 22]} color="#202a2b"/>
     <Instances positions={unoPins.map(p => [p.position[0], 8.67, p.position[2]])} size={[1.35, 0.14, 1.35]} color="#080e11"/>
+    <Instances positions={unoPins.map(p => [p.position[0], 8.69, p.position[2]-0.42])} size={[0.7, 0.08, 0.18]} color="#a69267" metal={0.7}/>
     <Instances positions={[[-27, 2.34, -23], [28, 2.34, -23], [28, 2.34, 23], [-27, 2.34, 23]]} size={[3.2, 0.14, 3.2]} color="#d4b56d" metal={0.8}/>
     <Instances positions={[[-27, 2.44, -23], [28, 2.44, -23], [28, 2.44, 23], [-27, 2.44, 23]]} size={[1.7, 0.15, 1.7]} color="#1b272a"/>
     <SurfaceText text="UNO" at={[-10, 2.34, -5]} width={15} height={7}/>

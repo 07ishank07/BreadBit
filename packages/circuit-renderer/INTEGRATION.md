@@ -1,5 +1,7 @@
 # Integration handoff for the application agent
 
+For the new Agent A implementation, start with [AGENT_A_HANDOFF.md](docs/AGENT_A_HANDOFF.md). It specifies the revision-aware command adapter, camera persistence, navigation preferences, route editing and migration from the legacy callbacks shown below. Current executed checks and integration blockers are in [AGENT_A_VERIFICATION.md](docs/AGENT_A_VERIFICATION.md).
+
 ## Package ownership
 
 This package is isolated from the application frame under `packages/circuit-renderer`. Import the package into the existing rendering panel; do not replace application routing or project state. `preview/` is a disposable laboratory and does not belong in the product shell.
@@ -121,4 +123,4 @@ The viewport uses WebGL2 through the WebView; verify GPU acceleration in the cho
 6. Let the host validate a proposed wire, then exercise undo and redo.
 7. Test the target desktop WebView, GPU drivers and high DPI display.
 
-This package was not combined with the separate application's frame in this workspace. Its tests cover the rendering boundary and adapter, not the host emulator or desktop packaging.
+The application has a legacy renderer bridge. The new advanced command/revision adapter is a separate integration gate. The current renderer tests cover its component boundary and adapter, not the host emulator or desktop packaging.
