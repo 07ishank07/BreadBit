@@ -1,0 +1,39 @@
+{
+  "name": "@circuit-workbench/renderer",
+  "version": "0.1.0",
+  "description": "Controlled React 3D electronics viewport, component models and integration adapters",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": { ".": { "types": "./dist/index.d.ts", "import": "./dist/index.js" } },
+  "files": ["dist", "README.md", "INTEGRATION.md", "LICENSE"],
+  "sideEffects": false,
+  "scripts": {
+    "dev": "vite --host 127.0.0.1 --port 4173 --strictPort",
+    "build": "tsc -p tsconfig.build.json && vite build --config vite.lib.config.ts",
+    "build:preview": "vite build",
+    "typecheck": "tsc --noEmit",
+    "test": "tsx --test tests/*.test.ts",
+    "check": "npm run typecheck && npm test && npm run build && npm run build:preview"
+  },
+  "peerDependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "three": ">=0.180.0 <0.187.0",
+    "@react-three/fiber": "^9.0.0"
+  },
+  "devDependencies": {
+    "@react-three/fiber": "9.8.2",
+    "@types/node": "^22.0.0",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@types/three": "0.186.0",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "three": "0.186.1",
+    "typescript": "5.9.3",
+    "vite": "7.3.1",
+    "tsx": "^4.20.0",
+    "playwright": "^1.56.0"
+  }
+}
