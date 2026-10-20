@@ -1,0 +1,10 @@
+.bb-cloud { overflow-wrap: anywhere; }
+.bb-cloud button { margin: 4px 4px 4px 0; }
+.bb-cloud-card { margin: 14px 0; padding: 12px; border: 1px solid #405065; border-radius: 10px; background: #131e2b; }
+.bb-cloud-card pre { max-height: 220px; overflow: auto; font-size: 11px; white-space: pre; }
+.bb-cloud input[readonly] { box-sizing: border-box; width: 100%; margin: 8px 0; padding: 8px; background: #101923; color: #cfe3ed; border: 1px solid #405065; border-radius: 6px; }
+.bb-cloud a { color: #85d3c2; }
+.bb-cloud-projects { display: grid; gap: 5px; }
+.bb-cloud-projects button { text-align: left; }
+.bb-cloud small { display: block; opacity: .65; margin-top: 3px; }
+.bb-cloud label { display: flex; gap: 8px; align-items: center; }

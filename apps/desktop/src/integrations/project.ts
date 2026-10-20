@@ -33,6 +33,8 @@ export class ProjectController {
   private restoreGeneration = 0;
   private timer: ReturnType<typeof setTimeout> | undefined;
   recoveryError: string | null = null;
+  private recoveryEnabled = true;
+  setRecoveryEnabled(enabled: boolean) { this.recoveryEnabled = enabled; }
   subscribe = (listener: () => void) => { this.listeners.add(listener); return () => { this.listeners.delete(listener); }; };
   notify = () => { for (const listener of this.listeners) listener(); };
   get project() { return this.history.snapshot; }
@@ -48,6 +50,7 @@ export class ProjectController {
     this.notify();
   };
   private backup() {
+    if (!this.recoveryEnabled) return;
     try { localStorage.setItem(recoveryKey, serializeProject(this.project)); this.recoveryError = null; }
     catch { this.recoveryError = 'Recovery storage is full or unavailable. Save the project to a file.'; }
   }
@@ -109,6 +112,12 @@ export class ProjectController {
     this.restore(project);
   }
   undo() { this.flush(); if (this.history.canUndo) this.restore(this.history.undo()); }
+  rename(name: string) {
+    if (!name.trim() || name.length > 200) throw new Error('Use a project name between 1 and 200 characters.');
+    this.flush();
+    this.history.apply({ expectedRevision: this.project.revision, label: 'Rename project', operations: [{ type: 'replace-document', document: { ...this.project.document, name: name.trim() } }] });
+    this.signature = signature(this.project.document); this.backup(); this.notify();
+  }
   redo() { this.flush(); if (this.history.canRedo) this.restore(this.history.redo()); }
   serialize() { this.flush(); return serializeProject(this.project); }
 }

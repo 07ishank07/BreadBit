@@ -19,6 +19,9 @@ import { ProjectController, recoveryKey } from './integrations/project';
 import { nativeAvailable, openNative, saveNative, saveNativeAs, runtimeStatus, type NativeDocument } from './integrations/native';
 
 import { shortcut } from './integrations/shortcuts';
+import { useCloudProjects } from './features/cloud/useCloudProjects';
+import { CloudPanel } from './features/cloud/CloudPanel';
+const accountsEnabled = import.meta.env.VITE_BREADBIT_ACCOUNTS === '1';
 const Circuit3D = lazy(() => import('./features/Circuit3D'));
 
 function download(content: string, filename: string) {
@@ -33,7 +36,7 @@ export function App() {
   const [nativeFile, setNativeFile] = useState<NativeDocument | null>(null);
   const [saved, setSaved] = useState(-1);
   const [notice, setNotice] = useState('Start with the Uno workspace. Add components with the + button on the circuit.');
-  const [panel, setPanel] = useState<'project' | 'assistant' | 'runtime'>('project');
+  const [panel, setPanel] = useState<'project' | 'assistant' | 'runtime' | 'account'>('project');
   const [view, setView] = useState<'2d'|'3d'>('2d');
   const [consoleOpen, setConsoleOpen] = useState(false);
   const [newDialog, setNewDialog] = useState(false);
@@ -46,8 +49,12 @@ export function App() {
   const serialOpen = useSimulatorStore(s => s.serialMonitorOpen);
   const scopeOpen = useOscilloscopeStore(s => s.open);
   const project = controller.project;
+  const cloud = useCloudProjects(controller, setNotice, accountsEnabled);
   const diagnostics = validateVlx(project.document);
-  const dirty = project.revision !== saved;
+  const isUnsaved = () => accountsEnabled
+    ? !cloud.local.some(draft => draft.project.id === controller.project.id && JSON.stringify(draft.project) === JSON.stringify(controller.project))
+    : controller.project.revision !== saved;
+  const dirty = isUnsaved();
 
   useEffect(() => controller.subscribe(() => render(x => x + 1)), [controller]);
   useEffect(() => controller.attach(), [controller]);
@@ -56,11 +63,11 @@ export function App() {
   useEffect(() => {
     const warn = (event: BeforeUnloadEvent) => {
       controller.flush();
-      if (controller.project.revision !== saved) { event.preventDefault(); event.returnValue = ''; }
+      if (isUnsaved()) { event.preventDefault(); event.returnValue = ''; }
     };
     window.addEventListener('beforeunload', warn);
     return () => window.removeEventListener('beforeunload', warn);
-  }, [controller, saved]);
+  }, [controller, saved, cloud.local]);
   async function act(work: () => Promise<void>) {
     if (busy) return;
     setBusy(true);
@@ -68,6 +75,11 @@ export function App() {
     finally { setBusy(false); }
   }
   async function save(as = false) {
+    if (accountsEnabled && !cloud.account) { setPanel('account'); setNotice('Sign in to save or export projects.'); return; }
+    if (accountsEnabled && !as) {
+      await act(async () => { if (await cloud.save()) setSaved(controller.project.revision); });
+      return;
+    }
     await act(async () => {
       const content = controller.serialize();
       const revision = controller.project.revision;
@@ -83,7 +95,7 @@ export function App() {
   }
   function newProject() {
     controller.flush();
-    if (controller.project.revision !== saved && !window.confirm('Discard unsaved changes and start a new project?')) return;
+    if (isUnsaved() && !window.confirm('Discard unsaved changes and start a new project?')) return;
     controller.load(JSON.stringify(createProject({format:'velxio-project',version:1,exportedAt:new Date().toISOString(),name:'Untitled',boards:[],components:[],wires:[],fileGroups:{},activeBoardId:null},crypto.randomUUID())));
     setNativeFile(null); setSaved(-1); setNewDialog(true);
   }
@@ -103,7 +115,7 @@ export function App() {
   });
   async function open() {
     controller.flush();
-    if (controller.project.revision !== saved && !window.confirm('Discard unsaved changes and open another project? Save first to keep your current work.')) return;
+    if (isUnsaved() && !window.confirm('Discard unsaved changes and open another project? Save first to keep your current work.')) return;
     if (!nativeAvailable) { input.current?.click(); return; }
     await act(async () => {
       const file = await openNative(); if (!file) return;
@@ -115,7 +127,7 @@ export function App() {
   return <MemoryRouter><div className="bb-app">
     <header className="bb-header">
       <a className="bb-brand" href="#" onClick={event => event.preventDefault()} aria-label="BreadBit workbench"><span className="bb-mark">B</span><strong>BreadBit</strong><span className="bb-label">WORKBENCH</span></a>
-      <span className="bb-project-name">{nativeFile?.path.split(/[\\/]/).pop() ?? 'Untitled project'}{dirty ? ' •' : ''}</span>
+      <span className="bb-project-name">{accountsEnabled ? project.document.name || 'Untitled project' : nativeFile?.path.split(/[\\/]/).pop() ?? 'Untitled project'}{dirty ? ' •' : ''}</span>
       <nav aria-label="Project actions">
         <button onClick={() => void act(async () => newProject())} disabled={busy}>New</button>
         <button onClick={() => void open()} disabled={busy}>Open</button>
@@ -143,16 +155,17 @@ export function App() {
       </section>
       <aside className="bb-inspector" aria-label="Project inspector">
         <div className="bb-tabs" role="tablist" aria-label="Inspector">
-          {(['project', 'assistant', 'runtime'] as const).map(name => <button role="tab" id={`tab-${name}`} aria-controls="inspector-panel" aria-selected={panel === name} key={name} onClick={() => setPanel(name)}>{name[0].toUpperCase() + name.slice(1)}</button>)}
+          {(['project', 'assistant', 'runtime', ...(accountsEnabled ? ['account' as const] : [])] as const).map(name => <button role="tab" id={`tab-${name}`} aria-controls="inspector-panel" aria-selected={panel === name} key={name} onClick={() => setPanel(name)}>{name[0].toUpperCase() + name.slice(1)}</button>)}
         </div>
         <div className="bb-panel" id="inspector-panel" role="tabpanel" aria-labelledby={`tab-${panel}`}>
+          {panel === 'account' && <CloudPanel cloud={cloud} project={project}/>}
           {panel === 'project' && <>
             <p className="bb-eyebrow">YOUR PROJECT</p><h1>One connected workspace</h1><p className="bb-subtle">Build in 2D and inspect or edit the same circuit in 3D. BreadBit keeps a versioned project snapshot and recovery draft.</p>
             <dl className="bb-stats"><div><dt>Boards</dt><dd>{project.document.boards.length}</dd></div><div><dt>Parts</dt><dd>{project.document.components.length}</dd></div><div><dt>Wires</dt><dd>{project.document.wires.length}</dd></div></dl>
             <h2>Connections</h2><p className="bb-subtle">Explicit wire endpoints. Breadboard buses and implied nets are not expanded here.</p>
             <div className="bb-connections">{project.document.wires.length ? project.document.wires.map(wire => <div key={wire.id}><code>{wire.start.componentId}:{wire.start.pinName}</code><span>↔</span><code>{wire.end.componentId}:{wire.end.pinName}</code></div>) : <p>No wires yet.</p>}</div>
             <h2>Validation</h2>{diagnostics.map((d, i) => <p className="bb-diagnostic" key={i}>{d.message}</p>)}
-            <button className="bb-wide" onClick={() => void act(async () => { controller.flush(); download(JSON.stringify(controller.project.document, null, 2), 'project.vlx'); setNotice('Exported the compatible circuit and firmware document. BreadBit history is not included.'); })}>Export Velxio .vlx</button>
+            <button className="bb-wide" onClick={() => void act(async () => { if (accountsEnabled && !cloud.account) { setPanel('account'); setNotice('Sign in to export projects.'); return; } controller.flush(); download(JSON.stringify(controller.project.document, null, 2), 'project.vlx'); setNotice('Exported the compatible circuit and firmware document. BreadBit history is not included.'); })}>Export Velxio .vlx</button>
           </>}
           {panel === 'assistant' && <>
             <p className="bb-eyebrow">ASSISTANT FOUNDATION</p><h1>Grounded in your project</h1><p className="bb-subtle">The structured tool boundary is implemented. A model provider and simulation test runner are not connected yet.</p>
