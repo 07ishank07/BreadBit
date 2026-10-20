@@ -8,6 +8,10 @@ Date: 20 October 2026.
 
 - Usable across desktop and laptop computers, with trackpads and keyboard/mouse.
 - Start in top-down view, with explicit Orbit and Pan tools.
+- Default to a circuit-focused workspace; Code and inspector open on demand. Panes remain resizable/collapsible.
+- Simple default interface, with advanced controls available through progressive disclosure; do not require a separate expert mode.
+- Primary construction workflow is schematic or physical 2D according to experience level, followed by 3D inspection. Retain required electrical editing in all three views; do not remove 3D editing merely because inspection is its primary role.
+- Realistic 3D components with adjustable quality, and light/dark themes.
 - Fix wire editing in BOTH physical 2D and 3D as the first priority. All five actions are first-release requirements: connect pins, reconnect an existing end, move bends/segments, delete wires, and change color/label.
 - Wiring uses click source, click optional bends, click destination; Escape cancels without committing.
 - Electrical editing in all three views is required in the first release; ambiguous physical placement requires review.
@@ -48,7 +52,7 @@ Use these two agents for implementation after interview decisions are incorporat
 ## Agent A brief: 3D graphics and interaction
 
 P0 — navigation and wiring reliability:
-- Top-down default; explicit Select/Move, Pan, Orbit, Wire and Interact tools. Provide left-click routes for every essential action, plus mouse shortcuts.
+- Top-down default; emphasize inspection and explicit Pan/Orbit. Keep Select/Move, Wire and Interact readily accessible without cluttering the default view. Provide left-click routes for every essential action, plus mouse shortcuts.
 - Prototype trackpad wheel/pinch routing within the viewport. Preserve ordinary sidebar/code scrolling and browser page zoom outside it. Handle wheel delta modes; no synthetic test can certify native pinch feel.
 - Enlarge pin and wire hit areas in screen space, independently from visible geometry. Offer overlapping candidate IDs rather than silently choosing a hidden pin.
 - Wire endpoints and bend handles: reconnect, insert/move/remove bends, preview source/target, Esc cancel. Parent validates before any committed topology change.
@@ -62,7 +66,7 @@ P1 — visual clarity and rendering:
 - Context-loss recovery keeps the current project and camera intact.
 
 P2 — model polish:
-- Improve recognizable meshes, labels, materials and cable appearance after wiring tests pass.
+- Improve realistic, recognizable meshes, labels, materials and cable appearance after wiring tests pass. Realism is a confirmed visual direction, with adjustable quality to preserve laptop usability. Pin legibility and electrical identity take precedence over decorative detail; realistic rendering does not imply calibrated physical accuracy.
 - Keep approximate dimensions disclosed. No invented pin mappings or inferred simulation effects.
 
 Agent A deliverables: updated renderer APIs, interaction prototype, geometry/picking/cancellation tests, benchmark report, screenshots and host migration notes. No separate standalone renderer demo may substitute for testing in BreadBit.
@@ -70,7 +74,7 @@ Agent A deliverables: updated renderer APIs, interaction prototype, geometry/pic
 ## Agent B brief: UI/UX, schematic editor and export
 
 P0 — make daily editing usable:
-- Circuit / Code / Split layouts, resizable/collapsible panes, remembered sizes, uncluttered toolbars. Never unmount simulation subscriptions merely to change layouts.
+- Circuit-focused default with Code and inspector closed until requested; offer Code / Split layouts, resizable/collapsible panes, remembered sizes and uncluttered toolbars. Simple controls first, advanced options on demand. Never unmount simulation subscriptions merely to change layouts.
 - Clear active mode, device-specific help, accessible zoom/fit/pan/orbit buttons, shortcut reference.
 - Common wire inspector in physical 2D and 3D: endpoints, reconnect, bend/segment operations, delete and label/color as required first-release actions. Net highlighting and auto-routing follow these priorities. Label text must distinguish decorative wire labels from connectivity-affecting net names.
 - Keyboard-accessible part/pin picker and source/destination connection workflow; primary actions must not require hover precision or dragging.
@@ -79,7 +83,7 @@ P0 — make daily editing usable:
 - Fix canceled New/Open behavior so cancellation leaves the current project intact. Distinguish downloaded/exported versus confirmed native saved state.
 
 P1 — schematic and PDF, after net-model gate:
-- Add Physical 2D / 3D / Schematic tabs sharing electrical IDs, selection and revision awareness.
+- Add Physical 2D / Schematic / 3D views sharing electrical IDs, selection and revision awareness. Guide newer users toward physical 2D and experienced users toward schematic construction, without hard-locking either workflow or imposing a separate expert mode. Present 3D as the natural inspection destination while retaining its editing tools.
 - SVG-based symbol/route presentation recommended for editable crisp text and vector export. Start with Uno as a labeled functional block plus LED, resistor, pushbutton, power/ground and net labels.
 - Orthogonal wires, explicit junction dots, unconnected crossings, stable reference designators and values. Do not infer a connection merely because drawn lines cross.
 - Generate readable layout, permit manual symbol placement/route edits, preserve manual changes on regeneration where possible, and preview disruptive regeneration.
@@ -89,7 +93,7 @@ P1 — schematic and PDF, after net-model gate:
 
 P2 — efficiency and polish:
 - Search/add components from either physical view, duplicate/multi-select and alignment after transaction semantics are stable.
-- Consistent theme/typography, comfortable targets, visible focus, keyboard tab patterns and optional onboarding.
+- Consistent light/dark themes across shell, schematic and 3D; readable typography, comfortable targets, visible focus, keyboard tab patterns and optional onboarding. Test wire, selection and pin contrast in both themes.
 - Future database boundary: keep stable project/asset IDs and schema versions; later add a repository/storage interface. No cloud-only identity requirement for local projects.
 
 Agent B deliverables: task layouts, wire editor UI, accessibility and keyboard tests, schematic presentation/export module, user-facing shortcut guide and before/after workflow evidence.
@@ -133,4 +137,4 @@ Compared but excluded: ui-ux-pro-max has a Python-driven generator setup not nee
 
 Analog Devices describes LTspice schematic capture and wiring: https://www.analog.com/en/resources/media-center/videos/6368296317112.html . Its official schematic reference documents named nodes and orthogonal routing: https://github.com/analogdevicesinc/ltspice-reference/blob/main/ai_ref/SCHEMATIC-REFERENCE.md . IEEE identifies IEEE/ANSI315-1975 as Graphic Symbols for Electrical and Electronics Diagrams: https://standards.ieee.org/ieee/315/515/ . These are references, not a claim that LTspice appearance establishes IEEE compliance. The familiar American-style appearance is confirmed; precise standards conformance and asset rights still require verification. Draw or use appropriately licensed symbols; do not bundle proprietary LTspice assets or standards PDFs.
 
-See usability-interview.md for decisions and remaining questions. Preferences below are deliberately provisional until answered.
+See usability-interview.md for decisions and remaining questions. Only explicitly unanswered preferences remain provisional; confirmed user choices above are requirements.
