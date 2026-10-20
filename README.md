@@ -1,6 +1,6 @@
 # BreadBit
 
-A local electronics workbench built around a pinned public Velxio revision. This repository contains the **working development foundation**, not a qualified desktop release. The current scope is 2D circuits, firmware editing, project storage boundaries and structured AI/runtime contracts. **3D is deferred and has no implementation or dependency here.**
+A local electronics workbench built around a pinned public Velxio revision. This repository contains the **working development foundation**, not a qualified desktop release. The current scope includes 2D circuits, firmware editing, an integrated 3D renderer, an editable schematic, local project autosave and structured AI/runtime contracts. See [Agent B implementation and verification](docs/agent-b-implementation.md) for the workbench controls, PDF export and remaining qualification gates.
 
 ## Run the editor
 

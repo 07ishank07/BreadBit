@@ -1,6 +1,6 @@
 # BreadBit usability, graphics and schematic plan
 
-Status: Interview complete — implementation plan finalized. The improvements in this plan have not been implemented.
+Status: Interview complete. Agent B workbench implementation is available; see ../agent-b-implementation.md for delivered features and remaining Agent A/shared-model release gates.
 Branch: codex/trackpad-3d-ux. Created from the merged foundation, carrying the existing integration changes.
 Date: 20 October 2026.
 

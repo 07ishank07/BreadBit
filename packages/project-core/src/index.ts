@@ -145,6 +145,10 @@ export class ProjectHistory {
   private current: Project;
   private past: VlxPayload[] = [];
   private future: VlxPayload[] = [];
+  private pastLabels: string[] = [];
+  private futureLabels: string[] = [];
+  get undoLabel() { return this.pastLabels.at(-1); }
+  get redoLabel() { return this.futureLabels.at(-1); }
   constructor(project: Project, private readonly catalog?: PinCatalog) {
     this.current = parseProject(serializeProject(project));
     assertDocument(project.document, catalog);
@@ -159,19 +163,20 @@ export class ProjectHistory {
     for (const op of transaction.operations) next = applyOperation(next, op);
     assertDocument(next, this.catalog);
     this.past.push(clone(this.current.document));
-    if (this.past.length > 100) this.past.shift();
-    this.future = [];
+    this.pastLabels.push(transaction.label);
+    if (this.past.length > 100) { this.past.shift(); this.pastLabels.shift(); }
+    this.future = []; this.futureLabels = [];
     this.current = { ...this.current, revision: this.current.revision + 1, document: next };
     return this.snapshot;
   }
   undo(): Project {
     const previous = this.past.pop();
-    if (previous) { this.future.push(clone(this.current.document)); this.current = { ...this.current, revision: this.current.revision + 1, document: previous }; }
+    if (previous) { this.futureLabels.push(this.pastLabels.pop() ?? 'Workspace edit'); this.future.push(clone(this.current.document)); this.current = { ...this.current, revision: this.current.revision + 1, document: previous }; }
     return this.snapshot;
   }
   redo(): Project {
     const next = this.future.pop();
-    if (next) { this.past.push(clone(this.current.document)); this.current = { ...this.current, revision: this.current.revision + 1, document: next }; }
+    if (next) { this.pastLabels.push(this.futureLabels.pop() ?? 'Workspace edit'); this.past.push(clone(this.current.document)); this.current = { ...this.current, revision: this.current.revision + 1, document: next }; }
     return this.snapshot;
   }
 }

@@ -1,177 +1,221 @@
+import {nativeAvailable,openNative,saveNativeAs} from './integrations/native';
 import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { MemoryRouter } from 'react-router-dom';
-import { NewProjectDialog } from '@velxio/components/editor/NewProjectDialog';
-import { createProject } from '../../../packages/project-core/src';
 import { CodeEditor } from '@velxio/components/editor/CodeEditor';
 import { FileExplorer } from '@velxio/components/editor/FileExplorer';
-import { EditorToolbar } from '@velxio/components/editor/EditorToolbar';
-import { CompilationConsole } from '@velxio/components/editor/CompilationConsole';
 import { SimulatorCanvas } from '@velxio/components/simulator/SimulatorCanvas';
-import { SerialMonitor } from '@velxio/components/simulator/SerialMonitor';
 import { Oscilloscope } from '@velxio/components/simulator/Oscilloscope';
+import { useOscilloscopeStore } from '@velxio/store/useOscilloscopeStore';
+import { SerialMonitor } from '@velxio/components/simulator/SerialMonitor';
 import { MessageDialogHost } from '@velxio/components/ui/MessageDialogHost';
 import { useSimulatorStore } from '@velxio/store/useSimulatorStore';
-import { useCompileLogsStore } from '@velxio/store/useCompileLogsStore';
-import { useOscilloscopeStore } from '@velxio/store/useOscilloscopeStore';
 import { startSimulation } from '@velxio/simulation/spice/start';
-import { AI_TOOLS, validateVlx } from '../../../packages/project-core/src';
+import { setThemeMode, getMode } from '@velxio/lib/theme';
 import { ProjectController, recoveryKey } from './integrations/project';
-import { nativeAvailable, openNative, saveNative, saveNativeAs, runtimeStatus, type NativeDocument } from './integrations/native';
-
+import { LocalWriter, listProjects, readProject, type LocalProject } from './integrations/localProjects';
+import { downloadBlob } from './integrations/pdf';
+import { starter } from './integrations/starter';
+import { pinsFor, type Selected } from './integrations/editing';
 import { shortcut } from './integrations/shortcuts';
+import { Dialog } from './features/Dialog';
+import { BuildControls } from './features/BuildControls';
+import { WireEditor, type WireSeed } from './features/WireEditor';
+import { Schematic } from './features/Schematic';
 const Circuit3D = lazy(() => import('./features/Circuit3D'));
-
-function download(content: string, filename: string) {
-  const url = URL.createObjectURL(new Blob([content], { type: 'application/json' }));
-  const a = document.createElement('a'); a.href = url; a.download = filename; a.click();
-  setTimeout(() => URL.revokeObjectURL(url), 1000);
+type View = '2d' | 'schematic' | '3d';
+const prefKey = 'breadbit.preferences.v1';
+function readPrefs() { try {
+    return JSON.parse(localStorage.getItem(prefKey) ?? '{}');
 }
-
+catch {
+    return {};
+} }
 export function App() {
-  const [controller] = useState(() => new ProjectController());
-  const [, render] = useState(0);
-  const [nativeFile, setNativeFile] = useState<NativeDocument | null>(null);
-  const [saved, setSaved] = useState(-1);
-  const [notice, setNotice] = useState('Start with the Uno workspace. Add components with the + button on the circuit.');
-  const [panel, setPanel] = useState<'project' | 'assistant' | 'runtime'>('project');
-  const [view, setView] = useState<'2d'|'3d'>('2d');
-  const [consoleOpen, setConsoleOpen] = useState(false);
-  const [newDialog, setNewDialog] = useState(false);
-  const [busy, setBusy] = useState(false);
-  const [recovery, setRecovery] = useState(() => { try { return localStorage.getItem(recoveryKey); } catch { return null; } });
-  const input = useRef<HTMLInputElement>(null);
-  const logs = useCompileLogsStore(s => s.logs);
-  const setLogs = useCompileLogsStore(s => s.setLogs);
-  const running = useSimulatorStore(s => s.running);
-  const serialOpen = useSimulatorStore(s => s.serialMonitorOpen);
-  const scopeOpen = useOscilloscopeStore(s => s.open);
-  const project = controller.project;
-  const diagnostics = validateVlx(project.document);
-  const dirty = project.revision !== saved;
-
-  useEffect(() => controller.subscribe(() => render(x => x + 1)), [controller]);
-  useEffect(() => controller.attach(), [controller]);
-  // The simulator stays mounted when the inspector changes; its runtime is not a view tab.
-  useEffect(() => startSimulation(), []);
-  useEffect(() => {
-    const warn = (event: BeforeUnloadEvent) => {
-      controller.flush();
-      if (controller.project.revision !== saved) { event.preventDefault(); event.returnValue = ''; }
-    };
-    window.addEventListener('beforeunload', warn);
-    return () => window.removeEventListener('beforeunload', warn);
-  }, [controller, saved]);
-  async function act(work: () => Promise<void>) {
-    if (busy) return;
-    setBusy(true);
-    try { await work(); } catch (error) { setNotice(error instanceof Error ? error.message : String(error)); }
-    finally { setBusy(false); }
-  }
-  async function save(as = false) {
-    await act(async () => {
-      const content = controller.serialize();
-      const revision = controller.project.revision;
-      if (nativeAvailable) {
-        const file = !as && nativeFile ? await saveNative(nativeFile, content) : await saveNativeAs(content);
-        if (!file) return;
-        setNativeFile(file); setSaved(revision); setNotice(`Saved ${file.path}`);
-      } else {
-        download(content, 'project.breadbit'); setSaved(revision);
-        setNotice('Project export requested. Browser preview uses downloads; the desktop app uses native files.');
-      }
-    });
-  }
-  function newProject() {
-    controller.flush();
-    if (controller.project.revision !== saved && !window.confirm('Discard unsaved changes and start a new project?')) return;
-    controller.load(JSON.stringify(createProject({format:'velxio-project',version:1,exportedAt:new Date().toISOString(),name:'Untitled',boards:[],components:[],wires:[],fileGroups:{},activeBoardId:null},crypto.randomUUID())));
-    setNativeFile(null); setSaved(-1); setNewDialog(true);
-  }
-  useEffect(() => {
-    const keyboard = (event: KeyboardEvent) => {
-      const target = event.target as HTMLElement | null;
-      const editing = !!target?.closest('input,textarea,select,[contenteditable="true"],.monaco-editor,[role="dialog"]');
-      const action = shortcut(event.key, event.ctrlKey, event.metaKey, event.shiftKey, editing);
-      if (!action || event.altKey) return;
-      event.preventDefault(); event.stopImmediatePropagation();
-      if (action === 'save' || action === 'saveAs') void save(action === 'saveAs');
-      else if (action === 'open') void open();
-      else void act(async () => { controller[action](); setNotice(action === 'undo' ? 'Project edit undone; runtime state is reset.' : 'Project edit redone; runtime state is reset.'); });
-    };
-    window.addEventListener('keydown', keyboard, true);
-    return () => window.removeEventListener('keydown', keyboard, true);
-  });
-  async function open() {
-    controller.flush();
-    if (controller.project.revision !== saved && !window.confirm('Discard unsaved changes and open another project? Save first to keep your current work.')) return;
-    if (!nativeAvailable) { input.current?.click(); return; }
-    await act(async () => {
-      const file = await openNative(); if (!file) return;
-      const imported = JSON.parse(file.content).format === 'velxio-project';
-      controller.load(file.content); setNativeFile(imported ? null : file);
-      setSaved(imported ? -1 : controller.project.revision); setNotice(imported ? 'Imported Velxio project. Save As creates a BreadBit file.' : `Opened ${file.path}`);
-    });
-  }
-  return <MemoryRouter><div className="bb-app">
-    <header className="bb-header">
-      <a className="bb-brand" href="#" onClick={event => event.preventDefault()} aria-label="BreadBit workbench"><span className="bb-mark">B</span><strong>BreadBit</strong><span className="bb-label">WORKBENCH</span></a>
-      <span className="bb-project-name">{nativeFile?.path.split(/[\\/]/).pop() ?? 'Untitled project'}{dirty ? ' •' : ''}</span>
-      <nav aria-label="Project actions">
-        <button onClick={() => void act(async () => newProject())} disabled={busy}>New</button>
-        <button onClick={() => void open()} disabled={busy}>Open</button>
-        <button onClick={() => void save()} disabled={busy}>Save</button>
-        <button onClick={() => void save(true)} disabled={busy}>Save as</button>
-        <button onClick={() => void act(async () => controller.undo())} disabled={!controller.history.canUndo}>Undo</button>
-        <button onClick={() => void act(async () => controller.redo())} disabled={!controller.history.canRedo}>Redo</button>
-      </nav>
-      <span className="bb-version">Workbench · 0.2</span>
-    </header>
-    <div className="bb-modebar"><button aria-pressed={view==='2d'} onClick={()=>setView('2d')}>2D workspace</button><button aria-pressed={view==='3d'} onClick={()=>setView('3d')}>3D workspace</button><span className="bb-mode-note">Circuit + firmware</span><span className={running ? 'bb-running' : 'bb-idle'}>{running ? 'Simulation running' : 'Simulation stopped'}</span></div>
-    {recovery && <div className="bb-recovery">A previous recovery draft is available.<button onClick={() => void act(async () => { controller.load(recovery); setNativeFile(null); setSaved(-1); setRecovery(null); setNotice('Recovery draft restored. Save it to a project file.'); })}>Restore draft</button><button onClick={() => setRecovery(null)}>Dismiss</button></div>}
-    <main className="bb-workspace">
-      <section className="bb-editor" aria-label="Electronics editor">
-        <EditorToolbar consoleOpen={consoleOpen} setConsoleOpen={setConsoleOpen} compileLogs={logs} setCompileLogs={setLogs}/>
-        <div className="bb-runtime-note">{import.meta.env.VITE_BREADBIT_DEV_BACKEND === '1' ? 'Development backend proxy enabled; compiler and board core readiness must still be checked.' : 'Compiler pack is not connected. Edit circuits and code, or import compiled firmware through the editor.'} Board support is not yet qualified for desktop.</div>
-        <div className="bb-panes">
-          <aside className="bb-files"><FileExplorer onSaveClick={() => void save()} onNewClick={() => void act(async () => newProject())}/></aside>
-          <section className="bb-code" aria-label="Firmware"><CodeEditor/></section>
-          <section className="bb-circuit" aria-label="Circuit workspace"><div className="bb-canvas-layer" style={{visibility:view==='2d'?'visible':'hidden'}} inert={view!=='2d'}><SimulatorCanvas/></div>{view==='3d' && <Suspense fallback={<p>Loading 3D workspace…</p>}><Circuit3D controller={controller} notify={setNotice}/></Suspense>}</section>
-        </div>
-        <div className="bb-output"><CompilationConsole isOpen={consoleOpen} onClose={() => setConsoleOpen(false)} logs={logs} onClear={() => setLogs([])}/></div>
-        {serialOpen && <div className="bb-instrument"><SerialMonitor/></div>}
-        {scopeOpen && <div className="bb-instrument"><Oscilloscope/></div>}
-      </section>
-      <aside className="bb-inspector" aria-label="Project inspector">
-        <div className="bb-tabs" role="tablist" aria-label="Inspector">
-          {(['project', 'assistant', 'runtime'] as const).map(name => <button role="tab" id={`tab-${name}`} aria-controls="inspector-panel" aria-selected={panel === name} key={name} onClick={() => setPanel(name)}>{name[0].toUpperCase() + name.slice(1)}</button>)}
-        </div>
-        <div className="bb-panel" id="inspector-panel" role="tabpanel" aria-labelledby={`tab-${panel}`}>
-          {panel === 'project' && <>
-            <p className="bb-eyebrow">YOUR PROJECT</p><h1>One connected workspace</h1><p className="bb-subtle">Build in 2D and inspect or edit the same circuit in 3D. BreadBit keeps a versioned project snapshot and recovery draft.</p>
-            <dl className="bb-stats"><div><dt>Boards</dt><dd>{project.document.boards.length}</dd></div><div><dt>Parts</dt><dd>{project.document.components.length}</dd></div><div><dt>Wires</dt><dd>{project.document.wires.length}</dd></div></dl>
-            <h2>Connections</h2><p className="bb-subtle">Explicit wire endpoints. Breadboard buses and implied nets are not expanded here.</p>
-            <div className="bb-connections">{project.document.wires.length ? project.document.wires.map(wire => <div key={wire.id}><code>{wire.start.componentId}:{wire.start.pinName}</code><span>↔</span><code>{wire.end.componentId}:{wire.end.pinName}</code></div>) : <p>No wires yet.</p>}</div>
-            <h2>Validation</h2>{diagnostics.map((d, i) => <p className="bb-diagnostic" key={i}>{d.message}</p>)}
-            <button className="bb-wide" onClick={() => void act(async () => { controller.flush(); download(JSON.stringify(controller.project.document, null, 2), 'project.vlx'); setNotice('Exported the compatible circuit and firmware document. BreadBit history is not included.'); })}>Export Velxio .vlx</button>
-          </>}
-          {panel === 'assistant' && <>
-            <p className="bb-eyebrow">ASSISTANT FOUNDATION</p><h1>Grounded in your project</h1><p className="bb-subtle">The structured tool boundary is implemented. A model provider and simulation test runner are not connected yet.</p>
-            <h2>Available context</h2><p>{project.document.boards.length} boards, {project.document.components.length} parts, {project.document.wires.length} wires and firmware files. No project data is sent to an AI service.</p>
-            <h2>Tool contracts</h2><ul>{AI_TOOLS.map(tool => <li key={tool}><code>{tool}</code></li>)}</ul>
-            <h2>Evidence</h2><p className="bb-diagnostic">No verified scenario run. Compiling firmware alone cannot establish correct circuit behavior.</p>
-            <button className="bb-wide" onClick={() => { controller.flush(); setNotice('Structural inspection refreshed. Pin qualification and electrical correctness need their own checks.'); }}>Inspect project</button>
-          </>}
-          {panel === 'runtime' && <>
-            <p className="bb-eyebrow">LOCAL DEVELOPMENT</p><h1>Runtime readiness</h1><dl className="bb-runtime-list"><dt>Host</dt><dd>{nativeAvailable ? 'Tauri desktop' : 'Browser development preview'}</dd><dt>2D editor / firmware editor</dt><dd>Integrated from pinned Velxio</dd><dt>AVR engine</dt><dd>Included; desktop qualification pending</dd><dt>Local compiler / QEMU</dt><dd>Not bundled</dd><dt>Project files</dt><dd>{nativeAvailable ? 'Native dialogs and atomic saves' : 'Import and download'}</dd><dt>Recovery</dt><dd>Local draft; not a substitute for saved files</dd><dt>Schematic editor</dt><dd>Planned; not implemented in this frame</dd></dl>
-            <button className="bb-wide" onClick={() => void act(async () => setNotice(nativeAvailable ? (await runtimeStatus()).backend.message : 'Native runtime status is available after launching with npm run desktop:dev.'))}>Check native runtime</button>
-          </>}
-        </div>
-      </aside>
-    </main>
-    <footer className="bb-status" role="status"><span>{controller.recoveryError ?? notice}</span><span>Revision {project.revision} · {nativeAvailable ? 'Desktop' : 'Development preview'}</span></footer>
-    <input hidden ref={input} type="file" accept=".breadbit,.json,.vlx" onChange={event => {
-      const file = event.target.files?.[0]; event.target.value = ''; if (!file) return;
-      void act(async () => { if (file.size > 16 * 1024 * 1024) throw new Error('Project exceeds 16 MiB.'); controller.load(await file.text()); setNativeFile(null); setSaved(-1); setNotice(`Imported ${file.name}`); });
-    }}/><NewProjectDialog isOpen={newDialog} onClose={() => setNewDialog(false)}/><MessageDialogHost/>
-  </div></MemoryRouter>;
+    const [controller] = useState(() => new ProjectController()), [writer] = useState(() => new LocalWriter()), [, render] = useState(0);
+    const [view, setView] = useState<View>('2d'), [code, setCode] = useState(false), [inspector, setInspector] = useState(false), [dialog, setDialog] = useState<'projects' | 'new' | 'settings' | 'help' | null>(null);
+    const [name, setName] = useState('Uno + button + LED'), [notice, setNotice] = useState('Add parts in 2D. Use Connections for precise wire editing in any view.'), [saveState, setSaveState] = useState('Opening local projects…'), [rows, setRows] = useState<LocalProject[]>([]), [seed, setSeed] = useState<WireSeed>(), [selected, setSelected] = useState(''), [prefs, setPrefs] = useState(readPrefs), [recovery, setRecovery] = useState<string | null>(null);
+    const [selection, setSelection] = useState<Selected>(null);
+    const input = useRef<HTMLInputElement>(null), initialized = useRef(false), saveSequence = useRef(0), savedSequence = useRef(0), pending = useRef<Promise<void>>(Promise.resolve());
+    const boards = useSimulatorStore(s => s.boards), parts = useSimulatorStore(s => s.components), serial = useSimulatorStore(s => s.serialMonitorOpen), scope = useOscilloscopeStore(s => s.open);
+    const project = controller.project;
+    function fail(e: unknown) { setNotice(e instanceof Error ? e.message : String(e)); }
+    function persist() { const sequence = ++saveSequence.current; setSaveState('Saving locally…'); const snapshot = controller.project; pending.current = writer.save(snapshot).then(() => { if (sequence === saveSequence.current) {
+        savedSequence.current = sequence;
+        setSaveState('Saved locally');
+        try {
+            localStorage.setItem('breadbit.last-project', snapshot.id);
+        }
+        catch { }
+    } }, e => { if (sequence === saveSequence.current)
+        setSaveState('Save failed — export a file'); fail(e); throw e; }); void pending.current.catch(() => { }); }
+    useEffect(() => {
+        const unsub = controller.subscribe(() => { render(n => n + 1); if (initialized.current)
+            persist(); });
+        const detach = controller.attach();
+        let cancelled = false;
+        void (async () => { try {
+            const draft = localStorage.getItem(recoveryKey);
+            const last = localStorage.getItem('breadbit.last-project');
+            if (last) {
+                const content = await readProject(last);
+                if (!cancelled) {
+                    writer.adopt(content);
+                    let restoreContent=content;
+                    if(draft){try{const recovered=JSON.parse(draft),saved=JSON.parse(content);if(recovered.id===saved.id&&recovered.revision>saved.revision){restoreContent=draft;setNotice('Restored a newer recovery draft.');}}catch{}}
+                    controller.load(restoreContent);
+                }
+            }
+            if (draft) {const saved=controller.project;try{const recovered=JSON.parse(draft);if(!last||(recovered.id===saved.id&&recovered.revision>saved.revision))setRecovery(draft);}catch{}}
+        }
+        catch (e) {
+            fail(e);
+            try {
+                setRecovery(localStorage.getItem(recoveryKey));
+            }
+            catch { }
+        }
+        finally {
+            if (!cancelled) {
+                initialized.current = true;
+                persist();
+            }
+        } })();
+        return () => { cancelled = true; unsub(); detach(); };
+    }, [controller, writer]);
+    useEffect(() => startSimulation(), []);
+    useEffect(() => { try {
+        localStorage.setItem(prefKey, JSON.stringify(prefs));
+    }
+    catch { } }, [prefs]);
+    useEffect(() => { const handler = (e: BeforeUnloadEvent) => { controller.flush(); if (saveSequence.current !== savedSequence.current) {
+        e.preventDefault();
+        e.returnValue = '';
+    } }; window.addEventListener('beforeunload', handler); return () => window.removeEventListener('beforeunload', handler); }, [controller]);
+    async function beforeSwitch() { controller.flush(); await pending.current; }
+    function exportFile() { try {
+        const content=controller.serialize();if(nativeAvailable){void saveNativeAs(content).then(file=>{if(file)setNotice('Exported '+file.path);}).catch(fail);}else downloadBlob(content, (project.document.name ?? 'project') + '.breadbit');
+        setNotice('Project file export requested.');
+    }
+    catch (e) {
+        fail(e);
+    } }
+    async function importFile(){if(!nativeAvailable){input.current?.click();return;}try{const file=await openNative();if(!file)return;await beforeSwitch();const raw=JSON.parse(file.content);if(raw.format==='breadbit-project')raw.id=crypto.randomUUID();controller.load(JSON.stringify(raw));setNotice('Imported '+file.path);}catch(e){fail(e);}}
+    async function library() { try {
+        controller.flush();
+        await pending.current;
+        setRows(await listProjects());
+        setDialog('projects');
+    }
+    catch (e) {
+        fail(e);
+    } }
+    useEffect(() => { const keyboard = (event: KeyboardEvent) => { const target = event.target as HTMLElement | null, editing = !!target?.closest('input,textarea,select,[contenteditable="true"],.monaco-editor,dialog'); const action = shortcut(event.key, event.ctrlKey, event.metaKey, event.shiftKey, editing); if (!action || event.altKey) {
+        if (view === 'schematic' && !editing && ['Delete', 'Backspace', 'r', 'R', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(event.key)) {
+            event.stopImmediatePropagation();
+        }
+        return;
+    } event.preventDefault(); event.stopImmediatePropagation(); try {
+        if (action === 'save' || action === 'saveAs')
+            exportFile();
+        else if (action === 'open')
+            void importFile();
+        else {
+            controller[action]();
+            setNotice(action === 'undo' ? 'Edit undone.' : 'Edit redone.');
+        }
+    }
+    catch (e) {
+        fail(e);
+    } }; window.addEventListener('keydown', keyboard, true); return () => window.removeEventListener('keydown', keyboard, true); });
+    function connect(value: WireSeed) { setSelection(null); setSeed(value); setInspector(true); }
+    useEffect(() => useSimulatorStore.subscribe((s, prev) => { if (s.selectedWireId !== prev.selectedWireId && s.selectedWireId)
+        setSelection({ type: 'wire', id: s.selectedWireId }); }), []);
+    const entity = [...boards, ...parts].find(p => p.id === selected);
+    return <MemoryRouter><div className={'bb-app bb-workbench' + (prefs.large ? ' bb-large' : '') + (prefs.motion ? ' bb-reduced-motion' : '')}>
+ <a className="bb-skip" href="#circuit-workspace">Skip to circuit</a><header className="bb-header"><strong className="bb-brand"><span className="bb-mark">B</span>BreadBit</strong><span className="bb-project-name">{project.document.name ?? 'Untitled'}</span><nav aria-label="Project actions"><button onClick={() => setDialog('new')}>New</button><button onClick={() => void library()}>Projects</button><button onClick={() => void importFile()}>Import</button><button onClick={exportFile}>Export</button><button title={controller.history.undoLabel ?? 'Undo'} disabled={!controller.history.canUndo} onClick={() => {controller.undo();setNotice('Edit undone.');}}>Undo</button><button title={controller.history.redoLabel ?? 'Redo'} disabled={!controller.history.canRedo} onClick={() => {controller.redo();setNotice('Edit redone.');}}>Redo</button><button onClick={() => setDialog('settings')}>Settings</button><button onClick={() => setDialog('help')}>Help</button></nav></header>
+ <div className="bb-modebar" aria-label="Workspace views">{(['2d', 'schematic', '3d'] as const).map(v => <button key={v} aria-pressed={view === v} onClick={() => { setView(v); setSeed(undefined); }}>{v === '2d' ? '2D layout' : v === '3d' ? '3D view' : 'Schematic'}</button>)}<span className="bb-spacer"/><button aria-pressed={code} onClick={() => setCode(!code)}>Code</button><button aria-pressed={inspector} onClick={() => setInspector(!inspector)}>Connections & inspector</button></div>
+ <BuildControls controller={controller} notify={setNotice}/>
+ {recovery && <div className="bb-recovery">Recovery draft available.<button onClick={() => { try {
+        controller.load(recovery);
+        setRecovery(null);
+    }
+    catch (e) {
+        fail(e);
+    } }}>Restore draft</button><button onClick={() => setRecovery(null)}>Dismiss</button></div>}
+ <main className="bb-workspace"><section className="bb-editor"><div className="bb-panes"><section hidden={!code} className="bb-code-panel" style={{ width: prefs.codeWidth ?? 400 }} aria-label="Firmware"><div className="bb-pane-title"><strong>Firmware</strong><button onClick={() => setCode(false)}>Close code</button></div><details><summary>Files</summary><div style={{ height: 150 }}><FileExplorer onSaveClick={exportFile} onNewClick={() => setDialog('new')}/></div></details><div className="bb-code-body"><CodeEditor /></div><label>Code width<input type="range" min="250" max="700" step="10" value={prefs.codeWidth ?? 400} onChange={e => setPrefs({ ...prefs, codeWidth: Number(e.target.value) })}/></label></section>
+ <section id="circuit-workspace" tabIndex={-1} className="bb-circuit" aria-label="Circuit workspace"><div className="bb-canvas-layer" onPointerDownCapture={e => { const id = (e.target as HTMLElement).closest('[data-component-id]')?.getAttribute('data-component-id'); if (id) {
+        setSelected(id);
+        setSelection({ type: 'part', id });
+    } }} style={{ visibility: view === '2d' ? 'visible' : 'hidden' }} inert={view !== '2d'}><SimulatorCanvas /></div>{view === 'schematic' && <Schematic controller={controller} connect={connect} notify={setNotice} onSelect={s=>{setSelection(s);if(s?.type==='part')setSelected(s.id);setInspector(true);}}/>}{view === '3d' && <Suspense fallback={<p>Loading 3D…</p>}><Circuit3D controller={controller} notify={setNotice} selection={selection} setSelection={s => { setSelection(s); if (s?.type === 'part')
+        setSelected(s.id); }}/></Suspense>}</section></div>{serial && <div className="bb-instrument"><SerialMonitor /></div>}{scope && <div className="bb-instrument"><Oscilloscope /></div>}</section>
+ {inspector && <aside className="bb-inspector bb-properties" style={{ width: prefs.inspectorWidth ?? 340 }} aria-label="Connections and inspector"><div className="bb-pane-title"><strong>Inspector</strong><button onClick={() => setInspector(false)}>Close</button></div><label>Component<select value={selected} onChange={e => { setSelected(e.target.value); setSelection(e.target.value ? { type: 'part', id: e.target.value } : null); }}><option value="">Choose component</option>{[...boards, ...parts].map(p => <option key={p.id}>{p.id}</option>)}</select></label>{entity && <><h2>Pins & connections</h2><p>{'boardKind' in entity?'Uno: D0–D13 are digital I/O, A0–A5 are analog inputs; GND pins share ground. A4/A5 also carry I²C.':({led:'LED: A is the anode, C the cathode. Use a series resistor to limit current.',resistor:'A resistor limits current; its two terminals are not internally shorted.',pushbutton:'Button: 1.l and 1.r are internally joined; 2.l and 2.r are joined. Pressing connects the two groups.',breadboard:'Breadboard: each five-hole strip shares a net; the central trench separates strips. Check rail labels.'} as Record<string,string>)[entity.metadataId]??'Use the exact component pin names below. Simulation support varies by component.'}</p><p>Select a mapped pin in Connections to wire it. Matching schematic net labels indicate electrical continuity.</p><details><summary>Physical position (no dragging)</summary>{(['x', 'y'] as const).map(axis => <label key={axis}>{axis}<input type="number" defaultValue={entity[axis]} key={entity.id + axis + entity[axis]} onBlur={e => { try {
+            const n = Number(e.target.value);
+            if (!Number.isFinite(n))
+                throw new Error('Enter a finite coordinate');
+            controller.commit('Move component', () => { const st = useSimulatorStore.getState(); for (const b of st.boards)
+                if (b.running)
+                    st.stopBoard(b.id); const pos = { x: entity.x, y: entity.y, [axis]: n }; if ('boardKind' in entity)
+                st.setBoardPosition(pos, entity.id);
+            else {
+                st.updateComponent(entity.id, pos);
+                st.reseatComponentOnBreadboard(entity.id);
+            } st.recalculateAllWirePositions(); });
+        }
+        catch (error) {
+            fail(error);
+        } }}/></label>)}</details><p>{pinsFor(entity.id).join(', ') || 'Pin definitions are loading or unavailable.'}</p><ul>{project.document.wires.filter(w => w.start.componentId === selected || w.end.componentId === selected).map(w => <li key={w.id}>{w.start.componentId}:{w.start.pinName} → {w.end.componentId}:{w.end.pinName}</li>)}</ul>{'metadataId' in entity && <details><summary>Properties</summary>{Object.entries(entity.properties).filter(([, v]) => ['string', 'number', 'boolean'].includes(typeof v)).map(([key, value]) => <label key={key}>{key}<input defaultValue={String(value)} key={selected + key + String(value)} onBlur={e => { try {
+            const val = typeof value === 'number' ? Number(e.target.value) : typeof value === 'boolean' ? e.target.value === 'true' : e.target.value;
+            if (typeof val === 'number' && !Number.isFinite(val))
+                throw new Error('Enter a finite number');
+            controller.commit('Change ' + key, () => { const s = useSimulatorStore.getState(); for (const b of s.boards)
+                if (b.running)
+                    s.stopBoard(b.id); s.updateComponent(entity.id, { properties: { ...entity.properties, [key]: val } }); });
+        }
+        catch (error) {
+            fail(error);
+        } }}/></label>)}</details>}</>}
+ <WireEditor key={view} controller={controller} notify={setNotice} seed={seed} selectedWire={selection?.type === 'wire' ? selection.id : undefined} onSelect={id => setSelection(id ? { type: 'wire', id } : null)} schematic={view === 'schematic'}/><details><summary>Panel width</summary><input aria-label="Inspector width" type="range" min="280" max="500" step="10" value={prefs.inspectorWidth ?? 340} onChange={e => setPrefs({ ...prefs, inspectorWidth: Number(e.target.value) })}/></details></aside>}
+ </main><footer className="bb-status"><span role="status">{controller.recoveryError ?? notice}</span><span aria-live="polite">{saveState} · Rev {project.revision}</span></footer>
+ {dialog === 'new' && <Dialog title="New project" close={() => setDialog(null)}><label>Project name<input value={name} onChange={e => setName(e.target.value)} maxLength={100}/></label><p>Uno, button, LED and 220 Ω resistor, with example firmware. Connect D2 to button 1.l and button 2.l to GND; connect D13 through the resistor to LED A, and LED C to GND. Build before Run.</p><button onClick={() => void (async () => { try {
+        await beforeSwitch();
+        controller.load(JSON.stringify(starter(name.trim() || 'Untitled')));
+        setDialog(null);
+        setRecovery(null);
+        setSelected('');
+        setNotice('Starter created. Add the connections, then Build.');
+    }
+    catch (e) {
+        fail(e);
+    } })()}>Create starter</button></Dialog>}
+ {dialog === 'projects' && <Dialog title="Local projects" close={() => setDialog(null)}><p>Saved on this device and browser profile. Export files for backup or transfer. Clearing browser data removes local projects.</p>{rows.map(row => <div className="bb-project-row" key={row.id}><div><strong>{row.name}</strong><small>Revision {row.revision} · {new Date(row.updatedAt).toLocaleString()}</small></div><button onClick={() => void (async () => { try {
+        await beforeSwitch();
+        const content = await readProject(row.id);
+        writer.adopt(content);
+        controller.load(content);
+        setDialog(null);
+        setSelected('');
+        setNotice('Local project opened. Build before Run.');
+    }
+    catch (e) {
+        fail(e);
+    } })()}>Open {row.name}</button></div>)}</Dialog>}
+ {dialog === 'settings' && <Dialog title="Workspace settings" close={() => setDialog(null)}><label>Theme<select defaultValue={getMode()} onChange={e => setThemeMode(e.target.value as 'dark' | 'light' | 'system')}><option value="dark">Dark</option><option value="light">Light</option><option value="system">System</option></select></label><label><input type="checkbox" checked={!!prefs.large} onChange={e => setPrefs({ ...prefs, large: e.target.checked })}/> Larger text and controls</label><label><input type="checkbox" checked={!!prefs.motion} onChange={e => setPrefs({ ...prefs, motion: e.target.checked })}/> Reduced interface motion</label><p>Schematic uses visible net names as well as lines. Wire labels and endpoint lists are available in every view. Numeric bend controls avoid precision dragging.</p><p>3D starts top-down and offers quality presets. Configurable trackpad pan/orbit gestures remain part of Agent A’s renderer work.</p></Dialog>}
+ {dialog === 'help' && <Dialog title="Workbench guide" close={() => setDialog(null)}><ol><li>New creates an Uno + button + LED starter.</li><li>Use 2D to add parts. Open Connections to select exact source and destination pins, reconnect, label, recolor or delete wires.</li><li>In Schematic, click a source pin, optional bends and a destination. Review its physical route before applying. Escape cancels.</li><li>Code opens the firmware. Build compiles; Run only accepts the current successful build. The compiler backend must be configured first.</li><li>Projects autosave locally. Export a file for backup. Schematic offers vector PDF export.</li></ol><p>Ctrl/Cmd+Z undo · Ctrl/Cmd+Shift+Z redo · Ctrl/Cmd+S export · Ctrl/Cmd+O import. Text editors keep their own undo. Range controls can be adjusted with arrow keys.</p><p>Simulation accuracy and desktop runtime qualification are still pending. A successful build does not verify circuit behavior. AI provider integration is not connected.</p></Dialog>}
+ <input hidden ref={input} type="file" accept=".breadbit,.json,.vlx" onChange={e => { const file = e.target.files?.[0]; e.target.value = ''; if (!file)
+        return; void (async () => { try {
+        if (file.size > 16 * 1024 * 1024)
+            throw new Error('Project exceeds 16 MiB');
+        const content = await file.text();
+        await beforeSwitch();
+        const raw = JSON.parse(content);
+        if (raw.format === 'breadbit-project')
+            raw.id = crypto.randomUUID();
+        controller.load(JSON.stringify(raw));
+        setSelected('');
+        setNotice('Imported as a new local project.');
+    }
+    catch (error) {
+        fail(error);
+    } })(); }}/><MessageDialogHost />
+ </div></MemoryRouter>;
 }

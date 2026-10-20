@@ -1,4 +1,6 @@
-# Foundation status
+# Implementation status
+
+The foundation below is extended by the [Agent B workbench implementation](agent-b-implementation.md): editable schematic, common wire inspector, local autosave, PDF export and explicit Build/Run. Read that report for current verification and remaining gates.
 
 Scope: implement the BreadBit application frame using public Velxio and AAS guidance, now extended with the 3D renderer from origin/main. See [3D integration](3d-integration.md) for current behavior and limits.
 
@@ -16,7 +18,7 @@ Scope: implement the BreadBit application frame using public Velxio and AAS guid
 
 ## Verification
 
-See [verification.md](verification.md) for executed checks and unverified native/runtime gates. Schematic pin/symbol/intent contracts are defined in project-core/src/schematic.ts; there is no schematic generator or editor yet.
+See [verification.md](verification.md) for executed checks and unverified native/runtime gates. Schematic pin/symbol/intent contracts are defined in project-core/src/schematic.ts; the host now implements a schematic projection/editor; automatic physical footprint placement remains unimplemented.
 
 ## Intentional foundation limits
 
@@ -26,7 +28,7 @@ The file adapter repairs two upstream import omissions: custom firmware group ID
 
 Native storage is implemented in source but not executed here because Rust/Cargo are unavailable. The native shell does not spawn unqualified compiler processes. Development backend startup is separate, explicit and loopback-only; production authentication and lifecycle handling are future work.
 
-The inspector's connection list is an explicit-wire list, not a resolved netlist or generated schematic. Breadboard strips and implicit contacts require the existing resolver and equivalence fixtures before a schematic projection is safe.
+The schematic resolves explicit wires, breadboard groups and documented Uno/button internal connections. It is a static connectivity projection, not a complete analog solver or dynamic switch-state view. Additional component families require equivalence fixtures.
 
 Recovery uses one local draft. Opening another project requires discarding unsaved changes; save a project file first to retain both. Native multi-file journal recovery, multiple drafts and migrations are later work. Browser downloads cannot confirm the user retained the file.
 

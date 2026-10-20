@@ -74,4 +74,12 @@ describe('Velxio project adapter', () => {
     expect(controller.project.document.name).toBe('My saved project');
     expect(controller.project.document.extension).toEqual({ hello: 'world' });
   });
+
+  it('keeps presentation edits and their undo out of live simulation state',()=>{
+    const controller=new ProjectController();const live=mock.getState();
+    controller.presentation('Move schematic symbol',d=>{d.schematic={positions:{led:{x:100,y:100}}};});
+    expect(mock.getState()).toBe(live);expect(controller.history.undoLabel).toBe('Move schematic symbol');
+    controller.undo();expect(mock.getState()).toBe(live);expect(controller.project.document.schematic).toBeUndefined();
+    controller.redo();expect(mock.getState()).toBe(live);expect(controller.project.document.schematic).toBeDefined();
+  });
 });

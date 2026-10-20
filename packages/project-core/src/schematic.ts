@@ -1,4 +1,4 @@
-/** Future schematic adapter boundary; no generation, routing or editor is implemented. */
+/** Portable schematic adapter contracts. The desktop host implements its initial projection and editor. */
 export interface SchematicPinRef {
   componentId: string; // Stable board/component ID from the project document.
   pinName: string; // Stable electrical pin identifier, never a screen coordinate.
