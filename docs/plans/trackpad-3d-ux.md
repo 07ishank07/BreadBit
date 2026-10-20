@@ -18,6 +18,10 @@ Date: 20 October 2026.
 - Add an LTspice-style schematic using the requested IEEE symbol conventions, synchronized with the physical views.
 - Export the schematic to PDF. User confirmed American-style symbols (including zigzag resistors), node dots, net labels and orthogonal wires. PDF page size/orientation and optional contents were not individually specified by the blanket yes; propose configurable A4/Letter, portrait/landscape, title block, values and parts list. Proposed default: A4 landscape with values and title block, optional parts list. These defaults remain provisional.
 - First complete task: build and simulate an Uno + button + LED circuit.
+- Trackpad two-finger scrolling is configurable and defaults to pan. Visible Pan/Orbit/zoom controls remain available.
+- Build must be explicitly completed before Run; Run must never auto-compile.
+- Automatically save local projects, with explicit export to files.
+- Ambiguous schematic edits show suggested physical placements; the user chooses before the edit is applied. Cancel leaves all views unchanged.
 - A database for users' files/projects is later work; do not add authentication, cloud storage or a database now.
 
 ## Observed baseline versus proposals
@@ -40,7 +44,7 @@ Use these two agents for implementation after interview decisions are incorporat
 
 ## Phase 0: freeze shared contracts
 
-1. NavigationPreferences: explicit trackpad/mouse profile, sensitivity, invert options, top-down initial view. User chooses a profile; do not infer hardware reliably from wheel deltas.
+1. NavigationPreferences: explicit trackpad/mouse profile, sensitivity, invert options, configurable two-finger scroll with pan default, top-down initial view. User chooses a profile; do not infer hardware reliably from wheel deltas.
 2. CameraState: target, orientation and zoom retained through pane resize and view switches, stored as preferences/view state outside electrical undo.
 3. Selection: stable component/wire/net IDs owned by host. Renderer reports events. Clear invalid selections on delete/import.
 4. InteractionState: current tool, drag preview, source pin, candidate destination, cancellation. One operation owns the pointer at a time.
@@ -80,7 +84,10 @@ P0 — make daily editing usable:
 - Keyboard-accessible part/pin picker and source/destination connection workflow; primary actions must not require hover precision or dragging.
 - Contextual selected-entity inspector instead of permanent introductory copy; errors remain readable and actionable.
 - Show named Undo/Redo actions; preserve Monaco text history. Camera/view/preferences do not dirty the circuit.
-- Fix canceled New/Open behavior so cancellation leaves the current project intact. Distinguish downloaded/exported versus confirmed native saved state.
+- Automatic local project persistence with a project list, stable IDs, last-saved status, reopen/rename and explicit file export. Keep recovery snapshots separate from the normal project collection; a single recovery draft is not autosave for multiple projects.
+- Desktop storage recommendation: application-managed project files and a small local index, with atomic replacement and recovery. Browser preview needs a separate durable storage adapter (evaluate IndexedDB or OPFS); explain quota/eviction limits, catch failures, and offer export. This browser storage implementation is distinct from the deferred multi-user/backend database; do not add a server database or authentication now.
+- Fix canceled New/Open behavior so cancellation leaves the current project intact. Show Saving / Saved locally / Save failed, distinguish exports from autosave, and never claim success before persistence confirms. Make unsaved work recoverable on failure; preserve project identity and schema versions for later storage migration.
+- Separate Build and Run. Build records source/toolchain/board configuration fingerprints. Code, library or build-target changes invalidate the artifact; failed Build cannot fall back silently to an older binary. Disable Run with an actionable reason until a successful current build exists. Layout-only changes do not demand recompilation; electrical changes invalidate the simulation session and need validation/restart. Run uses the explicitly built artifact and never compiles automatically.
 
 P1 — schematic and PDF, after net-model gate:
 - Add Physical 2D / Schematic / 3D views sharing electrical IDs, selection and revision awareness. Guide newer users toward physical 2D and experienced users toward schematic construction, without hard-locking either workflow or imposing a separate expert mode. Present 3D as the natural inspection destination while retaining its editing tools.
@@ -106,7 +113,7 @@ Canonical net equivalence must be checked across physical input and schematic ou
 
 Ambiguity examples:
 - Moving a schematic symbol changes only schematic layout.
-- Reconnecting a symbol pin changes electrical intent; if multiple breadboard holes/jumper paths could realize it, show candidates and require a choice.
+- Reconnecting a symbol pin changes electrical intent; if multiple breadboard holes/jumper paths could realize it, preview suggested placements and require a choice before committing either electrical intent or physical realization. Do not leave a partially applied pending design.
 - Deleting a schematic segment in a net with alternate conductive paths might change only presentation. Distinguish delete-route from disconnect-terminal/net-split.
 - Adding a component in schematic requires a physical placement choice; do not silently place it into an arbitrary hole.
 - Store one atomic cross-view accepted transaction. Reject stale proposals after intervening edits. A canceled choice leaves every view unchanged.
@@ -118,10 +125,10 @@ M1: top-down navigation prototype + responsive shell; validate on an actual trac
 M2: shared wire creation/reconnection/bend/delete workflow across 2D/3D, with command history and cancellation.
 M3: resolved electrical graph + qualified Uno starter symbols + schematic projection and PDF. This is an internal milestone only; first release also requires M4 electrical editing. Do not skip graph equivalence checks to meet a UI deadline.
 M4: integrate supported electrical edits between all three views, explicit ambiguity choices, save/reopen migrations and regression tests.
-M5: graphics polish, performance/accessibility pass and full starter-circuit qualification.
+M5: automatic local project storage/recovery/export, explicit Build/Run readiness, graphics polish, performance/accessibility pass and full starter-circuit qualification. Local persistence and Build/Run are release requirements, not optional follow-up work.
 Later: users/projects database, authentication/sync policy and storage migrations. Revisit offline behavior before choosing a database.
 
-Release scenario: add Uno, LED and series resistor, button with a defined input configuration; wire, reconnect and edit a bend in each supported physical view; undo/redo; inspect identical electrical nets in the schematic; export a legible PDF; save/reopen; compile/run qualified firmware and verify button-to-LED behavior with observed output. Record build/configuration and actual results. Compilation alone does not pass the simulation step.
+Release scenario: add Uno, LED and series resistor, button with a defined input configuration; wire, reconnect and edit a bend in each supported physical view; undo/redo; inspect identical electrical nets in the schematic; export a legible PDF; verify automatic local save, close/reopen and export/import; explicitly Build, then Run qualified firmware and verify button-to-LED behavior with observed output. Record build/configuration and actual results. Compilation alone does not pass the simulation step. Change firmware after Build and verify Run is blocked until rebuilt; cancel a suggested placement and verify zero electrical/history change. Force an autosave failure and verify a visible error plus export/recovery path.
 
 Input matrix: trackpad+keyboard and mouse+keyboard, keyboard-only alternatives for core actions, Windows/macOS/Linux browsers and separately packaged WebViews, differing display scaling, reduced motion, view resizing, cancel/blur, unsupported parts, malformed import, missing compiler and context loss. Trackpad checks require human physical-device testing; automation supplements them.
 
