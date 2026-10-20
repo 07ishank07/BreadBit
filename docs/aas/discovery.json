@@ -1,0 +1,5143 @@
+{
+  "note": "Actual tool results captured via local AAS McpServer.handle JSON-RPC API. This is not the canonical AAS selection-evidence sidecar.",
+  "searches": [
+    {
+      "query": "architecture",
+      "ok": true,
+      "status": "complete",
+      "protocolVersion": "2025-06-18",
+      "coreVersion": "2.0.0",
+      "catalogSchemaVersion": "2.0.0",
+      "catalogDigest": "sha256-1f225febafbc8cb43666ed20ce23768b4576cf8bb7c545992e09945e69e67382",
+      "catalog": {
+        "package": "agentic-awesome-skills",
+        "version": "19.11.0",
+        "digest": "sha256-1f225febafbc8cb43666ed20ce23768b4576cf8bb7c545992e09945e69e67382"
+      },
+      "queryTokens": [
+        "architecture"
+      ],
+      "matchMode": "any",
+      "requiredTerms": [],
+      "filters": {
+        "categories": [],
+        "tags": []
+      },
+      "totalMatches": 105,
+      "cursor": 0,
+      "nextCursor": 15,
+      "resultCount": 15,
+      "results": [
+        {
+          "id": "agent-memory-mcp",
+          "name": "agent-memory-mcp",
+          "category": "ai-ml",
+          "matchedTokens": [
+            "architecture"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "ai-ml",
+          "description": "A hybrid memory system that provides persistent, searchable knowledge management for AI agents (Architecture, Patterns, Decisions).",
+          "tags": [
+            "agent",
+            "mcp",
+            "memory"
+          ],
+          "triggers": [
+            "agent",
+            "agents",
+            "ai",
+            "architecture",
+            "decisions",
+            "hybrid",
+            "knowledge",
+            "mcp",
+            "memory",
+            "persistent",
+            "provides",
+            "searchable"
+          ]
+        },
+        {
+          "id": "ai-ml",
+          "name": "ai-ml",
+          "category": "workflow-bundle",
+          "matchedTokens": [
+            "architecture"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "workflow-bundle",
+          "description": "AI and machine learning workflow covering LLM application development, RAG implementation, agent architecture, ML pipelines, and AI-powered features.",
+          "tags": [
+            "ai",
+            "ml"
+          ],
+          "triggers": [
+            "agent",
+            "ai",
+            "application",
+            "architecture",
+            "covering",
+            "development",
+            "learning",
+            "llm",
+            "machine",
+            "ml",
+            "pipelines",
+            "rag"
+          ]
+        },
+        {
+          "id": "architect-review",
+          "name": "architect-review",
+          "category": "architecture",
+          "matchedTokens": [
+            "architecture"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "architecture",
+          "description": "Master software architect specializing in modern architecture",
+          "tags": [],
+          "triggers": [
+            "architect",
+            "architecture",
+            "review",
+            "software",
+            "specializing"
+          ]
+        },
+        {
+          "id": "architecture",
+          "name": "architecture",
+          "category": "architecture",
+          "matchedTokens": [
+            "architecture"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "id-prefix",
+          "categoryFacet": "architecture",
+          "description": "Architectural decision-making framework. Requirements analysis, trade-off evaluation, ADR documentation. Use when making architecture decisions or analyzing system design.",
+          "tags": [
+            "architecture"
+          ],
+          "triggers": [
+            "adr",
+            "analysis",
+            "architectural",
+            "architecture",
+            "decision",
+            "documentation",
+            "evaluation",
+            "framework",
+            "making",
+            "off",
+            "requirements",
+            "trade"
+          ]
+        },
+        {
+          "id": "architecture-decision-records",
+          "name": "architecture-decision-records",
+          "category": "architecture",
+          "matchedTokens": [
+            "architecture"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "id-prefix",
+          "categoryFacet": "architecture",
+          "description": "Comprehensive patterns for creating, maintaining, and managing Architecture Decision Records (ADRs) that capture the context and rationale behind significant technical decisions.",
+          "tags": [
+            "architecture",
+            "decision",
+            "records"
+          ],
+          "triggers": [
+            "adrs",
+            "architecture",
+            "behind",
+            "capture",
+            "context",
+            "creating",
+            "decision",
+            "maintaining",
+            "managing",
+            "rationale",
+            "records",
+            "significant"
+          ]
+        },
+        {
+          "id": "architecture-patterns",
+          "name": "architecture-patterns",
+          "category": "architecture",
+          "matchedTokens": [
+            "architecture"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "id-prefix",
+          "categoryFacet": "architecture",
+          "description": "Master proven backend architecture patterns including Clean Architecture, Hexagonal Architecture, and Domain-Driven Design to build maintainable, testable, and scalable systems.",
+          "tags": [
+            "architecture"
+          ],
+          "triggers": [
+            "architecture",
+            "backend",
+            "clean",
+            "domain",
+            "driven",
+            "hexagonal",
+            "including",
+            "maintainable",
+            "proven",
+            "scalable",
+            "testable"
+          ]
+        },
+        {
+          "id": "architecture-review",
+          "name": "architecture-review",
+          "category": "architecture",
+          "matchedTokens": [
+            "architecture"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "id-prefix",
+          "categoryFacet": "architecture",
+          "description": "Review repository architecture using Ontoly Software Graph and MCP capabilities. Use when asked to explain architecture, module boundaries, package topology, service ownership, or architectural risk.",
+          "tags": [
+            "architecture"
+          ],
+          "triggers": [
+            "architecture",
+            "asked",
+            "boundaries",
+            "capabilities",
+            "explain",
+            "graph",
+            "mcp",
+            "module",
+            "ontoly",
+            "repository",
+            "review",
+            "software"
+          ]
+        },
+        {
+          "id": "astro",
+          "name": "astro",
+          "category": "frontend",
+          "matchedTokens": [
+            "architecture"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "frontend",
+          "description": "Build content-focused websites with Astro — zero JS by default, islands architecture, multi-framework components, and Markdown/MDX support.",
+          "tags": [
+            "astro",
+            "content",
+            "islands",
+            "markdown",
+            "mdx",
+            "performance",
+            "ssg",
+            "ssr"
+          ],
+          "triggers": [
+            "astro",
+            "content",
+            "default",
+            "islands",
+            "js",
+            "markdown",
+            "mdx",
+            "performance",
+            "ssg",
+            "ssr",
+            "websites",
+            "zero"
+          ]
+        },
+        {
+          "id": "aws-serverless-eda",
+          "name": "aws-serverless-eda",
+          "category": "cloud",
+          "matchedTokens": [
+            "architecture"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "cloud",
+          "description": "AWS serverless and event-driven architecture expert based on Well-Architected Framework. Use when building serverless APIs, Lambda functions, REST APIs, microservices, or async workflows.",
+          "tags": [
+            "aws",
+            "eda",
+            "serverless"
+          ],
+          "triggers": [
+            "apis",
+            "architected",
+            "architecture",
+            "aws",
+            "building",
+            "driven",
+            "eda",
+            "event",
+            "framework",
+            "lambda",
+            "serverless",
+            "well"
+          ]
+        },
+        {
+          "id": "aws-skills",
+          "name": "aws-skills",
+          "category": "cloud",
+          "matchedTokens": [
+            "architecture"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "cloud",
+          "description": "Plan and review AWS architecture and infrastructure changes using the upstream AWS skill collection.",
+          "tags": [
+            "aws",
+            "skills"
+          ],
+          "triggers": [
+            "architecture",
+            "aws",
+            "changes",
+            "collection",
+            "infrastructure",
+            "plan",
+            "review",
+            "skill",
+            "skills",
+            "upstream"
+          ]
+        },
+        {
+          "id": "backend-architect",
+          "name": "backend-architect",
+          "category": "backend",
+          "matchedTokens": [
+            "architecture"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "backend",
+          "description": "Expert backend architect specializing in scalable API design, microservices architecture, and distributed systems.",
+          "tags": [
+            "backend"
+          ],
+          "triggers": [
+            "api",
+            "architect",
+            "architecture",
+            "backend",
+            "distributed",
+            "microservices",
+            "scalable",
+            "specializing"
+          ]
+        },
+        {
+          "id": "bdi-mental-states",
+          "name": "bdi-mental-states",
+          "category": "ai-ml",
+          "matchedTokens": [
+            "architecture"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "ai-ml",
+          "description": "This skill should be used when the user asks to \"model agent mental states\", \"implement BDI architecture\", \"create belief-desire-intention models\", \"transform RDF to beliefs\", \"build cognitive agent\", or mentions BDI ontology, mental state modeling, rational agency, or neuro-symbolic AI integration.",
+          "tags": [
+            "bdi",
+            "mental",
+            "states"
+          ],
+          "triggers": [
+            "agent",
+            "architecture",
+            "asks",
+            "bdi",
+            "belief",
+            "mental",
+            "model",
+            "should",
+            "skill",
+            "states",
+            "used",
+            "user"
+          ]
+        },
+        {
+          "id": "brainstorming",
+          "name": "brainstorming",
+          "category": "workflow",
+          "matchedTokens": [
+            "architecture"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "workflow",
+          "description": "Use before creative or constructive work (features, architecture, behavior). Transforms vague ideas into validated designs through disciplined reasoning and collaboration.",
+          "tags": [
+            "brainstorming"
+          ],
+          "triggers": [
+            "architecture",
+            "before",
+            "behavior",
+            "brainstorming",
+            "constructive",
+            "creative",
+            "features",
+            "ideas",
+            "transforms",
+            "vague",
+            "validated",
+            "work"
+          ]
+        },
+        {
+          "id": "brooks-audit",
+          "name": "brooks-audit",
+          "category": "architecture",
+          "matchedTokens": [
+            "architecture"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "architecture",
+          "description": "Architecture audit that maps module dependencies, checks layering integrity, and flags structural decay across a codebase, drawing on twelve classic engineering books.",
+          "tags": [
+            "audit",
+            "brooks"
+          ],
+          "triggers": [
+            "architecture",
+            "audit",
+            "brooks",
+            "checks",
+            "decay",
+            "dependencies",
+            "flags",
+            "integrity",
+            "layering",
+            "maps",
+            "module",
+            "structural"
+          ]
+        },
+        {
+          "id": "brooks-lint",
+          "name": "brooks-lint",
+          "category": "development",
+          "matchedTokens": [
+            "architecture"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "development",
+          "description": "AI code reviewer grounded in classic software engineering books for catching design smells, coupling issues, and architectural risks.",
+          "tags": [
+            "architecture",
+            "claude-code",
+            "code-review",
+            "refactoring",
+            "software-design"
+          ],
+          "triggers": [
+            "ai",
+            "architecture",
+            "brooks",
+            "classic",
+            "claude-code",
+            "code",
+            "code-review",
+            "grounded",
+            "lint",
+            "refactoring",
+            "reviewer",
+            "software-design"
+          ]
+        }
+      ]
+    },
+    {
+      "query": "tauri",
+      "ok": true,
+      "status": "complete",
+      "protocolVersion": "2025-06-18",
+      "coreVersion": "2.0.0",
+      "catalogSchemaVersion": "2.0.0",
+      "catalogDigest": "sha256-1f225febafbc8cb43666ed20ce23768b4576cf8bb7c545992e09945e69e67382",
+      "catalog": {
+        "package": "agentic-awesome-skills",
+        "version": "19.11.0",
+        "digest": "sha256-1f225febafbc8cb43666ed20ce23768b4576cf8bb7c545992e09945e69e67382"
+      },
+      "queryTokens": [
+        "tauri"
+      ],
+      "matchMode": "any",
+      "requiredTerms": [],
+      "filters": {
+        "categories": [],
+        "tags": []
+      },
+      "totalMatches": 0,
+      "cursor": 0,
+      "nextCursor": null,
+      "resultCount": 0,
+      "results": []
+    },
+    {
+      "query": "react",
+      "ok": true,
+      "status": "complete",
+      "protocolVersion": "2025-06-18",
+      "coreVersion": "2.0.0",
+      "catalogSchemaVersion": "2.0.0",
+      "catalogDigest": "sha256-1f225febafbc8cb43666ed20ce23768b4576cf8bb7c545992e09945e69e67382",
+      "catalog": {
+        "package": "agentic-awesome-skills",
+        "version": "19.11.0",
+        "digest": "sha256-1f225febafbc8cb43666ed20ce23768b4576cf8bb7c545992e09945e69e67382"
+      },
+      "queryTokens": [
+        "react"
+      ],
+      "matchMode": "any",
+      "requiredTerms": [],
+      "filters": {
+        "categories": [],
+        "tags": []
+      },
+      "totalMatches": 57,
+      "cursor": 0,
+      "nextCursor": 15,
+      "resultCount": 15,
+      "results": [
+        {
+          "id": "3d-web-experience",
+          "name": "3d-web-experience",
+          "category": "design",
+          "matchedTokens": [
+            "react"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "design",
+          "description": "Use when building or debugging web 3D scenes, product configurators or portfolios with Three.js, React Three Fiber or Spline; review assets, loading, controls, fallbacks and performance.",
+          "tags": [
+            "3d",
+            "experience",
+            "web"
+          ],
+          "triggers": [
+            "3d",
+            "building",
+            "configurators",
+            "debugging",
+            "experience",
+            "js",
+            "portfolios",
+            "product",
+            "react",
+            "scenes",
+            "three",
+            "web"
+          ]
+        },
+        {
+          "id": "algolia-search",
+          "name": "algolia-search",
+          "category": "api-integration",
+          "matchedTokens": [
+            "react"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "api-integration",
+          "description": "Expert patterns for Algolia search implementation, indexing strategies, React InstantSearch, and relevance tuning",
+          "tags": [
+            "algolia",
+            "search"
+          ],
+          "triggers": [
+            "algolia",
+            "indexing",
+            "instantsearch",
+            "react",
+            "relevance",
+            "search",
+            "tuning"
+          ]
+        },
+        {
+          "id": "awt-e2e-testing",
+          "name": "awt-e2e-testing",
+          "category": "test-automation",
+          "matchedTokens": [
+            "react"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "test-automation",
+          "description": "AI-powered E2E web testing — eyes and hands for AI coding tools. Declarative YAML scenarios, Playwright execution, visual matching (OpenCV + OCR), platform auto-detection (Flutter/React/Vue), learning DB. Install: npx skills add ksgisang/awt-skill --skill awt -g",
+          "tags": [
+            "awt",
+            "e2e"
+          ],
+          "triggers": [
+            "ai",
+            "awt",
+            "coding",
+            "declarative",
+            "e2e",
+            "eyes",
+            "hands",
+            "powered",
+            "scenarios",
+            "testing",
+            "web",
+            "yaml"
+          ]
+        },
+        {
+          "id": "cc-skill-coding-standards",
+          "name": "cc-skill-coding-standards",
+          "category": "meta",
+          "matchedTokens": [
+            "react"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "meta",
+          "description": "Universal coding standards, best practices, and patterns for TypeScript, JavaScript, React, and Node.js development.",
+          "tags": [
+            "cc",
+            "coding",
+            "skill",
+            "standards"
+          ],
+          "triggers": [
+            "cc",
+            "coding",
+            "development",
+            "javascript",
+            "js",
+            "node",
+            "react",
+            "skill",
+            "standards",
+            "typescript",
+            "universal"
+          ]
+        },
+        {
+          "id": "cc-skill-frontend-patterns",
+          "name": "cc-skill-frontend-patterns",
+          "category": "meta",
+          "matchedTokens": [
+            "react"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "meta",
+          "description": "Frontend development patterns for React, Next.js, state management, performance optimization, and UI best practices.",
+          "tags": [
+            "cc",
+            "frontend",
+            "skill"
+          ],
+          "triggers": [
+            "cc",
+            "development",
+            "frontend",
+            "js",
+            "next",
+            "optimization",
+            "performance",
+            "react",
+            "skill",
+            "state",
+            "ui"
+          ]
+        },
+        {
+          "id": "ckw-design",
+          "name": "ckw-design",
+          "category": "web-development",
+          "matchedTokens": [
+            "react"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "web-development",
+          "description": "Frontend design entry point: direction, design system, visual philosophy. Use whenever building or touching the look of any web UI (components, pages, dashboards, React/Vue/HTML-CSS) or when the user says \"make this look better\", \"fix the spacing/layout\", or mentions styling, color, type, or polish.",
+          "tags": [
+            "css",
+            "design",
+            "frontend",
+            "responsive",
+            "typography",
+            "ui"
+          ],
+          "triggers": [
+            "ckw",
+            "css",
+            "design",
+            "direction",
+            "entry",
+            "frontend",
+            "philosophy",
+            "point",
+            "responsive",
+            "typography",
+            "ui",
+            "visual"
+          ]
+        },
+        {
+          "id": "code-showcase-react-ui-patterns",
+          "name": "code-showcase-react-ui-patterns",
+          "category": "development",
+          "matchedTokens": [
+            "react"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "development",
+          "description": "Modern React UI patterns for loading states, error handling, and data fetching. Use when building UI components, handling async data, or managing UI states.",
+          "tags": [
+            "code",
+            "react",
+            "showcase",
+            "ui"
+          ],
+          "triggers": [
+            "building",
+            "code",
+            "components",
+            "data",
+            "error",
+            "fetching",
+            "handling",
+            "loading",
+            "react",
+            "showcase",
+            "states",
+            "ui"
+          ]
+        },
+        {
+          "id": "codebase-to-wordpress-converter",
+          "name": "codebase-to-wordpress-converter",
+          "category": "development",
+          "matchedTokens": [
+            "react"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "development",
+          "description": "Expert skill for converting any codebase (React/HTML/Next.js) into a pixel-perfect, SEO-optimized, and dynamic WordPress theme.",
+          "tags": [
+            "codebase",
+            "converter",
+            "to",
+            "wordpress"
+          ],
+          "triggers": [
+            "any",
+            "codebase",
+            "converter",
+            "converting",
+            "html",
+            "js",
+            "next",
+            "pixel",
+            "react",
+            "skill",
+            "to",
+            "wordpress"
+          ]
+        },
+        {
+          "id": "context7-auto-research",
+          "name": "context7-auto-research",
+          "category": "meta",
+          "matchedTokens": [
+            "react"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "meta",
+          "description": "Automatically fetch latest library/framework documentation for Claude Code via Context7 API. Use when you need up-to-date documentation for libraries and frameworks or asking about React, Next.js, Prisma, or any other popular library.",
+          "tags": [
+            "auto",
+            "context7",
+            "research"
+          ],
+          "triggers": [
+            "auto",
+            "automatically",
+            "claude",
+            "code",
+            "context7",
+            "documentation",
+            "fetch",
+            "framework",
+            "latest",
+            "library",
+            "research",
+            "via"
+          ]
+        },
+        {
+          "id": "design-taste-frontend",
+          "name": "design-taste-frontend",
+          "category": "frontend",
+          "matchedTokens": [
+            "react"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "frontend",
+          "description": "Use when building high-agency frontend interfaces with strict design taste, calibrated color, responsive layout, and motion rules.",
+          "tags": [
+            "design",
+            "frontend",
+            "react",
+            "ui"
+          ],
+          "triggers": [
+            "agency",
+            "building",
+            "calibrated",
+            "color",
+            "design",
+            "frontend",
+            "high",
+            "interfaces",
+            "react",
+            "strict",
+            "taste",
+            "ui"
+          ]
+        },
+        {
+          "id": "expo-brownfield",
+          "name": "expo-brownfield",
+          "category": "mobile",
+          "matchedTokens": [
+            "react"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "mobile",
+          "description": "Integrate Expo and React Native into an existing native iOS or Android app. Use when the user mentions brownfield, embedding React Native in a native app, AAR/XCFramework, or adding Expo to an existing Kotlin/Swift project. Covers both the isolated approach and the integrated approach.",
+          "tags": [
+            "brownfield",
+            "expo"
+          ],
+          "triggers": [
+            "android",
+            "app",
+            "brownfield",
+            "embedding",
+            "existing",
+            "expo",
+            "integrate",
+            "ios",
+            "mentions",
+            "native",
+            "react",
+            "user"
+          ]
+        },
+        {
+          "id": "expo-tailwind-setup",
+          "name": "expo-tailwind-setup",
+          "category": "mobile",
+          "matchedTokens": [
+            "react"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "mobile",
+          "description": "Set up Tailwind CSS v4 in Expo with react-native-css and NativeWind v5 for universal styling",
+          "tags": [
+            "expo",
+            "setup",
+            "tailwind"
+          ],
+          "triggers": [
+            "css",
+            "expo",
+            "native",
+            "nativewind",
+            "react",
+            "set",
+            "setup",
+            "tailwind",
+            "universal",
+            "up",
+            "v4",
+            "v5"
+          ]
+        },
+        {
+          "id": "expo-ui",
+          "name": "expo-ui",
+          "category": "mobile",
+          "matchedTokens": [
+            "react"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "mobile",
+          "description": "Build native UI with the @expo/ui package: real SwiftUI on iOS and Jetpack Compose on Android rendered from React in an Expo or React Native app.",
+          "tags": [
+            "expo",
+            "ui"
+          ],
+          "triggers": [
+            "android",
+            "compose",
+            "expo",
+            "ios",
+            "jetpack",
+            "native",
+            "package",
+            "react",
+            "real",
+            "rendered",
+            "swiftui",
+            "ui"
+          ]
+        },
+        {
+          "id": "fp-react",
+          "name": "fp-react",
+          "category": "development",
+          "matchedTokens": [
+            "react"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "development",
+          "description": "Practical patterns for using fp-ts with React - hooks, state, forms, data fetching. Works with React 18/19, Next.js 14/15.",
+          "tags": [
+            "data-fetching",
+            "forms",
+            "fp-ts",
+            "hooks",
+            "next-js",
+            "react",
+            "react-19",
+            "remote-data",
+            "state-management",
+            "typescript"
+          ],
+          "triggers": [
+            "data-fetching",
+            "forms",
+            "fp",
+            "fp-ts",
+            "hooks",
+            "next-js",
+            "practical",
+            "react",
+            "react-19",
+            "remote-data",
+            "state-management",
+            "typescript"
+          ]
+        },
+        {
+          "id": "fp-ts-react",
+          "name": "fp-ts-react",
+          "category": "development",
+          "matchedTokens": [
+            "react"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "development",
+          "description": "Practical patterns for using fp-ts with React - hooks, state, forms, data fetching. Use when building React apps with functional programming patterns. Works with React 18/19, Next.js 14/15.",
+          "tags": [
+            "fp",
+            "react",
+            "ts"
+          ],
+          "triggers": [
+            "apps",
+            "building",
+            "data",
+            "fetching",
+            "forms",
+            "fp",
+            "functional",
+            "hooks",
+            "practical",
+            "react",
+            "state",
+            "ts"
+          ]
+        }
+      ]
+    },
+    {
+      "query": "circuit",
+      "ok": true,
+      "status": "complete",
+      "protocolVersion": "2025-06-18",
+      "coreVersion": "2.0.0",
+      "catalogSchemaVersion": "2.0.0",
+      "catalogDigest": "sha256-1f225febafbc8cb43666ed20ce23768b4576cf8bb7c545992e09945e69e67382",
+      "catalog": {
+        "package": "agentic-awesome-skills",
+        "version": "19.11.0",
+        "digest": "sha256-1f225febafbc8cb43666ed20ce23768b4576cf8bb7c545992e09945e69e67382"
+      },
+      "queryTokens": [
+        "circuit"
+      ],
+      "matchMode": "any",
+      "requiredTerms": [],
+      "filters": {
+        "categories": [],
+        "tags": []
+      },
+      "totalMatches": 3,
+      "cursor": 0,
+      "nextCursor": null,
+      "resultCount": 3,
+      "results": [
+        {
+          "id": "eol-resistor-calculator",
+          "name": "eol-resistor-calculator",
+          "category": "architecture",
+          "matchedTokens": [
+            "circuit"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "architecture",
+          "description": "Calculates and validates end-of-line (EOL, SEOL, DEOL, TEOL) resistor loops for intrusion alarm panels (Honeywell, DSC, Paradox, Bosch) with wire gauge drop and state tables. Trigger phrases: eol resistor, deol wiring, alarm zone resistor, calculate end of line, double eol tamper.",
+          "tags": [
+            "alarm-panel",
+            "circuit-design",
+            "electrical-engineering",
+            "electronics",
+            "hardware",
+            "security-systems"
+          ],
+          "triggers": [
+            "alarm-panel",
+            "calculates",
+            "calculator",
+            "circuit-design",
+            "electrical-engineering",
+            "electronics",
+            "eol",
+            "hardware",
+            "line",
+            "resistor",
+            "security-systems",
+            "validates"
+          ]
+        },
+        {
+          "id": "web3-rate-limiting-circuit-breaker",
+          "name": "web3-rate-limiting-circuit-breaker",
+          "category": "engineering",
+          "matchedTokens": [
+            "circuit"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "engineering",
+          "description": "On-chain and relayer rate-limiting circuit breaker register: throughput thresholds, emergency pause triggers, and multi-sig recovery.",
+          "tags": [
+            "circuit-breaker",
+            "defi",
+            "infrastructure",
+            "rate-limiting",
+            "security",
+            "web3"
+          ],
+          "triggers": [
+            "breaker",
+            "chain",
+            "circuit",
+            "circuit-breaker",
+            "defi",
+            "infrastructure",
+            "limiting",
+            "rate",
+            "rate-limiting",
+            "relayer",
+            "security",
+            "web3"
+          ]
+        },
+        {
+          "id": "zk-proof-verification-pipeline",
+          "name": "zk-proof-verification-pipeline",
+          "category": "engineering",
+          "matchedTokens": [
+            "circuit"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "engineering",
+          "description": "Zero-knowledge cryptographic verification pipeline register: proving system, circuit verification keys, public inputs, and gas costs.",
+          "tags": [
+            "cryptography",
+            "privacy",
+            "snark",
+            "soroban",
+            "web3",
+            "zero-knowledge",
+            "zk"
+          ],
+          "triggers": [
+            "cryptography",
+            "knowledge",
+            "pipeline",
+            "privacy",
+            "proof",
+            "snark",
+            "soroban",
+            "verification",
+            "web3",
+            "zero",
+            "zero-knowledge",
+            "zk"
+          ]
+        }
+      ]
+    },
+    {
+      "query": "storage",
+      "ok": true,
+      "status": "complete",
+      "protocolVersion": "2025-06-18",
+      "coreVersion": "2.0.0",
+      "catalogSchemaVersion": "2.0.0",
+      "catalogDigest": "sha256-1f225febafbc8cb43666ed20ce23768b4576cf8bb7c545992e09945e69e67382",
+      "catalog": {
+        "package": "agentic-awesome-skills",
+        "version": "19.11.0",
+        "digest": "sha256-1f225febafbc8cb43666ed20ce23768b4576cf8bb7c545992e09945e69e67382"
+      },
+      "queryTokens": [
+        "storage"
+      ],
+      "matchMode": "any",
+      "requiredTerms": [],
+      "filters": {
+        "categories": [],
+        "tags": []
+      },
+      "totalMatches": 44,
+      "cursor": 0,
+      "nextCursor": 15,
+      "resultCount": 15,
+      "results": [
+        {
+          "id": "appdeploy",
+          "name": "appdeploy",
+          "category": "backend",
+          "matchedTokens": [
+            "storage"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "backend",
+          "description": "Deploy web apps with backend APIs, database, and file storage. Use when the user asks to deploy or publish a website or web app and wants a public URL. Uses HTTP API via curl.",
+          "tags": [
+            "appdeploy"
+          ],
+          "triggers": [
+            "apis",
+            "appdeploy",
+            "apps",
+            "asks",
+            "backend",
+            "database",
+            "deploy",
+            "file",
+            "publish",
+            "storage",
+            "user",
+            "web"
+          ]
+        },
+        {
+          "id": "aws-cost-optimization",
+          "name": "aws-cost-optimization",
+          "category": "devops",
+          "matchedTokens": [
+            "storage"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "devops",
+          "description": "Reduce AWS spend with rightsizing, autoscaling, commitment planning, and storage lifecycle policies. Use when running FinOps reviews, lowering cloud bills, or improving cost-per-request metrics.",
+          "tags": [
+            "aws",
+            "cost",
+            "optimization"
+          ],
+          "triggers": [
+            "autoscaling",
+            "aws",
+            "commitment",
+            "cost",
+            "lifecycle",
+            "optimization",
+            "planning",
+            "policies",
+            "reduce",
+            "rightsizing",
+            "spend",
+            "storage"
+          ]
+        },
+        {
+          "id": "aws-s3",
+          "name": "aws-s3",
+          "category": "devops",
+          "matchedTokens": [
+            "storage"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "devops",
+          "description": "Configure S3 buckets, policies, and lifecycle rules. Implement versioning, replication, and security. Use when managing object storage on AWS.",
+          "tags": [
+            "aws",
+            "s3"
+          ],
+          "triggers": [
+            "aws",
+            "buckets",
+            "configure",
+            "lifecycle",
+            "managing",
+            "object",
+            "policies",
+            "replication",
+            "rules",
+            "s3",
+            "security",
+            "versioning"
+          ]
+        },
+        {
+          "id": "azure-data-tables-java",
+          "name": "azure-data-tables-java",
+          "category": "cloud",
+          "matchedTokens": [
+            "storage"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "cloud",
+          "description": "Build table storage applications using the Azure Tables SDK for Java. Works with both Azure Table Storage and Cosmos DB Table API.",
+          "tags": [
+            "azure",
+            "data",
+            "java",
+            "tables"
+          ],
+          "triggers": [
+            "applications",
+            "azure",
+            "both",
+            "cosmos",
+            "data",
+            "db",
+            "java",
+            "sdk",
+            "storage",
+            "table",
+            "tables",
+            "works"
+          ]
+        },
+        {
+          "id": "azure-data-tables-py",
+          "name": "azure-data-tables-py",
+          "category": "cloud",
+          "matchedTokens": [
+            "storage"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "cloud",
+          "description": "Azure Tables SDK for Python (Storage and Cosmos DB). Use for NoSQL key-value storage, entity CRUD, and batch operations.",
+          "tags": [
+            "azure",
+            "data",
+            "py",
+            "tables"
+          ],
+          "triggers": [
+            "azure",
+            "cosmos",
+            "data",
+            "db",
+            "key",
+            "nosql",
+            "py",
+            "python",
+            "sdk",
+            "storage",
+            "tables",
+            "value"
+          ]
+        },
+        {
+          "id": "azure-keyvault-py",
+          "name": "azure-keyvault-py",
+          "category": "cloud",
+          "matchedTokens": [
+            "storage"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "cloud",
+          "description": "Azure Key Vault SDK for Python. Use for secrets, keys, and certificates management with secure storage.",
+          "tags": [
+            "azure",
+            "keyvault",
+            "py"
+          ],
+          "triggers": [
+            "azure",
+            "certificates",
+            "key",
+            "keys",
+            "keyvault",
+            "py",
+            "python",
+            "sdk",
+            "secrets",
+            "secure",
+            "storage",
+            "vault"
+          ]
+        },
+        {
+          "id": "azure-storage-blob-java",
+          "name": "azure-storage-blob-java",
+          "category": "cloud",
+          "matchedTokens": [
+            "storage"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "cloud",
+          "description": "Build blob storage applications using the Azure Storage Blob SDK for Java.",
+          "tags": [
+            "azure",
+            "blob",
+            "java",
+            "storage"
+          ],
+          "triggers": [
+            "applications",
+            "azure",
+            "blob",
+            "java",
+            "sdk",
+            "storage"
+          ]
+        },
+        {
+          "id": "azure-storage-blob-py",
+          "name": "azure-storage-blob-py",
+          "category": "cloud",
+          "matchedTokens": [
+            "storage"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "cloud",
+          "description": "Azure Blob Storage SDK for Python. Use for uploading, downloading, listing blobs, managing containers, and blob lifecycle.",
+          "tags": [
+            "azure",
+            "blob",
+            "py",
+            "storage"
+          ],
+          "triggers": [
+            "azure",
+            "blob",
+            "blobs",
+            "containers",
+            "downloading",
+            "listing",
+            "managing",
+            "py",
+            "python",
+            "sdk",
+            "storage",
+            "uploading"
+          ]
+        },
+        {
+          "id": "azure-storage-blob-rust",
+          "name": "azure-storage-blob-rust",
+          "category": "cloud",
+          "matchedTokens": [
+            "storage"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "cloud",
+          "description": "Azure Blob Storage SDK for Rust. Use for uploading, downloading, and managing blobs and containers.",
+          "tags": [
+            "azure",
+            "blob",
+            "rust",
+            "storage"
+          ],
+          "triggers": [
+            "azure",
+            "blob",
+            "blobs",
+            "containers",
+            "downloading",
+            "managing",
+            "rust",
+            "sdk",
+            "storage",
+            "uploading"
+          ]
+        },
+        {
+          "id": "azure-storage-blob-ts",
+          "name": "azure-storage-blob-ts",
+          "category": "cloud",
+          "matchedTokens": [
+            "storage"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "cloud",
+          "description": "Azure Blob Storage JavaScript/TypeScript SDK (@azure/storage-blob) for blob operations. Use for uploading, downloading, listing, and managing blobs and containers.",
+          "tags": [
+            "azure",
+            "blob",
+            "storage",
+            "ts"
+          ],
+          "triggers": [
+            "azure",
+            "blob",
+            "downloading",
+            "javascript",
+            "listing",
+            "managing",
+            "operations",
+            "sdk",
+            "storage",
+            "ts",
+            "typescript",
+            "uploading"
+          ]
+        },
+        {
+          "id": "azure-storage-file-datalake-py",
+          "name": "azure-storage-file-datalake-py",
+          "category": "cloud",
+          "matchedTokens": [
+            "storage"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "cloud",
+          "description": "Azure Data Lake Storage Gen2 SDK for Python. Use for hierarchical file systems, big data analytics, and file/directory operations.",
+          "tags": [
+            "azure",
+            "datalake",
+            "file",
+            "py",
+            "storage"
+          ],
+          "triggers": [
+            "azure",
+            "big",
+            "data",
+            "datalake",
+            "file",
+            "gen2",
+            "hierarchical",
+            "lake",
+            "py",
+            "python",
+            "sdk",
+            "storage"
+          ]
+        },
+        {
+          "id": "azure-storage-file-share-py",
+          "name": "azure-storage-file-share-py",
+          "category": "cloud",
+          "matchedTokens": [
+            "storage"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "cloud",
+          "description": "Azure Storage File Share SDK for Python. Use for SMB file shares, directories, and file operations in the cloud.",
+          "tags": [
+            "azure",
+            "file",
+            "py",
+            "share",
+            "storage"
+          ],
+          "triggers": [
+            "azure",
+            "cloud",
+            "directories",
+            "file",
+            "operations",
+            "py",
+            "python",
+            "sdk",
+            "share",
+            "shares",
+            "smb",
+            "storage"
+          ]
+        },
+        {
+          "id": "azure-storage-file-share-ts",
+          "name": "azure-storage-file-share-ts",
+          "category": "cloud",
+          "matchedTokens": [
+            "storage"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "cloud",
+          "description": "Azure File Share JavaScript/TypeScript SDK (@azure/storage-file-share) for SMB file share operations.",
+          "tags": [
+            "azure",
+            "file",
+            "share",
+            "storage",
+            "ts"
+          ],
+          "triggers": [
+            "azure",
+            "file",
+            "javascript",
+            "operations",
+            "sdk",
+            "share",
+            "smb",
+            "storage",
+            "ts",
+            "typescript"
+          ]
+        },
+        {
+          "id": "azure-storage-queue-py",
+          "name": "azure-storage-queue-py",
+          "category": "cloud",
+          "matchedTokens": [
+            "storage"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "cloud",
+          "description": "Azure Queue Storage SDK for Python. Use for reliable message queuing, task distribution, and asynchronous processing.",
+          "tags": [
+            "azure",
+            "py",
+            "queue",
+            "storage"
+          ],
+          "triggers": [
+            "asynchronous",
+            "azure",
+            "distribution",
+            "message",
+            "py",
+            "python",
+            "queue",
+            "queuing",
+            "reliable",
+            "sdk",
+            "storage",
+            "task"
+          ]
+        },
+        {
+          "id": "azure-storage-queue-rust",
+          "name": "azure-storage-queue-rust",
+          "category": "cloud",
+          "matchedTokens": [
+            "storage"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "cloud",
+          "description": "Azure Queue Storage library for Rust. Send, receive, and manage queue messages. Triggers: \"queue storage rust\", \"QueueClient rust\", \"send message rust\", \"receive messages rust\", \"QueueServiceClient rust\", \"queue rust\".",
+          "tags": [
+            "azure",
+            "queue",
+            "rust",
+            "storage"
+          ],
+          "triggers": [
+            "azure",
+            "library",
+            "message",
+            "messages",
+            "queue",
+            "queueclient",
+            "queueserviceclient",
+            "receive",
+            "rust",
+            "send",
+            "storage",
+            "triggers"
+          ]
+        }
+      ]
+    },
+    {
+      "query": "agent-tool",
+      "ok": true,
+      "status": "complete",
+      "protocolVersion": "2025-06-18",
+      "coreVersion": "2.0.0",
+      "catalogSchemaVersion": "2.0.0",
+      "catalogDigest": "sha256-1f225febafbc8cb43666ed20ce23768b4576cf8bb7c545992e09945e69e67382",
+      "catalog": {
+        "package": "agentic-awesome-skills",
+        "version": "19.11.0",
+        "digest": "sha256-1f225febafbc8cb43666ed20ce23768b4576cf8bb7c545992e09945e69e67382"
+      },
+      "queryTokens": [
+        "agent",
+        "agent-tool",
+        "tool"
+      ],
+      "matchMode": "any",
+      "requiredTerms": [],
+      "filters": {
+        "categories": [],
+        "tags": []
+      },
+      "totalMatches": 261,
+      "cursor": 0,
+      "nextCursor": 15,
+      "resultCount": 15,
+      "results": [
+        {
+          "id": "aas-compose-stack",
+          "name": "aas-compose-stack",
+          "category": "agent-tooling",
+          "matchedTokens": [
+            "agent"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "agent-tooling",
+          "description": "Preserve the coding agent's explicit AAS skill selection as a validated stack and optional evidence.",
+          "tags": [
+            "aas",
+            "mcp",
+            "skills",
+            "stack-review"
+          ],
+          "triggers": [
+            "aas",
+            "agent",
+            "coding",
+            "compose",
+            "explicit",
+            "mcp",
+            "preserve",
+            "selection",
+            "skill",
+            "skills",
+            "stack",
+            "stack-review"
+          ]
+        },
+        {
+          "id": "aas-discover",
+          "name": "aas-discover",
+          "category": "agent-tooling",
+          "matchedTokens": [
+            "agent"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "agent-tooling",
+          "description": "Discover AAS skills for an explicit task and compare their complete instructions without installing them.",
+          "tags": [
+            "aas",
+            "mcp",
+            "skills",
+            "stack-review"
+          ],
+          "triggers": [
+            "aas",
+            "compare",
+            "complete",
+            "discover",
+            "explicit",
+            "installing",
+            "instructions",
+            "mcp",
+            "skills",
+            "stack-review",
+            "task",
+            "without"
+          ]
+        },
+        {
+          "id": "aas-review-stack",
+          "name": "aas-review-stack",
+          "category": "agent-tooling",
+          "matchedTokens": [
+            "agent"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "agent-tooling",
+          "description": "Review AAS stack manifests, preview plans and selection evidence in Workbench without applying changes.",
+          "tags": [
+            "aas",
+            "mcp",
+            "skills",
+            "stack-review"
+          ],
+          "triggers": [
+            "aas",
+            "evidence",
+            "manifests",
+            "mcp",
+            "plans",
+            "preview",
+            "review",
+            "selection",
+            "skills",
+            "stack",
+            "stack-review",
+            "workbench"
+          ]
+        },
+        {
+          "id": "aegisops-ai",
+          "name": "aegisops-ai",
+          "category": "uncategorized",
+          "matchedTokens": [
+            "tool"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "uncategorized",
+          "description": "Autonomous DevSecOps & FinOps Guardrails. Guide to reviewing Linux kernel patches, Terraform cost changes and Kubernetes policy with a separately reviewed upstream tool and configured model.",
+          "tags": [
+            "aegisops",
+            "ai"
+          ],
+          "triggers": [
+            "aegisops",
+            "ai",
+            "autonomous",
+            "cost",
+            "devsecops",
+            "finops",
+            "guardrails",
+            "kernel",
+            "linux",
+            "patches",
+            "reviewing",
+            "terraform"
+          ]
+        },
+        {
+          "id": "agent-creator",
+          "name": "agent-creator",
+          "category": "ai-ml",
+          "matchedTokens": [
+            "agent"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "ai-ml",
+          "description": "Create custom AI subagents with proper plugin structure, persona generation, and companion routing skills.",
+          "tags": [
+            "agent",
+            "creator"
+          ],
+          "triggers": [
+            "agent",
+            "ai",
+            "companion",
+            "creator",
+            "custom",
+            "generation",
+            "persona",
+            "plugin",
+            "proper",
+            "routing",
+            "structure",
+            "subagents"
+          ]
+        },
+        {
+          "id": "agent-evals",
+          "name": "agent-evals",
+          "category": "devops",
+          "matchedTokens": [
+            "agent"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "devops",
+          "description": "Build automated evaluation suites for AI agents using golden datasets, rubrics, and regression gates. Use when shipping agent features, validating prompt changes, or gating deployments on quality.",
+          "tags": [
+            "agent",
+            "evals"
+          ],
+          "triggers": [
+            "agent",
+            "agents",
+            "ai",
+            "automated",
+            "datasets",
+            "evals",
+            "evaluation",
+            "gates",
+            "golden",
+            "regression",
+            "rubrics",
+            "suites"
+          ]
+        },
+        {
+          "id": "agent-evaluation",
+          "name": "agent-evaluation",
+          "category": "ai-agents",
+          "matchedTokens": [
+            "agent"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "ai-agents",
+          "description": "Evaluate agent behavior with versioned cases and explicit verifiers. Use when comparing agent or prompt changes, reproducing failures, or running agent regression tests.",
+          "tags": [
+            "agent",
+            "evaluation"
+          ],
+          "triggers": [
+            "agent",
+            "behavior",
+            "cases",
+            "changes",
+            "comparing",
+            "evaluate",
+            "evaluation",
+            "explicit",
+            "prompt",
+            "reproducing",
+            "verifiers",
+            "versioned"
+          ]
+        },
+        {
+          "id": "agent-evaluation-reporting",
+          "name": "agent-evaluation-reporting",
+          "category": "agent-evaluation",
+          "matchedTokens": [
+            "agent"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "agent-evaluation",
+          "description": "Use when summarizing agent evaluations where autonomous, assisted, failed, timed-out, or invalid outcomes must remain distinct and comparable.",
+          "tags": [
+            "agent-evaluation",
+            "benchmarking",
+            "metrics",
+            "reliability",
+            "reporting"
+          ],
+          "triggers": [
+            "agent",
+            "agent-evaluation",
+            "assisted",
+            "autonomous",
+            "benchmarking",
+            "evaluation",
+            "evaluations",
+            "metrics",
+            "reliability",
+            "reporting",
+            "summarizing",
+            "where"
+          ]
+        },
+        {
+          "id": "agent-framework-azure-ai-py",
+          "name": "agent-framework-azure-ai-py",
+          "category": "ai-ml",
+          "matchedTokens": [
+            "agent"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "ai-ml",
+          "description": "Build persistent agents on Azure AI Foundry using the Microsoft Agent Framework Python SDK.",
+          "tags": [
+            "agent",
+            "ai",
+            "azure",
+            "framework",
+            "py"
+          ],
+          "triggers": [
+            "agent",
+            "agents",
+            "ai",
+            "azure",
+            "foundry",
+            "framework",
+            "microsoft",
+            "persistent",
+            "py",
+            "python",
+            "sdk"
+          ]
+        },
+        {
+          "id": "agent-harness-fault-injection",
+          "name": "agent-harness-fault-injection",
+          "category": "development",
+          "matchedTokens": [
+            "agent",
+            "tool"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "development",
+          "description": "Use when an agent workflow needs deterministic recovery evidence for sandbox, MCP/tool, worker, checkpoint, memory, or orchestration failures.",
+          "tags": [
+            "agent-harness",
+            "fault-injection",
+            "mcp",
+            "multi-agent",
+            "recovery",
+            "state-machine"
+          ],
+          "triggers": [
+            "agent",
+            "agent-harness",
+            "deterministic",
+            "evidence",
+            "fault",
+            "fault-injection",
+            "harness",
+            "injection",
+            "mcp",
+            "multi-agent",
+            "recovery",
+            "state-machine"
+          ]
+        },
+        {
+          "id": "agent-manager-skill",
+          "name": "agent-manager-skill",
+          "category": "ai-agents",
+          "matchedTokens": [
+            "agent"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "ai-agents",
+          "description": "Manage multiple local CLI agents via tmux sessions (start/stop/monitor/assign) in an explicitly authorized workspace.",
+          "tags": [
+            "agent",
+            "manager",
+            "skill"
+          ],
+          "triggers": [
+            "agent",
+            "agents",
+            "cli",
+            "local",
+            "manager",
+            "multiple",
+            "sessions",
+            "skill",
+            "start",
+            "stop",
+            "tmux",
+            "via"
+          ]
+        },
+        {
+          "id": "agent-memory",
+          "name": "agent-memory",
+          "category": "ai-ml",
+          "matchedTokens": [
+            "agent"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "ai-ml",
+          "description": "A hybrid memory system that provides persistent, searchable knowledge management for AI agents.",
+          "tags": [
+            "agent",
+            "memory"
+          ],
+          "triggers": [
+            "agent",
+            "agents",
+            "ai",
+            "hybrid",
+            "knowledge",
+            "memory",
+            "persistent",
+            "provides",
+            "searchable"
+          ]
+        },
+        {
+          "id": "agent-memory-discipline",
+          "name": "agent-memory-discipline",
+          "category": "memory",
+          "matchedTokens": [
+            "agent"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "memory",
+          "description": "Rules for when an agent should recall from long-term memory before acting and when it should save decisions, corrections and failures afterwards. Works with any memory backend.",
+          "tags": [
+            "agent-memory",
+            "agent-skills",
+            "context-engineering",
+            "long-term-memory",
+            "mcp"
+          ],
+          "triggers": [
+            "agent",
+            "agent-memory",
+            "agent-skills",
+            "context-engineering",
+            "discipline",
+            "long",
+            "long-term-memory",
+            "mcp",
+            "memory",
+            "recall",
+            "rules",
+            "should"
+          ]
+        },
+        {
+          "id": "agent-memory-mcp",
+          "name": "agent-memory-mcp",
+          "category": "ai-ml",
+          "matchedTokens": [
+            "agent"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "ai-ml",
+          "description": "A hybrid memory system that provides persistent, searchable knowledge management for AI agents (Architecture, Patterns, Decisions).",
+          "tags": [
+            "agent",
+            "mcp",
+            "memory"
+          ],
+          "triggers": [
+            "agent",
+            "agents",
+            "ai",
+            "architecture",
+            "decisions",
+            "hybrid",
+            "knowledge",
+            "mcp",
+            "memory",
+            "persistent",
+            "provides",
+            "searchable"
+          ]
+        },
+        {
+          "id": "agent-memory-systems",
+          "name": "agent-memory-systems",
+          "category": "memory",
+          "matchedTokens": [
+            "agent"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "memory",
+          "description": "Design tenant-scoped memory, retrieval and retention for agents. Use when planning RAG, conversation history, vector stores or remembering across sessions.",
+          "tags": [
+            "agent",
+            "memory"
+          ],
+          "triggers": [
+            "agent",
+            "agents",
+            "conversation",
+            "history",
+            "memory",
+            "planning",
+            "rag",
+            "retention",
+            "retrieval",
+            "scoped",
+            "tenant",
+            "vector"
+          ]
+        }
+      ]
+    },
+    {
+      "query": "testing",
+      "ok": true,
+      "status": "complete",
+      "protocolVersion": "2025-06-18",
+      "coreVersion": "2.0.0",
+      "catalogSchemaVersion": "2.0.0",
+      "catalogDigest": "sha256-1f225febafbc8cb43666ed20ce23768b4576cf8bb7c545992e09945e69e67382",
+      "catalog": {
+        "package": "agentic-awesome-skills",
+        "version": "19.11.0",
+        "digest": "sha256-1f225febafbc8cb43666ed20ce23768b4576cf8bb7c545992e09945e69e67382"
+      },
+      "queryTokens": [
+        "testing"
+      ],
+      "matchMode": "any",
+      "requiredTerms": [],
+      "filters": {
+        "categories": [],
+        "tags": []
+      },
+      "totalMatches": 153,
+      "cursor": 0,
+      "nextCursor": 15,
+      "resultCount": 15,
+      "results": [
+        {
+          "id": "ab-testing",
+          "name": "ab-testing",
+          "category": "testing",
+          "matchedTokens": [
+            "testing"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "testing",
+          "description": "When the user wants to plan, design, or implement an A/B test or experiment, or build a growth experimentation program.",
+          "tags": [
+            "ab"
+          ],
+          "triggers": [
+            "ab",
+            "experiment",
+            "experimentation",
+            "growth",
+            "plan",
+            "program",
+            "test",
+            "testing",
+            "user",
+            "wants"
+          ]
+        },
+        {
+          "id": "active-directory-attacks",
+          "name": "active-directory-attacks",
+          "category": "security",
+          "matchedTokens": [
+            "testing"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "security",
+          "description": "Provide comprehensive techniques for attacking Microsoft Active Directory environments. Covers reconnaissance, credential harvesting, Kerberos attacks, lateral movement, privilege escalation, and domain dominance for red team operations and penetration testing.",
+          "tags": [
+            "active",
+            "attacks",
+            "directory"
+          ],
+          "triggers": [
+            "active",
+            "attacking",
+            "attacks",
+            "covers",
+            "credential",
+            "directory",
+            "environments",
+            "harvesting",
+            "microsoft",
+            "provide",
+            "reconnaissance",
+            "techniques"
+          ]
+        },
+        {
+          "id": "ad-creative",
+          "name": "ad-creative",
+          "category": "marketing",
+          "matchedTokens": [
+            "testing"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "marketing",
+          "description": "Create, iterate, and scale paid ad creative for Google Ads, Meta, LinkedIn, TikTok, and similar platforms. Use when generating headlines, descriptions, primary text, or large sets of ad variations for testing and performance optimization.",
+          "tags": [
+            "ad",
+            "creative"
+          ],
+          "triggers": [
+            "ad",
+            "ads",
+            "creative",
+            "google",
+            "iterate",
+            "linkedin",
+            "meta",
+            "paid",
+            "platforms",
+            "scale",
+            "similar",
+            "tiktok"
+          ]
+        },
+        {
+          "id": "agent-qa-authoring",
+          "name": "agent-qa-authoring",
+          "category": "testing",
+          "matchedTokens": [
+            "testing"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "testing",
+          "description": "Create, edit, validate, and run Agent QA tests, suites, and hooks through MCP or CLI while preserving canonical IDs and schema contracts.",
+          "tags": [
+            "mcp",
+            "mobile-testing",
+            "qa",
+            "testing",
+            "web-testing"
+          ],
+          "triggers": [
+            "agent",
+            "authoring",
+            "edit",
+            "mcp",
+            "mobile-testing",
+            "qa",
+            "run",
+            "suites",
+            "testing",
+            "tests",
+            "validate",
+            "web-testing"
+          ]
+        },
+        {
+          "id": "agent-qa-debug-fix",
+          "name": "agent-qa-debug-fix",
+          "category": "testing",
+          "matchedTokens": [
+            "testing"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "testing",
+          "description": "Debug, patch, and verify failed Agent QA runs from MCP evidence, artifacts, logs, and local code without hiding product or infrastructure defects.",
+          "tags": [
+            "debugging",
+            "mcp",
+            "qa",
+            "self-healing",
+            "testing"
+          ],
+          "triggers": [
+            "agent",
+            "debug",
+            "debugging",
+            "failed",
+            "fix",
+            "mcp",
+            "patch",
+            "qa",
+            "runs",
+            "self-healing",
+            "testing",
+            "verify"
+          ]
+        },
+        {
+          "id": "agent-qa-result-triage",
+          "name": "agent-qa-result-triage",
+          "category": "testing",
+          "matchedTokens": [
+            "testing"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "testing",
+          "description": "Triage failed Agent QA runs with MCP evidence, artifacts, logs, fixed failure categories, confidence, and actionable next steps.",
+          "tags": [
+            "debugging",
+            "mcp",
+            "qa",
+            "testing",
+            "triage"
+          ],
+          "triggers": [
+            "agent",
+            "artifacts",
+            "debugging",
+            "evidence",
+            "failed",
+            "logs",
+            "mcp",
+            "qa",
+            "result",
+            "runs",
+            "testing",
+            "triage"
+          ]
+        },
+        {
+          "id": "agentic-test-audit",
+          "name": "agentic-test-audit",
+          "category": "testing",
+          "matchedTokens": [
+            "testing"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "testing",
+          "description": "Audit a pytest suite: surviving mutants and untested code, flaky, order-dependent and slow tests, and removal candidates checked on held-out mutants. Report-only.",
+          "tags": [
+            "flaky-tests",
+            "mutation-testing",
+            "pytest",
+            "python",
+            "test-audit",
+            "testing"
+          ],
+          "triggers": [
+            "agentic",
+            "audit",
+            "flaky-tests",
+            "mutants",
+            "mutation-testing",
+            "pytest",
+            "python",
+            "suite",
+            "surviving",
+            "test",
+            "test-audit",
+            "testing"
+          ]
+        },
+        {
+          "id": "agentic-verify",
+          "name": "agentic-verify",
+          "category": "testing",
+          "matchedTokens": [
+            "testing"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "testing",
+          "description": "Check that a Python change is caught by tests: run every mutant of the changed lines and write tests until they catch them. Reports evidence instead of a diff to read.",
+          "tags": [
+            "mutation-testing",
+            "pytest",
+            "python",
+            "testing",
+            "verification"
+          ],
+          "triggers": [
+            "agentic",
+            "caught",
+            "change",
+            "check",
+            "mutation-testing",
+            "pytest",
+            "python",
+            "run",
+            "testing",
+            "tests",
+            "verification",
+            "verify"
+          ]
+        },
+        {
+          "id": "ai-prompt-regression-testing",
+          "name": "ai-prompt-regression-testing",
+          "category": "engineering",
+          "matchedTokens": [
+            "testing"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "engineering",
+          "description": "Use when comparing prompt changes against a fixed evaluation set: record actual model settings, required checks, missing results, judge limitations and case-level regression evidence.",
+          "tags": [
+            "ai",
+            "benchmarking",
+            "evaluation",
+            "llm",
+            "prompt-engineering",
+            "testing"
+          ],
+          "triggers": [
+            "against",
+            "ai",
+            "benchmarking",
+            "changes",
+            "comparing",
+            "evaluation",
+            "fixed",
+            "llm",
+            "prompt",
+            "prompt-engineering",
+            "regression",
+            "testing"
+          ]
+        },
+        {
+          "id": "airflow-dag-patterns",
+          "name": "airflow-dag-patterns",
+          "category": "workflow",
+          "matchedTokens": [
+            "testing"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "workflow",
+          "description": "Build production Apache Airflow DAGs with best practices for operators, sensors, testing, and deployment. Use when creating data pipelines, orchestrating workflows, or scheduling batch jobs.",
+          "tags": [
+            "airflow",
+            "dag"
+          ],
+          "triggers": [
+            "airflow",
+            "apache",
+            "creating",
+            "dag",
+            "dags",
+            "data",
+            "deployment",
+            "operators",
+            "orchestrating",
+            "pipelines",
+            "sensors",
+            "testing"
+          ]
+        },
+        {
+          "id": "android-ui-journey-testing",
+          "name": "android-ui-journey-testing",
+          "category": "testing",
+          "matchedTokens": [
+            "testing"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "testing",
+          "description": "XML-specified Android UI journey testing, interactive step execution, assertion verification, and JSON outcome reporting.",
+          "tags": [
+            "adb",
+            "android",
+            "automation",
+            "journey-testing",
+            "testing",
+            "ui-verification"
+          ],
+          "triggers": [
+            "adb",
+            "android",
+            "automation",
+            "interactive",
+            "journey",
+            "journey-testing",
+            "specified",
+            "step",
+            "testing",
+            "ui",
+            "ui-verification",
+            "xml"
+          ]
+        },
+        {
+          "id": "android_ui_verification",
+          "name": "android_ui_verification",
+          "category": "test-automation",
+          "matchedTokens": [
+            "testing"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "test-automation",
+          "description": "Automated end-to-end UI testing and verification on an Android Emulator using ADB.",
+          "tags": [
+            "android_ui_verification"
+          ],
+          "triggers": [
+            "adb",
+            "android",
+            "android_ui_verification",
+            "automated",
+            "emulator",
+            "testing",
+            "ui",
+            "verification"
+          ]
+        },
+        {
+          "id": "api-contract-testing",
+          "name": "api-contract-testing",
+          "category": "development",
+          "matchedTokens": [
+            "testing"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "development",
+          "description": "Design and review API contract tests across providers and consumers. Use for schema changes, compatibility regressions and client integration failures.",
+          "tags": [
+            "api",
+            "compatibility",
+            "contracts",
+            "testing"
+          ],
+          "triggers": [
+            "api",
+            "changes",
+            "compatibility",
+            "consumers",
+            "contract",
+            "contracts",
+            "providers",
+            "regressions",
+            "review",
+            "schema",
+            "testing",
+            "tests"
+          ]
+        },
+        {
+          "id": "api-fuzzing-bug-bounty",
+          "name": "api-fuzzing-bug-bounty",
+          "category": "backend",
+          "matchedTokens": [
+            "testing"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "backend",
+          "description": "Provide comprehensive techniques for testing REST, SOAP, and GraphQL APIs during bug bounty hunting and penetration testing engagements. Covers vulnerability discovery, authentication bypass, IDOR exploitation, and API-specific attack vectors.",
+          "tags": [
+            "api",
+            "bounty",
+            "bug",
+            "fuzzing"
+          ],
+          "triggers": [
+            "api",
+            "apis",
+            "bounty",
+            "bug",
+            "during",
+            "fuzzing",
+            "graphql",
+            "provide",
+            "rest",
+            "soap",
+            "techniques",
+            "testing"
+          ]
+        },
+        {
+          "id": "api-security",
+          "name": "api-security",
+          "category": "backend",
+          "matchedTokens": [
+            "testing"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "backend",
+          "description": "Authorized security assessment of REST, GraphQL, WebSocket, and SOAP APIs: discovery, authentication and authorization flaws (BOLA/IDOR, JWT/OAuth), rate-limit testing, and a structured multi-phase methodology.",
+          "tags": [
+            "api",
+            "security"
+          ],
+          "triggers": [
+            "api",
+            "apis",
+            "assessment",
+            "authentication",
+            "authorization",
+            "authorized",
+            "discovery",
+            "graphql",
+            "rest",
+            "security",
+            "soap",
+            "websocket"
+          ]
+        }
+      ]
+    },
+    {
+      "query": "security",
+      "ok": true,
+      "status": "complete",
+      "protocolVersion": "2025-06-18",
+      "coreVersion": "2.0.0",
+      "catalogSchemaVersion": "2.0.0",
+      "catalogDigest": "sha256-1f225febafbc8cb43666ed20ce23768b4576cf8bb7c545992e09945e69e67382",
+      "catalog": {
+        "package": "agentic-awesome-skills",
+        "version": "19.11.0",
+        "digest": "sha256-1f225febafbc8cb43666ed20ce23768b4576cf8bb7c545992e09945e69e67382"
+      },
+      "queryTokens": [
+        "security"
+      ],
+      "matchMode": "any",
+      "requiredTerms": [],
+      "filters": {
+        "categories": [],
+        "tags": []
+      },
+      "totalMatches": 346,
+      "cursor": 0,
+      "nextCursor": 15,
+      "resultCount": 15,
+      "results": [
+        {
+          "id": "007",
+          "name": "007",
+          "category": "security",
+          "matchedTokens": [
+            "security"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "security",
+          "description": "Security audit, hardening, threat modeling (STRIDE/PASTA), Red/Blue Team, OWASP checks, code review, incident response, and infrastructure security for any project.",
+          "tags": [
+            "audit",
+            "hardening",
+            "owasp",
+            "pentest",
+            "security",
+            "threat-modeling"
+          ],
+          "triggers": [
+            "007",
+            "audit",
+            "hardening",
+            "modeling",
+            "owasp",
+            "pasta",
+            "pentest",
+            "red",
+            "security",
+            "stride",
+            "threat",
+            "threat-modeling"
+          ]
+        },
+        {
+          "id": "access-review",
+          "name": "access-review",
+          "category": "security",
+          "matchedTokens": [
+            "security"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "security",
+          "description": "Conduct periodic access reviews and certifications. Implement access governance and recertification workflows. Use when managing access compliance.",
+          "tags": [
+            "access"
+          ],
+          "triggers": [
+            "access",
+            "certifications",
+            "compliance",
+            "conduct",
+            "governance",
+            "managing",
+            "periodic",
+            "recertification",
+            "review",
+            "reviews"
+          ]
+        },
+        {
+          "id": "active-directory-attacks",
+          "name": "active-directory-attacks",
+          "category": "security",
+          "matchedTokens": [
+            "security"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "security",
+          "description": "Provide comprehensive techniques for attacking Microsoft Active Directory environments. Covers reconnaissance, credential harvesting, Kerberos attacks, lateral movement, privilege escalation, and domain dominance for red team operations and penetration testing.",
+          "tags": [
+            "active",
+            "attacks",
+            "directory"
+          ],
+          "triggers": [
+            "active",
+            "attacking",
+            "attacks",
+            "covers",
+            "credential",
+            "directory",
+            "environments",
+            "harvesting",
+            "microsoft",
+            "provide",
+            "reconnaissance",
+            "techniques"
+          ]
+        },
+        {
+          "id": "agentic-actions-auditor",
+          "name": "agentic-actions-auditor",
+          "category": "ai-ml",
+          "matchedTokens": [
+            "security"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "ai-ml",
+          "description": "Audits GitHub Actions workflows for security vulnerabilities in AI agent integrations including Claude Code Action, Gemini CLI, OpenAI Codex, and GitHub AI  Inference. Detects attack vectors where attacker-controlled  input reaches AI agents running in CI/CD pipelines.",
+          "tags": [
+            "actions",
+            "agentic",
+            "auditor"
+          ],
+          "triggers": [
+            "actions",
+            "agent",
+            "agentic",
+            "ai",
+            "auditor",
+            "audits",
+            "claude",
+            "github",
+            "including",
+            "integrations",
+            "security",
+            "vulnerabilities"
+          ]
+        },
+        {
+          "id": "agy-auto",
+          "name": "agy-auto",
+          "category": "security",
+          "matchedTokens": [
+            "security"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "security",
+          "description": "Configure agy-auto PreToolUse security gate to run Antigravity CLI (agy) unattended with layered policy controls instead of --dangerously-skip-permissions.",
+          "tags": [
+            "agy",
+            "antigravity",
+            "cli",
+            "guardrails",
+            "permissions",
+            "sandboxing",
+            "security"
+          ],
+          "triggers": [
+            "agy",
+            "antigravity",
+            "auto",
+            "cli",
+            "configure",
+            "gate",
+            "guardrails",
+            "permissions",
+            "pretooluse",
+            "run",
+            "sandboxing",
+            "security"
+          ]
+        },
+        {
+          "id": "ai-agent-security",
+          "name": "ai-agent-security",
+          "category": "security",
+          "matchedTokens": [
+            "security"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "security",
+          "description": "Secure AI agents against prompt injection, tool abuse, and data exfiltration with defense-in-depth controls.",
+          "tags": [
+            "agent",
+            "ai",
+            "security"
+          ],
+          "triggers": [
+            "abuse",
+            "against",
+            "agent",
+            "agents",
+            "ai",
+            "data",
+            "defense",
+            "exfiltration",
+            "injection",
+            "prompt",
+            "secure",
+            "security"
+          ]
+        },
+        {
+          "id": "ai-code-generation-guardrails",
+          "name": "ai-code-generation-guardrails",
+          "category": "engineering",
+          "matchedTokens": [
+            "security"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "engineering",
+          "description": "Use when reviewing AI-generated code before merge or execution: plan AST/security checks, isolated behavior tests and evidence, with language-specific coverage limits.",
+          "tags": [
+            "ai",
+            "ast",
+            "code-quality",
+            "devsecops",
+            "guardrails",
+            "security"
+          ],
+          "triggers": [
+            "ai",
+            "ast",
+            "before",
+            "code",
+            "code-quality",
+            "devsecops",
+            "generated",
+            "generation",
+            "guardrails",
+            "merge",
+            "reviewing",
+            "security"
+          ]
+        },
+        {
+          "id": "ai-coding-agent-guardrails",
+          "name": "ai-coding-agent-guardrails",
+          "category": "security",
+          "matchedTokens": [
+            "security"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "security",
+          "description": "Secure AI coding agents (Claude Code, Cursor, Codex, Copilot) with permission boundaries, secret protection, code review gates, and safe sandbox configurations for team environments.",
+          "tags": [
+            "agent",
+            "ai",
+            "coding",
+            "guardrails"
+          ],
+          "triggers": [
+            "agent",
+            "agents",
+            "ai",
+            "claude",
+            "code",
+            "codex",
+            "coding",
+            "copilot",
+            "cursor",
+            "guardrails",
+            "permission",
+            "secure"
+          ]
+        },
+        {
+          "id": "ai-engineering-toolkit",
+          "name": "ai-engineering-toolkit",
+          "category": "data-ai",
+          "matchedTokens": [
+            "security"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "data-ai",
+          "description": "Overview of six AI engineering workflows: prompt evaluation (8-dimension scoring), context budget planning, RAG pipeline design, agent security audit (65-point checklist), eval harness building, and product sense coaching.",
+          "tags": [
+            "ai-engineering",
+            "evaluation",
+            "llm",
+            "prompt-engineering",
+            "rag",
+            "security"
+          ],
+          "triggers": [
+            "ai",
+            "ai-engineering",
+            "engineering",
+            "evaluation",
+            "llm",
+            "overview",
+            "prompt",
+            "prompt-engineering",
+            "rag",
+            "security",
+            "six",
+            "toolkit"
+          ]
+        },
+        {
+          "id": "ai-red-teaming",
+          "name": "ai-red-teaming",
+          "category": "security",
+          "matchedTokens": [
+            "security"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "security",
+          "description": "Run structured AI red team exercises for jailbreak resistance, data exfiltration risk, harmful output controls, and agent tool abuse resilience.",
+          "tags": [
+            "ai",
+            "red",
+            "teaming"
+          ],
+          "triggers": [
+            "ai",
+            "data",
+            "exercises",
+            "exfiltration",
+            "jailbreak",
+            "red",
+            "resistance",
+            "risk",
+            "run",
+            "structured",
+            "team",
+            "teaming"
+          ]
+        },
+        {
+          "id": "ai-security-hardening",
+          "name": "ai-security-hardening",
+          "category": "security",
+          "matchedTokens": [
+            "security"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "security",
+          "description": "Harden AI/LLM deployments against prompt injection, data exfiltration, model theft, and supply chain attacks.",
+          "tags": [
+            "ai",
+            "hardening",
+            "security"
+          ],
+          "triggers": [
+            "against",
+            "ai",
+            "data",
+            "deployments",
+            "exfiltration",
+            "harden",
+            "hardening",
+            "injection",
+            "llm",
+            "model",
+            "prompt",
+            "security"
+          ]
+        },
+        {
+          "id": "akf-trust-metadata",
+          "name": "akf-trust-metadata",
+          "category": "security",
+          "matchedTokens": [
+            "security"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "security",
+          "description": "The AI native file format. EXIF for AI — stamps every file with trust scores, source provenance, and compliance metadata. Embeds into 20+ formats (DOCX, PDF, images, code). EU AI Act, SOX, HIPAA auditing.",
+          "tags": [
+            "ai-native",
+            "compliance",
+            "file-format",
+            "metadata",
+            "provenance",
+            "trust"
+          ],
+          "triggers": [
+            "ai",
+            "ai-native",
+            "akf",
+            "compliance",
+            "exif",
+            "file",
+            "file-format",
+            "format",
+            "metadata",
+            "native",
+            "provenance",
+            "trust"
+          ]
+        },
+        {
+          "id": "anti-reversing-techniques",
+          "name": "anti-reversing-techniques",
+          "category": "security",
+          "matchedTokens": [
+            "security"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "security",
+          "description": "Analyze anti-debugging, obfuscation, and anti-tamper techniques during authorized binary analysis and reverse engineering.",
+          "tags": [
+            "anti",
+            "reversing",
+            "techniques"
+          ],
+          "triggers": [
+            "analysis",
+            "analyze",
+            "anti",
+            "authorized",
+            "binary",
+            "debugging",
+            "during",
+            "obfuscation",
+            "reverse",
+            "reversing",
+            "tamper",
+            "techniques"
+          ]
+        },
+        {
+          "id": "antigravity-workflows",
+          "name": "antigravity-workflows",
+          "category": "workflow",
+          "matchedTokens": [
+            "security"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "workflow",
+          "description": "Use when asked to ship a SaaS MVP, audit application security, build an AI agent, run browser QA, or design a domain model with multiple skills and verified checkpoints.",
+          "tags": [
+            "antigravity"
+          ],
+          "triggers": [
+            "agent",
+            "ai",
+            "antigravity",
+            "application",
+            "asked",
+            "audit",
+            "browser",
+            "mvp",
+            "run",
+            "saas",
+            "security",
+            "ship"
+          ]
+        },
+        {
+          "id": "api-endpoint-builder",
+          "name": "api-endpoint-builder",
+          "category": "development",
+          "matchedTokens": [
+            "security"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "development",
+          "description": "Builds production-ready REST API endpoints with validation, error handling, authentication, and documentation. Follows best practices for security and scalability.",
+          "tags": [
+            "api",
+            "builder",
+            "endpoint"
+          ],
+          "triggers": [
+            "api",
+            "authentication",
+            "builder",
+            "documentation",
+            "endpoint",
+            "endpoints",
+            "error",
+            "follows",
+            "handling",
+            "rest",
+            "security",
+            "validation"
+          ]
+        }
+      ]
+    },
+    {
+      "query": "accessibility",
+      "ok": true,
+      "status": "complete",
+      "protocolVersion": "2025-06-18",
+      "coreVersion": "2.0.0",
+      "catalogSchemaVersion": "2.0.0",
+      "catalogDigest": "sha256-1f225febafbc8cb43666ed20ce23768b4576cf8bb7c545992e09945e69e67382",
+      "catalog": {
+        "package": "agentic-awesome-skills",
+        "version": "19.11.0",
+        "digest": "sha256-1f225febafbc8cb43666ed20ce23768b4576cf8bb7c545992e09945e69e67382"
+      },
+      "queryTokens": [
+        "accessibility"
+      ],
+      "matchMode": "any",
+      "requiredTerms": [],
+      "filters": {
+        "categories": [],
+        "tags": []
+      },
+      "totalMatches": 28,
+      "cursor": 0,
+      "nextCursor": 15,
+      "resultCount": 15,
+      "results": [
+        {
+          "id": "accessibility-compliance-accessibility-audit",
+          "name": "accessibility-compliance-accessibility-audit",
+          "category": "design",
+          "matchedTokens": [
+            "accessibility"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "id-prefix",
+          "categoryFacet": "design",
+          "description": "Audit pages and user journeys against a declared WCAG scope. Use when identifying keyboard, screen-reader, focus or contrast barriers and planning verified remediation.",
+          "tags": [
+            "accessibility",
+            "audit",
+            "compliance"
+          ],
+          "triggers": [
+            "accessibility",
+            "against",
+            "audit",
+            "compliance",
+            "declared",
+            "identifying",
+            "journeys",
+            "keyboard",
+            "pages",
+            "scope",
+            "user",
+            "wcag"
+          ]
+        },
+        {
+          "id": "accesslint-audit",
+          "name": "accesslint-audit",
+          "category": "web-development",
+          "matchedTokens": [
+            "accessibility"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "web-development",
+          "description": "Find and fix WCAG 2.2 accessibility issues. Two modes — report (sweep a codebase or page, produce a prioritized written report, no edits) and fix (audit→edit→verify loop on a target). Prefers direct-CDP live-DOM auditing; falls back to a browser-MCP composition or HTML-string audits.",
+          "tags": [
+            "accesslint",
+            "audit"
+          ],
+          "triggers": [
+            "accessibility",
+            "accesslint",
+            "audit",
+            "codebase",
+            "find",
+            "fix",
+            "issues",
+            "modes",
+            "report",
+            "sweep",
+            "two",
+            "wcag"
+          ]
+        },
+        {
+          "id": "accesslint-diff",
+          "name": "accesslint-diff",
+          "category": "design",
+          "matchedTokens": [
+            "accessibility"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "design",
+          "description": "Diff a live page's accessibility violations against a baseline — by default compares uncommitted changes (stash-based), or pass --branch [<name>] to diff against a branch. Reports only new violations introduced, violations fixed, and pre-existing count. Use `scan` for a full audit with no diffing.",
+          "tags": [
+            "accesslint",
+            "diff"
+          ],
+          "triggers": [
+            "accessibility",
+            "accesslint",
+            "against",
+            "baseline",
+            "changes",
+            "compares",
+            "default",
+            "diff",
+            "live",
+            "page",
+            "uncommitted",
+            "violations"
+          ]
+        },
+        {
+          "id": "accesslint-scan",
+          "name": "accesslint-scan",
+          "category": "design",
+          "matchedTokens": [
+            "accessibility"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "design",
+          "description": "Audit a live page for accessibility issues, locate each WCAG violation precisely, and return a selector-grounded fix worklist without editing.",
+          "tags": [
+            "accesslint",
+            "scan"
+          ],
+          "triggers": [
+            "accessibility",
+            "accesslint",
+            "audit",
+            "each",
+            "issues",
+            "live",
+            "locate",
+            "page",
+            "precisely",
+            "scan",
+            "violation",
+            "wcag"
+          ]
+        },
+        {
+          "id": "browser-testing-with-devtools",
+          "name": "browser-testing-with-devtools",
+          "category": "testing",
+          "matchedTokens": [
+            "accessibility"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "testing",
+          "description": "Test browser apps with Chrome DevTools MCP by inspecting live DOM, console logs, network traffic, screenshots, accessibility, and performance traces.",
+          "tags": [
+            "browser-testing",
+            "chrome-devtools",
+            "frontend",
+            "mcp",
+            "performance"
+          ],
+          "triggers": [
+            "apps",
+            "browser",
+            "browser-testing",
+            "chrome",
+            "chrome-devtools",
+            "devtools",
+            "frontend",
+            "inspecting",
+            "mcp",
+            "performance",
+            "test",
+            "testing"
+          ]
+        },
+        {
+          "id": "business-email-template",
+          "name": "business-email-template",
+          "category": "business",
+          "matchedTokens": [
+            "accessibility"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "business",
+          "description": "Business email template register: trigger, sender and recipient type, subject pattern, body structure, personalisation tokens and send checks. Use for repeatable outbound email.",
+          "tags": [
+            "accessibility",
+            "csv",
+            "deliverability",
+            "dkim",
+            "dmarc",
+            "email",
+            "mjml",
+            "notion",
+            "plain-text",
+            "sme",
+            "spam",
+            "spf",
+            "sql",
+            "templates"
+          ],
+          "triggers": [
+            "accessibility",
+            "csv",
+            "deliverability",
+            "dkim",
+            "dmarc",
+            "email",
+            "mjml",
+            "plain-text",
+            "sme",
+            "spam",
+            "spf",
+            "templates"
+          ]
+        },
+        {
+          "id": "constraint-driven-development",
+          "name": "constraint-driven-development",
+          "category": "code-quality",
+          "matchedTokens": [
+            "accessibility"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "code-quality",
+          "description": "Write the project quality bar as enforced CONSTRAINTS.md so agents stop quietly lowering it: coverage, performance, accessibility thresholds watched on every diff.",
+          "tags": [
+            "constraint",
+            "driven"
+          ],
+          "triggers": [
+            "agents",
+            "bar",
+            "constraint",
+            "constraints",
+            "development",
+            "driven",
+            "enforced",
+            "md",
+            "quality",
+            "so",
+            "stop",
+            "write"
+          ]
+        },
+        {
+          "id": "design-theme-guide",
+          "name": "design-theme-guide",
+          "category": "business",
+          "matchedTokens": [
+            "accessibility"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "business",
+          "description": "Design-token register: colour, typography, spacing and radius tokens with light and dark values, contrast ratio and WCAG level. Use for design system documentation.",
+          "tags": [
+            "accessibility",
+            "brand",
+            "colour",
+            "contrast",
+            "css",
+            "csv",
+            "design-system",
+            "design-tokens",
+            "notion",
+            "sme",
+            "spacing",
+            "sql",
+            "theme",
+            "typography",
+            "wcag"
+          ],
+          "triggers": [
+            "accessibility",
+            "brand",
+            "colour",
+            "contrast",
+            "css",
+            "design-system",
+            "design-tokens",
+            "sme",
+            "spacing",
+            "theme",
+            "typography",
+            "wcag"
+          ]
+        },
+        {
+          "id": "fixing-accessibility",
+          "name": "fixing-accessibility",
+          "category": "front-end",
+          "matchedTokens": [
+            "accessibility"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "frontend",
+          "description": "Audit and fix HTML accessibility issues including ARIA labels, keyboard navigation, focus management, color contrast, and form errors. Use when adding interactive controls, forms, dialogs, or reviewing WCAG compliance.",
+          "tags": [
+            "accessibility",
+            "fixing"
+          ],
+          "triggers": [
+            "accessibility",
+            "aria",
+            "audit",
+            "color",
+            "fix",
+            "fixing",
+            "html",
+            "including",
+            "issues",
+            "keyboard",
+            "labels",
+            "navigation"
+          ]
+        },
+        {
+          "id": "free-design-resources",
+          "name": "free-design-resources",
+          "category": "design",
+          "matchedTokens": [
+            "accessibility"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "design",
+          "description": "Design resource register: resource and provider, licence type, commercial-use and attribution rules, export format, lock-in risk, free tier limit and accessibility notes. Use for tool vetting.",
+          "tags": [
+            "accessibility",
+            "cost",
+            "csv",
+            "design-tools",
+            "fonts",
+            "free-licences",
+            "icons",
+            "images",
+            "notion",
+            "sme",
+            "sql",
+            "templates"
+          ],
+          "triggers": [
+            "accessibility",
+            "cost",
+            "csv",
+            "design-tools",
+            "fonts",
+            "free-licences",
+            "icons",
+            "images",
+            "notion",
+            "sme",
+            "sql",
+            "templates"
+          ]
+        },
+        {
+          "id": "frontend-design",
+          "name": "frontend-design",
+          "category": "front-end",
+          "matchedTokens": [
+            "accessibility"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "frontend",
+          "description": "Design and implement a distinctive frontend within the product’s existing brand, accessibility, performance and framework constraints.",
+          "tags": [
+            "frontend"
+          ],
+          "triggers": [
+            "accessibility",
+            "brand",
+            "constraints",
+            "distinctive",
+            "existing",
+            "framework",
+            "frontend",
+            "performance",
+            "product",
+            "within"
+          ]
+        },
+        {
+          "id": "frontend-mobile-development-component-scaffold",
+          "name": "frontend-mobile-development-component-scaffold",
+          "category": "app-builder",
+          "matchedTokens": [
+            "accessibility"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "app-builder",
+          "description": "Scaffold React and React Native components with TypeScript, accessibility, tests, styles, and documentation.",
+          "tags": [
+            "component",
+            "frontend",
+            "mobile"
+          ],
+          "triggers": [
+            "accessibility",
+            "component",
+            "components",
+            "development",
+            "frontend",
+            "mobile",
+            "native",
+            "react",
+            "scaffold",
+            "styles",
+            "tests",
+            "typescript"
+          ]
+        },
+        {
+          "id": "high-contrast",
+          "name": "high-contrast",
+          "category": "design-it",
+          "matchedTokens": [
+            "accessibility"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "design-it",
+          "description": "Web and App implementation guide for High Contrast Design. Trigger when user wants accessibility-focused design, extreme legibility, or stark visual impact.",
+          "tags": [
+            "contrast",
+            "it/high"
+          ],
+          "triggers": [
+            "accessibility",
+            "app",
+            "contrast",
+            "extreme",
+            "high",
+            "it/high",
+            "legibility",
+            "stark",
+            "trigger",
+            "user",
+            "wants",
+            "web"
+          ]
+        },
+        {
+          "id": "liuguang-banlan-ui",
+          "name": "liuguang-banlan-ui",
+          "category": "creative",
+          "matchedTokens": [
+            "accessibility"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "creative",
+          "description": "Builds two parameterized UI modes—流光溢彩白 (iridescent white) and 五彩斑斓黑 (colorful black)—with OKLCH, WebGL/CSS fallback, vision gating, screenshot QA, and total/per-color intensity reports. Use when a UI request names either mode or needs measured color parameters.",
+          "tags": [
+            "accessibility",
+            "frontend",
+            "oklch",
+            "ui",
+            "webgl"
+          ],
+          "triggers": [
+            "accessibility",
+            "banlan",
+            "frontend",
+            "iridescent",
+            "liuguang",
+            "modes",
+            "oklch",
+            "parameterized",
+            "two",
+            "ui",
+            "webgl",
+            "white"
+          ]
+        },
+        {
+          "id": "pagespeed-enhancer",
+          "name": "pagespeed-enhancer",
+          "category": "web-development",
+          "matchedTokens": [
+            "accessibility"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "web-development",
+          "description": "Scan, audit, and fix web performance issues across all four Lighthouse/PageSpeed Insights pillars — Performance, Accessibility, Best Practices, and SEO — in structured batches.",
+          "tags": [
+            "enhancer",
+            "pagespeed"
+          ],
+          "triggers": [
+            "all",
+            "audit",
+            "enhancer",
+            "fix",
+            "four",
+            "insights",
+            "issues",
+            "lighthouse",
+            "pagespeed",
+            "performance",
+            "scan",
+            "web"
+          ]
+        }
+      ]
+    },
+    {
+      "query": "deployment",
+      "ok": true,
+      "status": "complete",
+      "protocolVersion": "2025-06-18",
+      "coreVersion": "2.0.0",
+      "catalogSchemaVersion": "2.0.0",
+      "catalogDigest": "sha256-1f225febafbc8cb43666ed20ce23768b4576cf8bb7c545992e09945e69e67382",
+      "catalog": {
+        "package": "agentic-awesome-skills",
+        "version": "19.11.0",
+        "digest": "sha256-1f225febafbc8cb43666ed20ce23768b4576cf8bb7c545992e09945e69e67382"
+      },
+      "queryTokens": [
+        "deployment"
+      ],
+      "matchMode": "any",
+      "requiredTerms": [],
+      "filters": {
+        "categories": [],
+        "tags": []
+      },
+      "totalMatches": 48,
+      "cursor": 0,
+      "nextCursor": 15,
+      "resultCount": 15,
+      "results": [
+        {
+          "id": "acceptance-orchestrator",
+          "name": "acceptance-orchestrator",
+          "category": "workflow",
+          "matchedTokens": [
+            "deployment"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "workflow",
+          "description": "Use when a coding task should be driven end-to-end from issue intake through implementation, review, deployment, and acceptance verification with minimal human re-intervention.",
+          "tags": [
+            "acceptance",
+            "orchestrator"
+          ],
+          "triggers": [
+            "acceptance",
+            "coding",
+            "deployment",
+            "driven",
+            "intake",
+            "issue",
+            "orchestrator",
+            "review",
+            "should",
+            "task",
+            "through",
+            "verification"
+          ]
+        },
+        {
+          "id": "airflow-dag-patterns",
+          "name": "airflow-dag-patterns",
+          "category": "workflow",
+          "matchedTokens": [
+            "deployment"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "workflow",
+          "description": "Build production Apache Airflow DAGs with best practices for operators, sensors, testing, and deployment. Use when creating data pipelines, orchestrating workflows, or scheduling batch jobs.",
+          "tags": [
+            "airflow",
+            "dag"
+          ],
+          "triggers": [
+            "airflow",
+            "apache",
+            "creating",
+            "dag",
+            "dags",
+            "data",
+            "deployment",
+            "operators",
+            "orchestrating",
+            "pipelines",
+            "sensors",
+            "testing"
+          ]
+        },
+        {
+          "id": "android-cli",
+          "name": "android-cli",
+          "category": "tools",
+          "matchedTokens": [
+            "deployment"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "tools",
+          "description": "Orchestrates Android development tasks including project creation, deployment, SDK management, and environment diagnostics using the `android` command-line tool.",
+          "tags": [
+            "adb",
+            "android",
+            "build",
+            "cli",
+            "emulator",
+            "mobile"
+          ],
+          "triggers": [
+            "adb",
+            "android",
+            "build",
+            "cli",
+            "creation",
+            "deployment",
+            "development",
+            "emulator",
+            "including",
+            "mobile",
+            "orchestrates",
+            "tasks"
+          ]
+        },
+        {
+          "id": "audit-agent-run-evidence",
+          "name": "audit-agent-run-evidence",
+          "category": "code-quality",
+          "matchedTokens": [
+            "deployment"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "code-quality",
+          "description": "Use when an agent, harness, gateway, MCP workflow, or multi-step automation claims completion and the available traces, checkpoints, approvals, tool calls, or deployment records must be judged without trusting self-reported success.",
+          "tags": [
+            "agent",
+            "audit",
+            "evidence",
+            "run"
+          ],
+          "triggers": [
+            "agent",
+            "audit",
+            "automation",
+            "claims",
+            "completion",
+            "evidence",
+            "gateway",
+            "harness",
+            "mcp",
+            "multi",
+            "run",
+            "step"
+          ]
+        },
+        {
+          "id": "aws-serverless",
+          "name": "aws-serverless",
+          "category": "cloud",
+          "matchedTokens": [
+            "deployment"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "cloud",
+          "description": "Specialized skill for building production-ready serverless applications on AWS. Covers Lambda functions, API Gateway, DynamoDB, SQS/SNS event-driven patterns, SAM/CDK deployment, and cold start optimization.",
+          "tags": [
+            "aws",
+            "serverless"
+          ],
+          "triggers": [
+            "api",
+            "applications",
+            "aws",
+            "building",
+            "covers",
+            "dynamodb",
+            "functions",
+            "gateway",
+            "lambda",
+            "serverless",
+            "skill",
+            "specialized"
+          ]
+        },
+        {
+          "id": "azd-deployment",
+          "name": "azd-deployment",
+          "category": "cloud",
+          "matchedTokens": [
+            "deployment"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "cloud",
+          "description": "Prepare and verify authorized Azure Container Apps deployments with azd. Use for azure.yaml, Bicep, remote builds, managed identity and post-deploy checks.",
+          "tags": [
+            "azd",
+            "deployment"
+          ],
+          "triggers": [
+            "apps",
+            "authorized",
+            "azd",
+            "azure",
+            "bicep",
+            "container",
+            "deployment",
+            "deployments",
+            "prepare",
+            "remote",
+            "verify",
+            "yaml"
+          ]
+        },
+        {
+          "id": "azure-functions-devsec",
+          "name": "azure-functions-devsec",
+          "category": "devops",
+          "matchedTokens": [
+            "deployment"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "devops",
+          "description": "Build serverless applications on Azure Functions. Configure triggers, bindings, and deployment. Use when implementing serverless workloads on Azure.",
+          "tags": [
+            "azure",
+            "devsec",
+            "functions"
+          ],
+          "triggers": [
+            "applications",
+            "azure",
+            "bindings",
+            "configure",
+            "deployment",
+            "devsec",
+            "functions",
+            "implementing",
+            "serverless",
+            "triggers",
+            "workloads"
+          ]
+        },
+        {
+          "id": "backend-development-feature-development",
+          "name": "backend-development-feature-development",
+          "category": "backend",
+          "matchedTokens": [
+            "deployment"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "backend",
+          "description": "Orchestrate end-to-end backend feature development from requirements to deployment. Use when coordinating multi-phase feature delivery across teams and services.",
+          "tags": [
+            "backend"
+          ],
+          "triggers": [
+            "backend",
+            "coordinating",
+            "delivery",
+            "deployment",
+            "development",
+            "feature",
+            "multi",
+            "orchestrate",
+            "phase",
+            "requirements",
+            "teams"
+          ]
+        },
+        {
+          "id": "blue-green-deploy",
+          "name": "blue-green-deploy",
+          "category": "devops",
+          "matchedTokens": [
+            "deployment"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "devops",
+          "description": "Configure zero-downtime deployment strategies including blue-green, canary, and rolling deployments.",
+          "tags": [
+            "blue",
+            "deploy",
+            "green"
+          ],
+          "triggers": [
+            "blue",
+            "canary",
+            "configure",
+            "deploy",
+            "deployment",
+            "deployments",
+            "downtime",
+            "green",
+            "including",
+            "rolling",
+            "zero"
+          ]
+        },
+        {
+          "id": "ci-cd-and-automation",
+          "name": "ci-cd-and-automation",
+          "category": "devops",
+          "matchedTokens": [
+            "deployment"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "devops",
+          "description": "Automates CI/CD pipeline setup. Use when setting up or modifying build and deployment pipelines. Use when you need to automate quality gates, configure test runners in CI, or establish deployment strategies.",
+          "tags": [
+            "and",
+            "cd",
+            "ci"
+          ],
+          "triggers": [
+            "and",
+            "automates",
+            "automation",
+            "cd",
+            "ci",
+            "deployment",
+            "modifying",
+            "pipeline",
+            "pipelines",
+            "setting",
+            "setup",
+            "up"
+          ]
+        },
+        {
+          "id": "circleci",
+          "name": "circleci",
+          "category": "devops",
+          "matchedTokens": [
+            "deployment"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "devops",
+          "description": "Configure CircleCI workflows and orbs for continuous integration and deployment.",
+          "tags": [
+            "circleci"
+          ],
+          "triggers": [
+            "circleci",
+            "configure",
+            "continuous",
+            "deployment",
+            "integration",
+            "orbs"
+          ]
+        },
+        {
+          "id": "closed-loop-delivery",
+          "name": "closed-loop-delivery",
+          "category": "workflow",
+          "matchedTokens": [
+            "deployment"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "workflow",
+          "description": "Use when a coding task must be completed against explicit acceptance criteria with minimal user re-intervention across implementation, review feedback, deployment, and runtime verification.",
+          "tags": [
+            "closed",
+            "delivery",
+            "loop"
+          ],
+          "triggers": [
+            "acceptance",
+            "against",
+            "closed",
+            "coding",
+            "completed",
+            "criteria",
+            "delivery",
+            "explicit",
+            "loop",
+            "minimal",
+            "must",
+            "task"
+          ]
+        },
+        {
+          "id": "convex",
+          "name": "convex",
+          "category": "framework",
+          "matchedTokens": [
+            "deployment"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "framework",
+          "description": "Convex reactive backend expert: schema design, TypeScript functions, real-time subscriptions, auth, file storage, scheduling, and deployment.",
+          "tags": [
+            "convex"
+          ],
+          "triggers": [
+            "auth",
+            "backend",
+            "convex",
+            "file",
+            "functions",
+            "reactive",
+            "real",
+            "schema",
+            "storage",
+            "subscriptions",
+            "time",
+            "typescript"
+          ]
+        },
+        {
+          "id": "convex-backend",
+          "name": "convex-backend",
+          "category": "devops",
+          "matchedTokens": [
+            "deployment"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "devops",
+          "description": "Build reactive backends with Convex functions, schema validation, auth integration, and deployment workflows. Use when building real-time apps with type-safe server functions and automatic caching.",
+          "tags": [
+            "backend",
+            "convex"
+          ],
+          "triggers": [
+            "auth",
+            "backend",
+            "backends",
+            "building",
+            "convex",
+            "deployment",
+            "functions",
+            "integration",
+            "reactive",
+            "real",
+            "schema",
+            "validation"
+          ]
+        },
+        {
+          "id": "dep",
+          "name": "dep",
+          "category": "agent-squad",
+          "matchedTokens": [
+            "deployment"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "agent-squad",
+          "description": "Handles containerization, CI/CD pipelines, and deployment setup.",
+          "tags": [
+            "agent",
+            "squad/dep"
+          ],
+          "triggers": [
+            "agent",
+            "cd",
+            "ci",
+            "containerization",
+            "dep",
+            "deployment",
+            "pipelines",
+            "setup",
+            "squad/dep"
+          ]
+        }
+      ]
+    },
+    {
+      "query": "maintenance",
+      "ok": true,
+      "status": "complete",
+      "protocolVersion": "2025-06-18",
+      "coreVersion": "2.0.0",
+      "catalogSchemaVersion": "2.0.0",
+      "catalogDigest": "sha256-1f225febafbc8cb43666ed20ce23768b4576cf8bb7c545992e09945e69e67382",
+      "catalog": {
+        "package": "agentic-awesome-skills",
+        "version": "19.11.0",
+        "digest": "sha256-1f225febafbc8cb43666ed20ce23768b4576cf8bb7c545992e09945e69e67382"
+      },
+      "queryTokens": [
+        "maintenance"
+      ],
+      "matchMode": "any",
+      "requiredTerms": [],
+      "filters": {
+        "categories": [],
+        "tags": []
+      },
+      "totalMatches": 4,
+      "cursor": 0,
+      "nextCursor": null,
+      "resultCount": 4,
+      "results": [
+        {
+          "id": "antigravity-maintainer-batch-release",
+          "name": "antigravity-maintainer-batch-release",
+          "category": "devops",
+          "matchedTokens": [
+            "maintenance"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "devops",
+          "description": "Run protected AAS maintainer sweeps, PR merge batches, resumable review, immutable distribution, Core checks, and scripted releases. Use for repository maintenance, main alignment, CLI/MCP/Workbench changes, or release work; not ordinary contribution tasks.",
+          "tags": [
+            "antigravity",
+            "batch",
+            "maintainer",
+            "release"
+          ],
+          "triggers": [
+            "aas",
+            "antigravity",
+            "batch",
+            "batches",
+            "maintainer",
+            "merge",
+            "pr",
+            "protected",
+            "release",
+            "resumable",
+            "run",
+            "sweeps"
+          ]
+        },
+        {
+          "id": "brooks-harness",
+          "name": "brooks-harness",
+          "category": "code-quality",
+          "matchedTokens": [
+            "maintenance"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "code-quality",
+          "description": "Maintenance orchestrator for the brooks-lint plugin itself.",
+          "tags": [
+            "brooks",
+            "harness"
+          ],
+          "triggers": [
+            "brooks",
+            "harness",
+            "itself",
+            "lint",
+            "maintenance",
+            "orchestrator",
+            "plugin"
+          ]
+        },
+        {
+          "id": "brooks-test",
+          "name": "brooks-test",
+          "category": "testing",
+          "matchedTokens": [
+            "maintenance"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "testing",
+          "description": "Review test-suite quality using established testing literature; identify brittleness, mock abuse, unclear fixtures, weak assertions, slow feedback, and maintenance risks.",
+          "tags": [
+            "brooks"
+          ],
+          "triggers": [
+            "abuse",
+            "brittleness",
+            "brooks",
+            "established",
+            "identify",
+            "literature",
+            "mock",
+            "quality",
+            "review",
+            "suite",
+            "test",
+            "testing"
+          ]
+        },
+        {
+          "id": "repo-maintainer",
+          "name": "repo-maintainer",
+          "category": "workflow",
+          "matchedTokens": [
+            "maintenance"
+          ],
+          "matchedRequiredTerms": [],
+          "matchReason": "tokens",
+          "categoryFacet": "workflow",
+          "description": "Audit and repair repository hygiene across artifacts, dependencies, CI, docs, Git state, and code-quality signals. Use for repository maintenance, cleanup, health checks, or pre-release hardening.",
+          "tags": [
+            "maintainer",
+            "repo"
+          ],
+          "triggers": [
+            "artifacts",
+            "audit",
+            "ci",
+            "dependencies",
+            "docs",
+            "git",
+            "hygiene",
+            "maintainer",
+            "repair",
+            "repo",
+            "repository",
+            "state"
+          ]
+        }
+      ]
+    }
+  ],
+  "candidates": [
+    {
+      "id": "architecture",
+      "search": {
+        "ok": true,
+        "status": "complete",
+        "protocolVersion": "2025-06-18",
+        "coreVersion": "2.0.0",
+        "catalogSchemaVersion": "2.0.0",
+        "catalogDigest": "sha256-1f225febafbc8cb43666ed20ce23768b4576cf8bb7c545992e09945e69e67382",
+        "catalog": {
+          "package": "agentic-awesome-skills",
+          "version": "19.11.0",
+          "digest": "sha256-1f225febafbc8cb43666ed20ce23768b4576cf8bb7c545992e09945e69e67382"
+        },
+        "queryTokens": [
+          "architecture"
+        ],
+        "matchMode": "all",
+        "requiredTerms": [],
+        "filters": {
+          "categories": [],
+          "tags": []
+        },
+        "totalMatches": 105,
+        "cursor": 0,
+        "nextCursor": 5,
+        "resultCount": 5,
+        "results": [
+          {
+            "id": "agent-memory-mcp",
+            "name": "agent-memory-mcp",
+            "category": "ai-ml",
+            "matchedTokens": [
+              "architecture"
+            ],
+            "matchedRequiredTerms": [],
+            "matchReason": "tokens",
+            "categoryFacet": "ai-ml",
+            "description": "A hybrid memory system that provides persistent, searchable knowledge management for AI agents (Architecture, Patterns, Decisions).",
+            "tags": [
+              "agent",
+              "mcp",
+              "memory"
+            ],
+            "triggers": [
+              "agent",
+              "agents",
+              "ai",
+              "architecture",
+              "decisions",
+              "hybrid",
+              "knowledge",
+              "mcp",
+              "memory",
+              "persistent",
+              "provides",
+              "searchable"
+            ]
+          },
+          {
+            "id": "ai-ml",
+            "name": "ai-ml",
+            "category": "workflow-bundle",
+            "matchedTokens": [
+              "architecture"
+            ],
+            "matchedRequiredTerms": [],
+            "matchReason": "tokens",
+            "categoryFacet": "workflow-bundle",
+            "description": "AI and machine learning workflow covering LLM application development, RAG implementation, agent architecture, ML pipelines, and AI-powered features.",
+            "tags": [
+              "ai",
+              "ml"
+            ],
+            "triggers": [
+              "agent",
+              "ai",
+              "application",
+              "architecture",
+              "covering",
+              "development",
+              "learning",
+              "llm",
+              "machine",
+              "ml",
+              "pipelines",
+              "rag"
+            ]
+          },
+          {
+            "id": "architect-review",
+            "name": "architect-review",
+            "category": "architecture",
+            "matchedTokens": [
+              "architecture"
+            ],
+            "matchedRequiredTerms": [],
+            "matchReason": "tokens",
+            "categoryFacet": "architecture",
+            "description": "Master software architect specializing in modern architecture",
+            "tags": [],
+            "triggers": [
+              "architect",
+              "architecture",
+              "review",
+              "software",
+              "specializing"
+            ]
+          },
+          {
+            "id": "architecture",
+            "name": "architecture",
+            "category": "architecture",
+            "matchedTokens": [
+              "architecture"
+            ],
+            "matchedRequiredTerms": [],
+            "matchReason": "tokens",
+            "categoryFacet": "architecture",
+            "description": "Architectural decision-making framework. Requirements analysis, trade-off evaluation, ADR documentation. Use when making architecture decisions or analyzing system design.",
+            "tags": [
+              "architecture"
+            ],
+            "triggers": [
+              "adr",
+              "analysis",
+              "architectural",
+              "architecture",
+              "decision",
+              "documentation",
+              "evaluation",
+              "framework",
+              "making",
+              "off",
+              "requirements",
+              "trade"
+            ]
+          },
+          {
+            "id": "architecture-decision-records",
+            "name": "architecture-decision-records",
+            "category": "architecture",
+            "matchedTokens": [
+              "architecture"
+            ],
+            "matchedRequiredTerms": [],
+            "matchReason": "tokens",
+            "categoryFacet": "architecture",
+            "description": "Comprehensive patterns for creating, maintaining, and managing Architecture Decision Records (ADRs) that capture the context and rationale behind significant technical decisions.",
+            "tags": [
+              "architecture",
+              "decision",
+              "records"
+            ],
+            "triggers": [
+              "adrs",
+              "architecture",
+              "behind",
+              "capture",
+              "context",
+              "creating",
+              "decision",
+              "maintaining",
+              "managing",
+              "rationale",
+              "records",
+              "significant"
+            ]
+          }
+        ]
+      },
+      "available": true,
+      "description": "Architectural decision-making framework. Requirements analysis, trade-off evaluation, ADR documentation. Use when making architecture decisions or analyzing system design."
+    },
+    {
+      "id": "architecture-decision-records",
+      "search": {
+        "ok": true,
+        "status": "complete",
+        "protocolVersion": "2025-06-18",
+        "coreVersion": "2.0.0",
+        "catalogSchemaVersion": "2.0.0",
+        "catalogDigest": "sha256-1f225febafbc8cb43666ed20ce23768b4576cf8bb7c545992e09945e69e67382",
+        "catalog": {
+          "package": "agentic-awesome-skills",
+          "version": "19.11.0",
+          "digest": "sha256-1f225febafbc8cb43666ed20ce23768b4576cf8bb7c545992e09945e69e67382"
+        },
+        "queryTokens": [
+          "architecture-decision-records"
+        ],
+        "matchMode": "all",
+        "requiredTerms": [],
+        "filters": {
+          "categories": [],
+          "tags": []
+        },
+        "totalMatches": 1,
+        "cursor": 0,
+        "nextCursor": null,
+        "resultCount": 1,
+        "results": [
+          {
+            "id": "architecture-decision-records",
+            "name": "architecture-decision-records",
+            "category": "architecture",
+            "matchedTokens": [
+              "architecture-decision-records"
+            ],
+            "matchedRequiredTerms": [],
+            "matchReason": "tokens",
+            "categoryFacet": "architecture",
+            "description": "Comprehensive patterns for creating, maintaining, and managing Architecture Decision Records (ADRs) that capture the context and rationale behind significant technical decisions.",
+            "tags": [
+              "architecture",
+              "decision",
+              "records"
+            ],
+            "triggers": [
+              "adrs",
+              "architecture",
+              "behind",
+              "capture",
+              "context",
+              "creating",
+              "decision",
+              "maintaining",
+              "managing",
+              "rationale",
+              "records",
+              "significant"
+            ]
+          }
+        ]
+      },
+      "available": true,
+      "description": "Comprehensive patterns for creating, maintaining, and managing Architecture Decision Records (ADRs) that capture the context and rationale behind significant technical decisions."
+    },
+    {
+      "id": "react-state-management",
+      "search": {
+        "ok": true,
+        "status": "complete",
+        "protocolVersion": "2025-06-18",
+        "coreVersion": "2.0.0",
+        "catalogSchemaVersion": "2.0.0",
+        "catalogDigest": "sha256-1f225febafbc8cb43666ed20ce23768b4576cf8bb7c545992e09945e69e67382",
+        "catalog": {
+          "package": "agentic-awesome-skills",
+          "version": "19.11.0",
+          "digest": "sha256-1f225febafbc8cb43666ed20ce23768b4576cf8bb7c545992e09945e69e67382"
+        },
+        "queryTokens": [
+          "react-state-management"
+        ],
+        "matchMode": "all",
+        "requiredTerms": [],
+        "filters": {
+          "categories": [],
+          "tags": []
+        },
+        "totalMatches": 1,
+        "cursor": 0,
+        "nextCursor": null,
+        "resultCount": 1,
+        "results": [
+          {
+            "id": "react-state-management",
+            "name": "react-state-management",
+            "category": "web-development",
+            "matchedTokens": [
+              "react-state-management"
+            ],
+            "matchedRequiredTerms": [],
+            "matchReason": "tokens",
+            "categoryFacet": "web-development",
+            "description": "Master modern React state management with Redux Toolkit, Zustand, Jotai, and React Query. Use when setting up global state, managing server state, or choosing between state management solutions.",
+            "tags": [
+              "react",
+              "state"
+            ],
+            "triggers": [
+              "global",
+              "jotai",
+              "managing",
+              "query",
+              "react",
+              "redux",
+              "server",
+              "setting",
+              "state",
+              "toolkit",
+              "up",
+              "zustand"
+            ]
+          }
+        ]
+      },
+      "available": true,
+      "description": "Master modern React state management with Redux Toolkit, Zustand, Jotai, and React Query. Use when setting up global state, managing server state, or choosing between state management solutions."
+    },
+    {
+      "id": "react-patterns",
+      "search": {
+        "ok": true,
+        "status": "complete",
+        "protocolVersion": "2025-06-18",
+        "coreVersion": "2.0.0",
+        "catalogSchemaVersion": "2.0.0",
+        "catalogDigest": "sha256-1f225febafbc8cb43666ed20ce23768b4576cf8bb7c545992e09945e69e67382",
+        "catalog": {
+          "package": "agentic-awesome-skills",
+          "version": "19.11.0",
+          "digest": "sha256-1f225febafbc8cb43666ed20ce23768b4576cf8bb7c545992e09945e69e67382"
+        },
+        "queryTokens": [
+          "react-patterns"
+        ],
+        "matchMode": "all",
+        "requiredTerms": [],
+        "filters": {
+          "categories": [],
+          "tags": []
+        },
+        "totalMatches": 1,
+        "cursor": 0,
+        "nextCursor": null,
+        "resultCount": 1,
+        "results": [
+          {
+            "id": "react-patterns",
+            "name": "react-patterns",
+            "category": "frontend",
+            "matchedTokens": [
+              "react-patterns"
+            ],
+            "matchedRequiredTerms": [],
+            "matchReason": "tokens",
+            "categoryFacet": "frontend",
+            "description": "Modern React patterns and principles. Hooks, composition, performance, TypeScript best practices.",
+            "tags": [
+              "react"
+            ],
+            "triggers": [
+              "composition",
+              "hooks",
+              "performance",
+              "principles",
+              "react",
+              "typescript"
+            ]
+          }
+        ]
+      },
+      "available": true,
+      "description": "Modern React patterns and principles. Hooks, composition, performance, TypeScript best practices."
+    },
+    {
+      "id": "agent-tool-builder",
+      "search": {
+        "ok": true,
+        "status": "complete",
+        "protocolVersion": "2025-06-18",
+        "coreVersion": "2.0.0",
+        "catalogSchemaVersion": "2.0.0",
+        "catalogDigest": "sha256-1f225febafbc8cb43666ed20ce23768b4576cf8bb7c545992e09945e69e67382",
+        "catalog": {
+          "package": "agentic-awesome-skills",
+          "version": "19.11.0",
+          "digest": "sha256-1f225febafbc8cb43666ed20ce23768b4576cf8bb7c545992e09945e69e67382"
+        },
+        "queryTokens": [
+          "agent-tool-builder"
+        ],
+        "matchMode": "all",
+        "requiredTerms": [],
+        "filters": {
+          "categories": [],
+          "tags": []
+        },
+        "totalMatches": 1,
+        "cursor": 0,
+        "nextCursor": null,
+        "resultCount": 1,
+        "results": [
+          {
+            "id": "agent-tool-builder",
+            "name": "agent-tool-builder",
+            "category": "ai-ml",
+            "matchedTokens": [
+              "agent-tool-builder"
+            ],
+            "matchedRequiredTerms": [],
+            "matchReason": "tokens",
+            "categoryFacet": "ai-ml",
+            "description": "Tools are how AI agents interact with the world. A well-designed tool is the difference between an agent that works and one that hallucinates, fails silently, or costs 10x more tokens than necessary. This skill covers tool design from schema to error handling.",
+            "tags": [
+              "agent",
+              "builder"
+            ],
+            "triggers": [
+              "agent",
+              "agents",
+              "ai",
+              "between",
+              "builder",
+              "designed",
+              "difference",
+              "how",
+              "interact",
+              "well",
+              "works",
+              "world"
+            ]
+          }
+        ]
+      },
+      "available": true,
+      "description": "Tools are how AI agents interact with the world. A well-designed tool is the difference between an agent that works and one that hallucinates, fails silently, or costs 10x more tokens than necessary. This skill covers tool design from schema to error handling."
+    },
+    {
+      "id": "api-design-principles",
+      "search": {
+        "ok": true,
+        "status": "complete",
+        "protocolVersion": "2025-06-18",
+        "coreVersion": "2.0.0",
+        "catalogSchemaVersion": "2.0.0",
+        "catalogDigest": "sha256-1f225febafbc8cb43666ed20ce23768b4576cf8bb7c545992e09945e69e67382",
+        "catalog": {
+          "package": "agentic-awesome-skills",
+          "version": "19.11.0",
+          "digest": "sha256-1f225febafbc8cb43666ed20ce23768b4576cf8bb7c545992e09945e69e67382"
+        },
+        "queryTokens": [
+          "api-design-principles"
+        ],
+        "matchMode": "all",
+        "requiredTerms": [],
+        "filters": {
+          "categories": [],
+          "tags": []
+        },
+        "totalMatches": 1,
+        "cursor": 0,
+        "nextCursor": null,
+        "resultCount": 1,
+        "results": [
+          {
+            "id": "api-design-principles",
+            "name": "api-design-principles",
+            "category": "backend",
+            "matchedTokens": [
+              "api-design-principles"
+            ],
+            "matchedRequiredTerms": [],
+            "matchReason": "tokens",
+            "categoryFacet": "backend",
+            "description": "Master REST and GraphQL API design principles to build intuitive, scalable, and maintainable APIs that delight developers and stand the test of time.",
+            "tags": [
+              "api",
+              "principles"
+            ],
+            "triggers": [
+              "api",
+              "apis",
+              "delight",
+              "developers",
+              "graphql",
+              "intuitive",
+              "maintainable",
+              "principles",
+              "rest",
+              "scalable",
+              "stand",
+              "test"
+            ]
+          }
+        ]
+      },
+      "available": true,
+      "description": "Master REST and GraphQL API design principles to build intuitive, scalable, and maintainable APIs that delight developers and stand the test of time."
+    },
+    {
+      "id": "javascript-testing-patterns",
+      "search": {
+        "ok": true,
+        "status": "complete",
+        "protocolVersion": "2025-06-18",
+        "coreVersion": "2.0.0",
+        "catalogSchemaVersion": "2.0.0",
+        "catalogDigest": "sha256-1f225febafbc8cb43666ed20ce23768b4576cf8bb7c545992e09945e69e67382",
+        "catalog": {
+          "package": "agentic-awesome-skills",
+          "version": "19.11.0",
+          "digest": "sha256-1f225febafbc8cb43666ed20ce23768b4576cf8bb7c545992e09945e69e67382"
+        },
+        "queryTokens": [
+          "javascript-testing-patterns"
+        ],
+        "matchMode": "all",
+        "requiredTerms": [],
+        "filters": {
+          "categories": [],
+          "tags": []
+        },
+        "totalMatches": 1,
+        "cursor": 0,
+        "nextCursor": null,
+        "resultCount": 1,
+        "results": [
+          {
+            "id": "javascript-testing-patterns",
+            "name": "javascript-testing-patterns",
+            "category": "development",
+            "matchedTokens": [
+              "javascript-testing-patterns"
+            ],
+            "matchedRequiredTerms": [],
+            "matchReason": "tokens",
+            "categoryFacet": "development",
+            "description": "Comprehensive guide for implementing robust testing strategies in JavaScript/TypeScript applications using modern testing frameworks and best practices.",
+            "tags": [
+              "javascript"
+            ],
+            "triggers": [
+              "applications",
+              "frameworks",
+              "implementing",
+              "javascript",
+              "robust",
+              "testing",
+              "typescript"
+            ]
+          }
+        ]
+      },
+      "available": true,
+      "description": "Comprehensive guide for implementing robust testing strategies in JavaScript/TypeScript applications using modern testing frameworks and best practices."
+    },
+    {
+      "id": "vitest-skill",
+      "search": {
+        "ok": true,
+        "status": "complete",
+        "protocolVersion": "2025-06-18",
+        "coreVersion": "2.0.0",
+        "catalogSchemaVersion": "2.0.0",
+        "catalogDigest": "sha256-1f225febafbc8cb43666ed20ce23768b4576cf8bb7c545992e09945e69e67382",
+        "catalog": {
+          "package": "agentic-awesome-skills",
+          "version": "19.11.0",
+          "digest": "sha256-1f225febafbc8cb43666ed20ce23768b4576cf8bb7c545992e09945e69e67382"
+        },
+        "queryTokens": [
+          "vitest-skill"
+        ],
+        "matchMode": "all",
+        "requiredTerms": [],
+        "filters": {
+          "categories": [],
+          "tags": []
+        },
+        "totalMatches": 1,
+        "cursor": 0,
+        "nextCursor": null,
+        "resultCount": 1,
+        "results": [
+          {
+            "id": "vitest-skill",
+            "name": "vitest-skill",
+            "category": "testing",
+            "matchedTokens": [
+              "vitest-skill"
+            ],
+            "matchedRequiredTerms": [],
+            "matchReason": "tokens",
+            "categoryFacet": "testing",
+            "description": "Generates Vitest tests in JavaScript/TypeScript with Vite-native speed. Jest-compatible API with ESM support and HMR. Use when user mentions \"Vitest\", \"vi.mock\", \"vitest.config\". Triggers on: \"Vitest\", \"vi.mock\", \"vi.fn\", \"Vite test\", \"vitest config\".",
+            "tags": [
+              "skill",
+              "vitest"
+            ],
+            "triggers": [
+              "api",
+              "compatible",
+              "generates",
+              "javascript",
+              "jest",
+              "native",
+              "skill",
+              "speed",
+              "tests",
+              "typescript",
+              "vite",
+              "vitest"
+            ]
+          }
+        ]
+      },
+      "available": true,
+      "description": "Generates Vitest tests in JavaScript/TypeScript with Vite-native speed. Jest-compatible API with ESM support and HMR. Use when user mentions \"Vitest\", \"vi.mock\", \"vitest.config\". Triggers on: \"Vitest\", \"vi.mock\", \"vi.fn\", \"Vite test\", \"vitest config\"."
+    },
+    {
+      "id": "secure-code-guardian",
+      "search": {
+        "ok": true,
+        "status": "complete",
+        "protocolVersion": "2025-06-18",
+        "coreVersion": "2.0.0",
+        "catalogSchemaVersion": "2.0.0",
+        "catalogDigest": "sha256-1f225febafbc8cb43666ed20ce23768b4576cf8bb7c545992e09945e69e67382",
+        "catalog": {
+          "package": "agentic-awesome-skills",
+          "version": "19.11.0",
+          "digest": "sha256-1f225febafbc8cb43666ed20ce23768b4576cf8bb7c545992e09945e69e67382"
+        },
+        "queryTokens": [
+          "secure-code-guardian"
+        ],
+        "matchMode": "all",
+        "requiredTerms": [],
+        "filters": {
+          "categories": [],
+          "tags": []
+        },
+        "totalMatches": 0,
+        "cursor": 0,
+        "nextCursor": null,
+        "resultCount": 0,
+        "results": []
+      },
+      "available": false
+    },
+    {
+      "id": "security-auditor",
+      "search": {
+        "ok": true,
+        "status": "complete",
+        "protocolVersion": "2025-06-18",
+        "coreVersion": "2.0.0",
+        "catalogSchemaVersion": "2.0.0",
+        "catalogDigest": "sha256-1f225febafbc8cb43666ed20ce23768b4576cf8bb7c545992e09945e69e67382",
+        "catalog": {
+          "package": "agentic-awesome-skills",
+          "version": "19.11.0",
+          "digest": "sha256-1f225febafbc8cb43666ed20ce23768b4576cf8bb7c545992e09945e69e67382"
+        },
+        "queryTokens": [
+          "security-auditor"
+        ],
+        "matchMode": "all",
+        "requiredTerms": [],
+        "filters": {
+          "categories": [],
+          "tags": []
+        },
+        "totalMatches": 1,
+        "cursor": 0,
+        "nextCursor": null,
+        "resultCount": 1,
+        "results": [
+          {
+            "id": "security-auditor",
+            "name": "security-auditor",
+            "category": "security",
+            "matchedTokens": [
+              "security-auditor"
+            ],
+            "matchedRequiredTerms": [],
+            "matchReason": "tokens",
+            "categoryFacet": "security",
+            "description": "Expert security auditor specializing in DevSecOps, comprehensive cybersecurity, and compliance frameworks.",
+            "tags": [
+              "auditor",
+              "security"
+            ],
+            "triggers": [
+              "auditor",
+              "compliance",
+              "cybersecurity",
+              "devsecops",
+              "frameworks",
+              "security",
+              "specializing"
+            ]
+          }
+        ]
+      },
+      "available": true,
+      "description": "Expert security auditor specializing in DevSecOps, comprehensive cybersecurity, and compliance frameworks."
+    },
+    {
+      "id": "accessibility-compliance-accessibility-audit",
+      "search": {
+        "ok": true,
+        "status": "complete",
+        "protocolVersion": "2025-06-18",
+        "coreVersion": "2.0.0",
+        "catalogSchemaVersion": "2.0.0",
+        "catalogDigest": "sha256-1f225febafbc8cb43666ed20ce23768b4576cf8bb7c545992e09945e69e67382",
+        "catalog": {
+          "package": "agentic-awesome-skills",
+          "version": "19.11.0",
+          "digest": "sha256-1f225febafbc8cb43666ed20ce23768b4576cf8bb7c545992e09945e69e67382"
+        },
+        "queryTokens": [
+          "accessibility-compliance-accessibility-audit"
+        ],
+        "matchMode": "all",
+        "requiredTerms": [],
+        "filters": {
+          "categories": [],
+          "tags": []
+        },
+        "totalMatches": 1,
+        "cursor": 0,
+        "nextCursor": null,
+        "resultCount": 1,
+        "results": [
+          {
+            "id": "accessibility-compliance-accessibility-audit",
+            "name": "accessibility-compliance-accessibility-audit",
+            "category": "design",
+            "matchedTokens": [
+              "accessibility-compliance-accessibility-audit"
+            ],
+            "matchedRequiredTerms": [],
+            "matchReason": "tokens",
+            "categoryFacet": "design",
+            "description": "Audit pages and user journeys against a declared WCAG scope. Use when identifying keyboard, screen-reader, focus or contrast barriers and planning verified remediation.",
+            "tags": [
+              "accessibility",
+              "audit",
+              "compliance"
+            ],
+            "triggers": [
+              "accessibility",
+              "against",
+              "audit",
+              "compliance",
+              "declared",
+              "identifying",
+              "journeys",
+              "keyboard",
+              "pages",
+              "scope",
+              "user",
+              "wcag"
+            ]
+          }
+        ]
+      },
+      "available": true,
+      "description": "Audit pages and user journeys against a declared WCAG scope. Use when identifying keyboard, screen-reader, focus or contrast barriers and planning verified remediation."
+    },
+    {
+      "id": "deployment-procedures",
+      "search": {
+        "ok": true,
+        "status": "complete",
+        "protocolVersion": "2025-06-18",
+        "coreVersion": "2.0.0",
+        "catalogSchemaVersion": "2.0.0",
+        "catalogDigest": "sha256-1f225febafbc8cb43666ed20ce23768b4576cf8bb7c545992e09945e69e67382",
+        "catalog": {
+          "package": "agentic-awesome-skills",
+          "version": "19.11.0",
+          "digest": "sha256-1f225febafbc8cb43666ed20ce23768b4576cf8bb7c545992e09945e69e67382"
+        },
+        "queryTokens": [
+          "deployment-procedures"
+        ],
+        "matchMode": "all",
+        "requiredTerms": [],
+        "filters": {
+          "categories": [],
+          "tags": []
+        },
+        "totalMatches": 1,
+        "cursor": 0,
+        "nextCursor": null,
+        "resultCount": 1,
+        "results": [
+          {
+            "id": "deployment-procedures",
+            "name": "deployment-procedures",
+            "category": "devops",
+            "matchedTokens": [
+              "deployment-procedures"
+            ],
+            "matchedRequiredTerms": [],
+            "matchReason": "tokens",
+            "categoryFacet": "devops",
+            "description": "Production deployment principles and decision-making. Safe deployment workflows, rollback strategies, and verification. Teaches thinking, not scripts.",
+            "tags": [
+              "deployment",
+              "procedures"
+            ],
+            "triggers": [
+              "decision",
+              "deployment",
+              "making",
+              "principles",
+              "procedures",
+              "rollback",
+              "safe",
+              "scripts",
+              "teaches",
+              "thinking",
+              "verification"
+            ]
+          }
+        ]
+      },
+      "available": true,
+      "description": "Production deployment principles and decision-making. Safe deployment workflows, rollback strategies, and verification. Teaches thinking, not scripts."
+    },
+    {
+      "id": "git-workflow",
+      "search": {
+        "ok": true,
+        "status": "complete",
+        "protocolVersion": "2025-06-18",
+        "coreVersion": "2.0.0",
+        "catalogSchemaVersion": "2.0.0",
+        "catalogDigest": "sha256-1f225febafbc8cb43666ed20ce23768b4576cf8bb7c545992e09945e69e67382",
+        "catalog": {
+          "package": "agentic-awesome-skills",
+          "version": "19.11.0",
+          "digest": "sha256-1f225febafbc8cb43666ed20ce23768b4576cf8bb7c545992e09945e69e67382"
+        },
+        "queryTokens": [
+          "git-workflow"
+        ],
+        "matchMode": "all",
+        "requiredTerms": [],
+        "filters": {
+          "categories": [],
+          "tags": []
+        },
+        "totalMatches": 1,
+        "cursor": 0,
+        "nextCursor": null,
+        "resultCount": 1,
+        "results": [
+          {
+            "id": "git-workflow",
+            "name": "git-workflow",
+            "category": "devops",
+            "matchedTokens": [
+              "git-workflow"
+            ],
+            "matchedRequiredTerms": [],
+            "matchReason": "tokens",
+            "categoryFacet": "devops",
+            "description": "Implement Git branching strategies, PR workflows, and release management patterns.",
+            "tags": [
+              "git"
+            ],
+            "triggers": [
+              "branching",
+              "git",
+              "pr",
+              "release"
+            ]
+          }
+        ]
+      },
+      "available": true,
+      "description": "Implement Git branching strategies, PR workflows, and release management patterns."
+    }
+  ]
+}

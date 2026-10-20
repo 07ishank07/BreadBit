@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "name": "breadbit-trackpad-3d-ux",
+  "catalog": {
+    "package": "agentic-awesome-skills",
+    "version": "19.11.0",
+    "integrity": "sha256-1f225febafbc8cb43666ed20ce23768b4576cf8bb7c545992e09945e69e67382"
+  },
+  "targets": [
+    {
+      "host": "codex",
+      "scope": "project"
+    }
+  ],
+  "profile": {
+    "goals": [
+      "Plan two scoped agents for usable electronics construction on laptop trackpad and keyboard/mouse",
+      "Improve 3D navigation, picking and rendering; improve workspace UX and accessibility"
+    ],
+    "projectType": "desktop electronics workbench",
+    "languages": [
+      "typescript"
+    ],
+    "frameworks": [
+      "react",
+      "react-three-fiber",
+      "tauri"
+    ],
+    "constraints": [
+      "Planning only until user preferences are captured",
+      "Preserve shared electrical IDs and design history",
+      "No essential action requires middle or right click",
+      "No vendor edits or simulation accuracy claims",
+      "Do not install skills"
+    ]
+  },
+  "skills": [
+    {
+      "id": "3d-web-experience"
+    },
+    {
+      "id": "threejs-interaction"
+    },
+    {
+      "id": "frontend-design"
+    },
+    {
+      "id": "accessibility-compliance-accessibility-audit"
+    },
+    {
+      "id": "javascript-testing-patterns"
+    }
+  ]
+}

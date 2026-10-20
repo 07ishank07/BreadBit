@@ -1,0 +1,14 @@
+node_modules/
+apps/desktop/dist/
+apps/desktop/public/
+apps/desktop/src-tauri/target/
+apps/desktop/src-tauri/gen/
+.cache/
+.env
+.env.*
+!.env.example
+*.log
+test-results/
+playwright-report/
+__pycache__/
+.venv/

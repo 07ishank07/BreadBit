@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "status": "valid",
+  "protocolVersion": "2025-06-18",
+  "coreVersion": "2.0.0",
+  "catalogSchemaVersion": "2.0.0",
+  "reasonCodes": [],
+  "unknown": [],
+  "details": {},
+  "manifest": {
+    "schemaVersion": 2,
+    "name": "breadbit-trackpad-3d-ux",
+    "catalog": {
+      "package": "agentic-awesome-skills",
+      "version": "19.11.0",
+      "integrity": "sha256-1f225febafbc8cb43666ed20ce23768b4576cf8bb7c545992e09945e69e67382"
+    },
+    "targets": [
+      {
+        "host": "codex",
+        "scope": "project"
+      }
+    ],
+    "profile": {
+      "goals": [
+        "Plan two scoped agents for usable electronics construction on laptop trackpad and keyboard/mouse",
+        "Improve 3D navigation, picking and rendering; improve workspace UX and accessibility"
+      ],
+      "projectType": "desktop electronics workbench",
+      "languages": [
+        "typescript"
+      ],
+      "frameworks": [
+        "react",
+        "react-three-fiber",
+        "tauri"
+      ],
+      "constraints": [
+        "Planning only until user preferences are captured",
+        "Preserve shared electrical IDs and design history",
+        "No essential action requires middle or right click",
+        "No vendor edits or simulation accuracy claims",
+        "Do not install skills"
+      ]
+    },
+    "skills": [
+      {
+        "id": "3d-web-experience"
+      },
+      {
+        "id": "threejs-interaction"
+      },
+      {
+        "id": "frontend-design"
+      },
+      {
+        "id": "accessibility-compliance-accessibility-audit"
+      },
+      {
+        "id": "javascript-testing-patterns"
+      }
+    ]
+  },
+  "canonicalJson": "{\"catalog\":{\"integrity\":\"sha256-1f225febafbc8cb43666ed20ce23768b4576cf8bb7c545992e09945e69e67382\",\"package\":\"agentic-awesome-skills\",\"version\":\"19.11.0\"},\"name\":\"breadbit-trackpad-3d-ux\",\"profile\":{\"constraints\":[\"Planning only until user preferences are captured\",\"Preserve shared electrical IDs and design history\",\"No essential action requires middle or right click\",\"No vendor edits or simulation accuracy claims\",\"Do not install skills\"],\"frameworks\":[\"react\",\"react-three-fiber\",\"tauri\"],\"goals\":[\"Plan two scoped agents for usable electronics construction on laptop trackpad and keyboard/mouse\",\"Improve 3D navigation, picking and rendering; improve workspace UX and accessibility\"],\"languages\":[\"typescript\"],\"projectType\":\"desktop electronics workbench\"},\"schemaVersion\":2,\"skills\":[{\"id\":\"3d-web-experience\"},{\"id\":\"threejs-interaction\"},{\"id\":\"frontend-design\"},{\"id\":\"accessibility-compliance-accessibility-audit\"},{\"id\":\"javascript-testing-patterns\"}],\"targets\":[{\"host\":\"codex\",\"scope\":\"project\"}]}",
+  "manifestDigest": "sha256-2c04e4b8c9751a6441c3d079db31a19bb18c6907895557e881628a2a095715f3",
+  "selectionSource": "agent",
+  "selectedSkillIds": [
+    "3d-web-experience",
+    "threejs-interaction",
+    "frontend-design",
+    "accessibility-compliance-accessibility-audit",
+    "javascript-testing-patterns"
+  ],
+  "catalog": {
+    "package": "agentic-awesome-skills",
+    "version": "19.11.0",
+    "digest": "sha256-1f225febafbc8cb43666ed20ce23768b4576cf8bb7c545992e09945e69e67382"
+  },
+  "catalogDigest": "sha256-1f225febafbc8cb43666ed20ce23768b4576cf8bb7c545992e09945e69e67382"
+}

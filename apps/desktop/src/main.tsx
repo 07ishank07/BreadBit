@@ -1,0 +1,13 @@
+import { createRoot } from 'react-dom/client';
+import { loader } from '@monaco-editor/react';
+import '@velxio/index.css';
+import '@velxio/App.css';
+import '@velxio/i18n';
+import '@wokwi/elements';
+import './integrations/elements';
+import { initTheme } from '@velxio/lib/theme';
+import { App } from './App';
+import './styles.css';
+loader.config({ paths: { vs: '/monaco/vs' } });
+initTheme();
+createRoot(document.getElementById('root')!).render(<App />);
