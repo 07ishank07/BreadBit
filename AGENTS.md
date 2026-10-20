@@ -1,6 +1,6 @@
 # BreadBit contribution boundaries
 
-- Read README.md, docs/implementation-status.md and velxio-desktop-plan.md. The current user direction defers all 3D work.
+- Read README.md, docs/implementation-status.md and velxio-desktop-plan.md. The current user direction integrates the 3D renderer from origin/main; see docs/3d-integration.md.
 - Keep vendor/velxio at upstream.lock.json's revision; prefer adapters over vendor edits. Record unavoidable patches.
 - Keep electrical identities independent of UI coordinates. Preserve upstream IDs and import extension fields.
 - Distinguish design state, observations and evidence. Never report compilation, a configured tool, or a ready artifact as a passed simulation.

@@ -54,6 +54,18 @@ describe('Velxio project adapter', () => {
     expect(controller.project.document.components[0].x).toBe(90);
     detach();
   });
+  it('undoes a component and attached-wire deletion as one project edit', () => {
+    const controller = new ProjectController(); const detach = controller.attach();
+    controller.flush(); mock.setState({ wires: [] }); mock.setState({ components: [] }); controller.flush();
+    expect(controller.project.document.components).toHaveLength(0);
+    controller.undo(); vi.advanceTimersByTime(400);
+    expect(controller.project.document.components).toHaveLength(1);
+    expect(controller.project.document.wires).toHaveLength(1);
+    controller.redo(); vi.advanceTimersByTime(400);
+    expect(controller.project.document.components).toHaveLength(0);
+    expect(controller.project.document.wires).toHaveLength(0);
+    detach();
+  });
   it('preserves imported extension data and names after a new edit', () => {
     const controller = new ProjectController();
     const project = controller.project; project.document.name = 'My saved project'; project.document.extension = { hello: 'world' };

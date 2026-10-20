@@ -1,6 +1,6 @@
 # Foundation status
 
-Scope: implement the BreadBit application frame using public Velxio and AAS guidance, with all 3D work deferred. This status supersedes the original plan's immediate 3D POC scope.
+Scope: implement the BreadBit application frame using public Velxio and AAS guidance, now extended with the 3D renderer from origin/main. See [3D integration](3d-integration.md) for current behavior and limits.
 
 ## Implemented
 
@@ -37,6 +37,6 @@ Recovery uses one local draft. Opening another project requires discarding unsav
 3. Qualify one Uno/button/LED circuit using compiled firmware and recorded inputs/outputs. Reject stale binaries and disclose model limits.
 4. Replace observed snapshots with command transactions shared by UI and agent tools. Add qualified catalog pin definitions.
 5. Add an actual bounded AI provider/tool execution loop and immutable scenario evidence; retain candidate preview and rollback.
-6. Add schematic projection and equivalence tests. 3D remains deferred until separately requested.
+6. Add schematic projection and equivalence tests. Qualify breadboard geometry and complete the 3D pin mapping catalog.
 
 No installer, firmware compilation success, simulated test success, AI repair or general electrical accuracy is claimed by the current scaffold.

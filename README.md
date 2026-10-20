@@ -54,7 +54,7 @@ velxio-desktop-plan.md       Product plan, with current scope amendment
 - The adapter observes design changes, captures recovery drafts and provides whole-project undo/redo. Undo reloads the simulator and discards runtime state. It is not time travel. Monaco and upstream canvas also retain their own local editing histories.
 - AI proposal validation and tool names are implemented as contracts, with no provider calls or autonomous execution. The inspector shows this explicitly. Compilation is never presented as a passed simulation test.
 - A packaged Python backend, local compiler pack, authenticated sidecar and QEMU are not connected. The optional developer launcher checks prerequisites and does not install them. See [backend setup](services/local-backend/README.md).
-- Schematic generation/editing, complete qualified pin definitions, scenario runner, cloud AI and 3D are not implemented.
+- Schematic generation/editing, complete qualified pin definitions, scenario runner and cloud AI are not implemented. The 3D workspace is now integrated; see [3D integration](docs/3d-integration.md).
 
 The desktop composition does not mount upstream marketing, accounts, news or its private desktop/license flow. A small Vite integration suppresses upstream run telemetry. Hosted features are not unlocked or copied. Other optional upstream network features are not qualified for the offline desktop product.
 

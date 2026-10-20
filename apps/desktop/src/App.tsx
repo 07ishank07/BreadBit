@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import { NewProjectDialog } from '@velxio/components/editor/NewProjectDialog';
 import { createProject } from '../../../packages/project-core/src';
@@ -18,6 +18,9 @@ import { AI_TOOLS, validateVlx } from '../../../packages/project-core/src';
 import { ProjectController, recoveryKey } from './integrations/project';
 import { nativeAvailable, openNative, saveNative, saveNativeAs, runtimeStatus, type NativeDocument } from './integrations/native';
 
+import { shortcut } from './integrations/shortcuts';
+const Circuit3D = lazy(() => import('./features/Circuit3D'));
+
 function download(content: string, filename: string) {
   const url = URL.createObjectURL(new Blob([content], { type: 'application/json' }));
   const a = document.createElement('a'); a.href = url; a.download = filename; a.click();
@@ -31,6 +34,7 @@ export function App() {
   const [saved, setSaved] = useState(-1);
   const [notice, setNotice] = useState('Start with the Uno workspace. Add components with the + button on the circuit.');
   const [panel, setPanel] = useState<'project' | 'assistant' | 'runtime'>('project');
+  const [view, setView] = useState<'2d'|'3d'>('2d');
   const [consoleOpen, setConsoleOpen] = useState(false);
   const [newDialog, setNewDialog] = useState(false);
   const [busy, setBusy] = useState(false);
@@ -85,9 +89,14 @@ export function App() {
   }
   useEffect(() => {
     const keyboard = (event: KeyboardEvent) => {
-      if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 's') {
-        event.preventDefault(); event.stopImmediatePropagation(); void save(event.shiftKey);
-      }
+      const target = event.target as HTMLElement | null;
+      const editing = !!target?.closest('input,textarea,select,[contenteditable="true"],.monaco-editor,[role="dialog"]');
+      const action = shortcut(event.key, event.ctrlKey, event.metaKey, event.shiftKey, editing);
+      if (!action || event.altKey) return;
+      event.preventDefault(); event.stopImmediatePropagation();
+      if (action === 'save' || action === 'saveAs') void save(action === 'saveAs');
+      else if (action === 'open') void open();
+      else void act(async () => { controller[action](); setNotice(action === 'undo' ? 'Project edit undone; runtime state is reset.' : 'Project edit redone; runtime state is reset.'); });
     };
     window.addEventListener('keydown', keyboard, true);
     return () => window.removeEventListener('keydown', keyboard, true);
@@ -115,9 +124,9 @@ export function App() {
         <button onClick={() => void act(async () => controller.undo())} disabled={!controller.history.canUndo}>Undo</button>
         <button onClick={() => void act(async () => controller.redo())} disabled={!controller.history.canRedo}>Redo</button>
       </nav>
-      <span className="bb-version">Foundation · 0.1</span>
+      <span className="bb-version">Workbench · 0.2</span>
     </header>
-    <div className="bb-modebar"><span className="bb-active-mode">2D workspace</span><span className="bb-mode-note">Circuit + firmware</span><span className={running ? 'bb-running' : 'bb-idle'}>{running ? 'Simulation running' : 'Simulation stopped'}</span></div>
+    <div className="bb-modebar"><button aria-pressed={view==='2d'} onClick={()=>setView('2d')}>2D workspace</button><button aria-pressed={view==='3d'} onClick={()=>setView('3d')}>3D workspace</button><span className="bb-mode-note">Circuit + firmware</span><span className={running ? 'bb-running' : 'bb-idle'}>{running ? 'Simulation running' : 'Simulation stopped'}</span></div>
     {recovery && <div className="bb-recovery">A previous recovery draft is available.<button onClick={() => void act(async () => { controller.load(recovery); setNativeFile(null); setSaved(-1); setRecovery(null); setNotice('Recovery draft restored. Save it to a project file.'); })}>Restore draft</button><button onClick={() => setRecovery(null)}>Dismiss</button></div>}
     <main className="bb-workspace">
       <section className="bb-editor" aria-label="Electronics editor">
@@ -126,7 +135,7 @@ export function App() {
         <div className="bb-panes">
           <aside className="bb-files"><FileExplorer onSaveClick={() => void save()} onNewClick={() => void act(async () => newProject())}/></aside>
           <section className="bb-code" aria-label="Firmware"><CodeEditor/></section>
-          <section className="bb-circuit" aria-label="2D circuit"><SimulatorCanvas/></section>
+          <section className="bb-circuit" aria-label="Circuit workspace"><div className="bb-canvas-layer" style={{visibility:view==='2d'?'visible':'hidden'}} inert={view!=='2d'}><SimulatorCanvas/></div>{view==='3d' && <Suspense fallback={<p>Loading 3D workspace…</p>}><Circuit3D controller={controller} notify={setNotice}/></Suspense>}</section>
         </div>
         <div className="bb-output"><CompilationConsole isOpen={consoleOpen} onClose={() => setConsoleOpen(false)} logs={logs} onClear={() => setLogs([])}/></div>
         {serialOpen && <div className="bb-instrument"><SerialMonitor/></div>}
@@ -138,7 +147,7 @@ export function App() {
         </div>
         <div className="bb-panel" id="inspector-panel" role="tabpanel" aria-labelledby={`tab-${panel}`}>
           {panel === 'project' && <>
-            <p className="bb-eyebrow">YOUR PROJECT</p><h1>One connected workspace</h1><p className="bb-subtle">Edit with Velxio’s 2D tools. BreadBit keeps a versioned project snapshot and recovery draft.</p>
+            <p className="bb-eyebrow">YOUR PROJECT</p><h1>One connected workspace</h1><p className="bb-subtle">Build in 2D and inspect or edit the same circuit in 3D. BreadBit keeps a versioned project snapshot and recovery draft.</p>
             <dl className="bb-stats"><div><dt>Boards</dt><dd>{project.document.boards.length}</dd></div><div><dt>Parts</dt><dd>{project.document.components.length}</dd></div><div><dt>Wires</dt><dd>{project.document.wires.length}</dd></div></dl>
             <h2>Connections</h2><p className="bb-subtle">Explicit wire endpoints. Breadboard buses and implied nets are not expanded here.</p>
             <div className="bb-connections">{project.document.wires.length ? project.document.wires.map(wire => <div key={wire.id}><code>{wire.start.componentId}:{wire.start.pinName}</code><span>↔</span><code>{wire.end.componentId}:{wire.end.pinName}</code></div>) : <p>No wires yet.</p>}</div>
